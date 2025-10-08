@@ -3,8 +3,8 @@ import { t } from "i18next";
 import { requestPermission, scheduleReminder } from "@/utils/notifications";
 import { v4 as uuidv4 } from "uuid";
 
-export default function Overheid() {
-  const formName = "overheid";
+export default function Diversen() {
+  const formName = "diversen";
   const [items, setItems] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
   const [draft, setDraft] = useState(null);
@@ -61,7 +61,7 @@ export default function Overheid() {
 
   return (
     <div className="rr-page">
-      <h2>{t("pages.government.title", "Overheid")}</h2>
+      <h2>{t("pages.misc.title", "Diversen")}</h2>
 
       <form onSubmit={handleSubmit} className="rr-form-grid">
         <div className="field-group">

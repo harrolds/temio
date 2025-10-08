@@ -1,1 +1,304 @@
-/* extra styles (optioneel) */
+/* ================================================================
+   Precision & Pulse – complete styles (Sprint 2.3 visual corrections)
+   - Lichte footer met top-shadow en blauwe iconen
+   - Lichte app background + lichte hero/“herinnering” blok
+   - Consistente kaarten/knoppen/grid
+   ================================================================ */
+
+/* ---------- Color Tokens ---------- */
+:root {
+  /* Brand / primary scale (warm blauw) */
+  --pp-primary-900: #20384b;
+  --pp-primary-800: #27465a;
+  --pp-primary-700: #2e4b62; /* header/icon-kleur */
+  --pp-primary-600: #345a76;
+  --pp-primary-500: #4f6f86;
+  --pp-primary-400: #6f8ba0;
+  --pp-primary-300: #9ab0bf;
+  --pp-primary-200: #c5d3dd;
+  --pp-primary-100: #dce5ec;
+  --pp-primary-50:  #eef3f6;
+
+  /* Surface (algemene achtergronden) – nét lichter dan voorheen */
+  --pp-surface-0:   #ffffff;
+  --pp-surface-25:  #fafcfe; /* algemene app background */
+  --pp-surface-50:  #f6f8fa; /* panel/card bg */
+  --pp-surface:     var(--pp-surface-25);
+
+  /* Text */
+  --pp-on-surface:           #1b2a38;
+  --pp-on-surface-variant:   #46596b;
+
+  /* Accents & borders */
+  --pp-border: rgba(0,0,0,0.08);
+
+  /* Shadows */
+  --pp-shadow-bottom: 0 2px 6px rgba(0,0,0,0.10); /* header schaduw omlaag */
+  --pp-shadow-top:    0 -6px 14px rgba(0,0,0,0.06); /* footer schaduw omhoog */
+
+  /* Footer (licht paneel + blauwe iconen) */
+  --pp-footer-bg:     #f2f5f8;         /* lichte balk */
+  --pp-footer-icon:   var(--pp-primary-700); /* iconen in header-blauw */
+
+  /* Radii & spacing */
+  --pp-radius: 16px;
+  --pp-radius-sm: 10px;
+  --pp-space-1: .5rem;
+  --pp-space-2: .75rem;
+  --pp-space-3: 1rem;
+  --pp-space-4: 1.5rem;
+
+  /* Button heights */
+  --pp-btn-h: 44px;
+}
+
+/* Dark mode (optioneel – iconen blijven goed zichtbaar) */
+:root[data-theme="dark"] {
+  --pp-surface-25:  #0e1116;
+  --pp-surface-50:  #141922;
+  --pp-surface:     var(--pp-surface-25);
+  --pp-on-surface:  #e9eef3;
+  --pp-on-surface-variant: #b7c6d4;
+
+  --pp-footer-bg:   #1a2230; /* nog steeds licht t.o.v. header-donker */
+  --pp-footer-icon: #cfe0ea;
+
+  --pp-border: rgba(255,255,255,0.08);
+  --pp-shadow-bottom: 0 2px 6px rgba(0,0,0,0.55);
+  --pp-shadow-top:    0 -6px 14px rgba(0,0,0,0.45);
+}
+
+/* ---------- Base Layout ---------- */
+html, body, #root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: var(--pp-surface);
+  color: var(--pp-on-surface);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* Houd ruimte voor vaste header + footer */
+#content, .app-main, main {
+  padding: calc(var(--pp-space-4) + 16px) var(--pp-space-3) calc(80px + var(--pp-space-3));
+  box-sizing: border-box;
+}
+
+/* ---------- Header (donkerblauw) ---------- */
+.pp-header, header.pp-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--pp-space-3);
+  background: var(--pp-primary-700);
+  color: #fff;
+  box-shadow: var(--pp-shadow-bottom);
+  z-index: 1000;
+}
+.pp-header .pp-title, .pp-app-title {
+  font-weight: 700;
+  letter-spacing: .3px;
+  margin: 0;
+}
+
+/* ---------- Footer (licht paneel met top-shadow, blauwe iconen) ---------- */
+.pp-footer {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  height: 68px;
+  background: var(--pp-footer-bg);      /* ✅ licht */
+  box-shadow: var(--pp-shadow-top);     /* ✅ schaduw aan bovenzijde */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: transform .28s ease, opacity .28s ease;
+}
+.pp-footer.hidden {
+  transform: translateY(100%);
+  opacity: 0;
+}
+.pp-footer-nav {
+  width: min(720px, 92vw);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  gap: var(--pp-space-2);
+}
+.pp-footer-nav button {
+  appearance: none;
+  border: none;
+  background: none;
+  height: 44px;
+  width: 44px;
+  margin: 0 auto;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.pp-footer svg {
+  width: 24px; height: 24px;
+  stroke: var(--pp-footer-icon);        /* ✅ iconen in header-blauw */
+}
+.pp-footer-nav button.active svg {
+  stroke: var(--pp-primary-900);
+}
+.pp-footer-add {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--pp-surface-0);      /* witte “fab” op lichte footer */
+  box-shadow: 0 6px 14px rgba(0,0,0,0.16);
+  border: 2px solid var(--pp-primary-200);
+}
+
+/* ---------- Hero / “Herinnering” blok (licht) ---------- */
+.pp-header-block {
+  margin-top: 72px; /* onder header */
+  margin-bottom: var(--pp-space-3);
+}
+.pp-hero, .pp-hero-card {
+  background: var(--pp-surface-50);     /* ✅ zelfde lichte bg als rest */
+  border-radius: var(--pp-radius);
+  padding: var(--pp-space-4);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* ---------- Cards & Grid ---------- */
+.rr-grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--pp-space-3);
+  margin-top: var(--pp-space-2);
+}
+.pp-card {
+  background: var(--pp-surface-50);
+  border-radius: var(--pp-radius);
+  padding: var(--pp-space-3);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.pp-card-link {
+  background: var(--pp-primary-100);
+  color: var(--pp-primary-700);
+  text-decoration: none;
+  display: grid;
+  place-items: center;
+  row-gap: .5rem;
+  border-radius: var(--pp-radius);
+  padding: var(--pp-space-3);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.pp-card-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+.pp-card-link svg {
+  width: 28px; height: 28px;
+  stroke: var(--pp-primary-700);
+}
+
+/* ---------- Forms ---------- */
+.rr-page h1, .rr-page h2, .pp-section h2 {
+  margin: 0 0 var(--pp-space-2) 0;
+}
+.rr-page {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.rr-form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--pp-space-3);
+  margin-top: var(--pp-space-3);
+}
+.field-group {
+  display: grid;
+  gap: var(--pp-space-3);
+}
+.field label {
+  font-size: .9rem;
+  color: var(--pp-on-surface-variant);
+}
+.field input, .field select {
+  width: 100%;
+  height: var(--pp-btn-h);
+  padding: 0 .75rem;
+  border-radius: var(--pp-radius-sm);
+  border: 1px solid var(--pp-border);
+  background: var(--pp-surface-0);
+  color: var(--pp-on-surface);
+  box-sizing: border-box;
+}
+.field.actions {
+  display: flex;
+  gap: var(--pp-space-2);
+  flex-wrap: wrap;
+}
+
+/* ---------- Buttons ---------- */
+.pp-btn, .pp-btn-outline, .pp-btn-subtle, .btn-clear {
+  height: var(--pp-btn-h);
+  border-radius: var(--pp-radius-sm);
+  padding: 0 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.pp-btn {
+  background: var(--pp-primary-700);
+  color: #fff;
+}
+.pp-btn:hover { filter: brightness(1.05); }
+.pp-btn-outline {
+  background: transparent;
+  color: var(--pp-primary-700);
+  border-color: var(--pp-primary-300);
+}
+.pp-btn-subtle {
+  background: transparent;
+  color: var(--pp-on-surface-variant);
+}
+.btn-clear {
+  background: var(--pp-surface-50);
+  border-color: var(--pp-border);
+  color: var(--pp-on-surface-variant);
+}
+
+/* ---------- Lists ---------- */
+.rr-list {
+  list-style: none;
+  padding: 0; margin: var(--pp-space-3) 0;
+  display: grid;
+  gap: var(--pp-space-2);
+}
+.rr-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pp-space-2);
+}
+.item-actions {
+  display: flex;
+  gap: .25rem;
+}
+
+/* ---------- Utilities ---------- */
+.clear-row { margin-top: var(--pp-space-3); }
+
+/* ---------- Responsive tweaks ---------- */
+@media (min-width: 640px) {
+  .rr-form-grid { grid-template-columns: 1fr 1fr; }
+  .field-group { grid-template-columns: 1fr 1fr 1fr; }
+}
+@media (min-width: 960px) {
+  #content, .app-main, main {
+    padding-left: var(--pp-space-4);
+    padding-right: var(--pp-space-4);
+  }
+}
