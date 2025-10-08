@@ -1,1 +1,208 @@
-/* extra styles (optioneel) */
+/* ================================================================
+   Precision & Pulse Theme Tokens + Global Styling
+   Sprint 2.3 – Temio / Reminder App
+   ================================================================ */
+
+/* === Font imports (local) === */
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter/Inter-Regular.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins/Poppins-Regular.woff2") format("woff2");
+  font-display: swap;
+}
+
+/* === Precision & Pulse design tokens === */
+:root {
+  --pp-color-primary: #1b263b;
+  --pp-color-secondary: #415a77;
+  --pp-color-accent: #e0e1dd;
+  --pp-color-focus: #778da9;
+  --pp-color-bg: #f9fafb;
+
+  --pp-radius: 12px;
+  --pp-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+  --pp-font-heading: "Poppins", sans-serif;
+  --pp-font-body: "Inter", sans-serif;
+
+  --pp-space-1: 0.25rem;
+  --pp-space-2: 0.5rem;
+  --pp-space-3: 0.75rem;
+  --pp-space-4: 1rem;
+  --pp-space-6: 1.5rem;
+  --pp-space-8: 2rem;
+}
+
+/* === Dark mode variant === */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --pp-color-primary: #e0e1dd;
+    --pp-color-secondary: #a8b4c6;
+    --pp-color-accent: #141a23;
+    --pp-color-bg: #0d1117;
+    --pp-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* === Global mappings (geen functionele codewijziging vereist) === */
+body {
+  background: var(--pp-color-bg);
+  color: var(--pp-color-primary);
+  font-family: var(--pp-font-body);
+  margin: 0;
+  padding: 0;
+}
+
+/* === Container & layout classes === */
+.rr-page {
+  padding: var(--pp-space-4);
+  max-width: 920px;
+  margin: 0 auto var(--pp-space-8);
+}
+
+.rr-form-grid {
+  display: grid;
+  gap: var(--pp-space-4);
+  background: var(--pp-color-accent);
+  border-radius: var(--pp-radius);
+  box-shadow: var(--pp-shadow);
+  padding: var(--pp-space-4);
+}
+@media (min-width: 700px) {
+  .rr-form-grid .field-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--pp-space-4);
+  }
+}
+
+/* === Form elements === */
+.field label {
+  display: block;
+  margin-bottom: var(--pp-space-2);
+  font-family: var(--pp-font-heading);
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: var(--pp-space-3) var(--pp-space-4);
+  border: 1px solid var(--pp-color-secondary);
+  border-radius: var(--pp-radius);
+  outline: none;
+  background: #fff;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--pp-color-focus);
+}
+
+/* === Button styles === */
+button,
+.pp-btn {
+  background: var(--pp-color-primary);
+  color: var(--pp-color-accent);
+  border: none;
+  border-radius: var(--pp-radius);
+  padding: 0.6rem 1.2rem;
+  font-family: var(--pp-font-body);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+button:hover,
+.pp-btn:hover {
+  background: var(--pp-color-secondary);
+}
+.pp-btn-outline,
+.btn-clear {
+  background: transparent;
+  color: var(--pp-color-primary);
+  border: 1px solid var(--pp-color-primary);
+  border-radius: var(--pp-radius);
+  padding: 0.5rem 1rem;
+}
+.pp-btn-outline:hover,
+.btn-clear:hover {
+  background: var(--pp-color-primary);
+  color: var(--pp-color-accent);
+}
+.pp-btn-subtle {
+  background: transparent;
+  color: var(--pp-color-primary);
+  border: none;
+  padding: var(--pp-space-2) var(--pp-space-3);
+  border-radius: var(--pp-radius);
+}
+.pp-btn-subtle:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+/* === Card & list styling === */
+.pp-card,
+.rr-list > li {
+  background: var(--pp-color-accent);
+  border-radius: var(--pp-radius);
+  box-shadow: var(--pp-shadow);
+  padding: var(--pp-space-4);
+  margin-bottom: var(--pp-space-4);
+}
+.rr-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--pp-space-6) 0;
+}
+
+/* === Inline editor (zoals bij Auto-edit) === */
+.inline-editor form {
+  display: flex;
+  gap: var(--pp-space-2);
+  margin-top: var(--pp-space-3);
+}
+
+/* === Header & Footer behaviour (regel 64) === */
+.pp-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--pp-color-primary);
+  color: var(--pp-color-accent);
+  font-family: var(--pp-font-heading);
+  padding: 0.8rem 1.2rem;
+  z-index: 1000;
+  backdrop-filter: blur(6px);
+}
+#content {
+  margin-top: 60px;
+  margin-bottom: 70px;
+}
+.pp-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--pp-color-primary);
+  color: var(--pp-color-accent);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.6rem 0;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+.pp-footer.hidden {
+  transform: translateY(100%);
+}
+.pp-footer a {
+  color: var(--pp-color-accent);
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+.pp-footer a:hover {
+  opacity: 0.9;
+}
