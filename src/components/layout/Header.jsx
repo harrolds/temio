@@ -1,10 +1,20 @@
-import { Link } from 'react-router-dom'
-import React from 'react'
-import LanguageSelect from '@/components/common/LanguageSelect'
+import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Header() {
-  return (<header style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'0.75rem 1rem',borderBottom:'1px solid #e5e7eb',position:'sticky',top:0,background:'#fff',zIndex:10}}>
-      <div style={{fontWeight:600}}><Link to='/'>Reminder App</Link></div>
-      <LanguageSelect />
-    </header>)
+  const { i18n } = useTranslation();
+
+  return (
+    <header className="pp-header">
+      <h1 className="pp-title">temio</h1>
+      <select
+        aria-label="Language"
+        value={i18n.language?.startsWith("nl") ? "nl" : "en"}
+        onChange={(e) => i18n.changeLanguage(e.target.value)}
+      >
+        <option value="nl">Nederlands</option>
+        <option value="en">English</option>
+      </select>
+    </header>
+  );
 }
