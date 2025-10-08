@@ -1,0 +1,105 @@
+{
+  "pages": {
+    "home": "Welcome to the Reminder App",
+    "auto": {
+      "tuv": {
+        "title": "MOT",
+        "kenteken": {
+          "label": "Kenteken",
+          "placeholder": "Voer kenteken in"
+        },
+        "datum": {
+          "label": "Datum",
+          "placeholder": "Kies datum"
+        }
+      },
+      "verzekering": {
+        "title": "Insurance",
+        "verzekeraar": {
+          "label": "Verzekeraar",
+          "placeholder": "Naam verzekeraar"
+        },
+        "vervaldatum": {
+          "label": "Vervaldatum",
+          "placeholder": "Kies datum"
+        }
+      }
+    },
+    "contracten": {
+      "contract": {
+        "title": "Contract",
+        "naam": {
+          "label": "Naam",
+          "placeholder": "Naam contract"
+        },
+        "einddatum": {
+          "label": "Einddatum",
+          "placeholder": "Kies datum"
+        }
+      }
+    },
+    "gezondheid": {
+      "zorgverzekering": {
+        "title": "Health insurance",
+        "verzekeraar": {
+          "label": "Verzekeraar",
+          "placeholder": "Naam verzekeraar"
+        },
+        "vervaldatum": {
+          "label": "Vervaldatum",
+          "placeholder": "Kies datum"
+        }
+      }
+    },
+    "huur": {
+      "huurcontract": {
+        "title": "Rental Contract",
+        "naam": {
+          "label": "Naam",
+          "placeholder": "Naam contract"
+        },
+        "einddatum": {
+          "label": "end date",
+          "placeholder": "e.g. 2026-09-30"
+        },
+        "startdatum": {
+          "label": "start date",
+          "placeholder": "e.g. 2025-10-01"
+        }
+      }
+    },
+    "overheid": {
+      "belasting": {
+        "title": "Taxes",
+        "jaar": {
+          "label": "Jaar",
+          "placeholder": "Bijv. 2025"
+        }
+      }
+    },
+    "autoTitle": "Car",
+    "contractenTitle": "Contracts",
+    "huurTitle": "Rent",
+    "gezondheidTitle": "Health",
+    "overheidTitle": "Government",
+    "homeTitle": "Home"
+  },
+  "common": {
+    "submit": "Save",
+    "entered": "Saved reminders",
+    "clear": "Clear",
+    "repeat": "Herhaling",
+    "notifyAt": "Notificatie tijd",
+    "edit": "Bewerken",
+    "delete": "Verwijderen"
+  },
+  "app": {
+    "title": "Reminder App"
+  },
+  "repeat": {
+    "none": "Geen",
+    "daily": "Dagelijks",
+    "weekly": "Wekelijks",
+    "monthly": "Maandelijks"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "pages": {
+    "home": "Willkommen bei der Reminder-App",
+    "auto": {
+      "tuv": {
+        "title": "TÜV",
+        "kenteken": {
+          "label": "Kenteken",
+          "placeholder": "Voer kenteken in"
+        },
+        "datum": {
+          "label": "Datum",
+          "placeholder": "Kies datum"
+        }
+      },
+      "verzekering": {
+        "title": "Versicherung",
+        "verzekeraar": {
+          "label": "Verzekeraar",
+          "placeholder": "Naam verzekeraar"
+        },
+        "vervaldatum": {
+          "label": "Vervaldatum",
+          "placeholder": "Kies datum"
+        }
+      }
+    },
+    "contracten": {
+      "contract": {
+        "title": "Vertrag",
+        "naam": {
+          "label": "Naam",
+          "placeholder": "Naam contract"
+        },
+        "einddatum": {
+          "label": "Einddatum",
+          "placeholder": "Kies datum"
+        }
+      }
+    },
+    "gezondheid": {
+      "zorgverzekering": {
+        "title": "Krankenversicherung",
+        "verzekeraar": {
+          "label": "Verzekeraar",
+          "placeholder": "Naam verzekeraar"
+        },
+        "vervaldatum": {
+          "label": "Vervaldatum",
+          "placeholder": "Kies datum"
+        }
+      }
+    },
+    "huur": {
+      "huurcontract": {
+        "title": "Mietvertrag",
+        "naam": {
+          "label": "Naam",
+          "placeholder": "Naam contract"
+        },
+        "einddatum": {
+          "label": "Enddatum",
+          "placeholder": "z. B. 2026-09-30"
+        },
+        "startdatum": {
+          "label": "Startdatum",
+          "placeholder": "z. B. 2025-10-01"
+        }
+      }
+    },
+    "overheid": {
+      "belasting": {
+        "title": "Steuer",
+        "jaar": {
+          "label": "Jaar",
+          "placeholder": "Bijv. 2025"
+        }
+      }
+    },
+    "autoTitle": "Auto",
+    "contractenTitle": "Verträge",
+    "huurTitle": "Miete",
+    "gezondheidTitle": "Gesundheit",
+    "overheidTitle": "Behörden",
+    "homeTitle": "Startseite"
+  },
+  "common": {
+    "submit": "Speichern",
+    "entered": "Eingetragene Erinnerungen",
+    "clear": "Leeren",
+    "repeat": "Herhaling",
+    "notifyAt": "Notificatie tijd",
+    "edit": "Bewerken",
+    "delete": "Verwijderen"
+  },
+  "app": {
+    "title": "Reminder App"
+  },
+  "repeat": {
+    "none": "Geen",
+    "daily": "Dagelijks",
+    "weekly": "Wekelijks",
+    "monthly": "Maandelijks"
+  }
+}
