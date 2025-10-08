@@ -10,7 +10,21 @@ import Overheid from "@/pages/Overheid";
 import Diversen from "@/pages/Diversen";
 import { migrateAll } from "@/utils/migrateStorage";
 
-// Sprint 2.3 — logica: gecontroleerde localStorage reset en migratie
+// tijdelijke placeholders voor nieuwe footer-routes
+function Categories() {
+  return <div className="rr-page"><h2>Categorieën</h2><p>Overzicht van alle categorieën (in ontwikkeling)</p></div>;
+}
+function Add() {
+  return <div className="rr-page"><h2>Nieuwe herinnering</h2><p>Formulier voor directe toevoeging (in ontwikkeling)</p></div>;
+}
+function Agenda() {
+  return <div className="rr-page"><h2>Agenda</h2><p>Weergave van geplande herinneringen (in ontwikkeling)</p></div>;
+}
+function Settings() {
+  return <div className="rr-page"><h2>Instellingen</h2><p>Profiel, thema en voorkeuren (in ontwikkeling)</p></div>;
+}
+
+// Sprint 2.3 – gecontroleerde localStorage reset en migratie
 try {
   const VERSION_KEY = "reminder-app-version";
   const CURRENT_VERSION = "v12-precision-pulse";
@@ -53,6 +67,12 @@ export default function App() {
           <Route path="/contracten" element={<Contracten />} />
           <Route path="/overheid" element={<Overheid />} />
           <Route path="/diversen" element={<Diversen />} />
+
+          {/* Nieuwe Precision & Pulse-footer routes */}
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/add" element={<Add />} />
+          <Route path="/agenda" element={<Agenda />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </Layout>
     </BrowserRouter>
