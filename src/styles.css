@@ -18,74 +18,89 @@ body,
 #root {
   height: 100%;
   width: 100%;
+  font-family: var(--font-primary, system-ui, sans-serif);
+  background-color: var(--color-bg, #f8f9fa);
+  color: var(--color-text, #111);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* === Default Typography (inherited from styles.extra.css) === */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--pp-font-heading);
-  margin: var(--pp-space-4) 0 var(--pp-space-2);
+/* === Layout Containers === */
+main {
+  min-height: calc(100vh - 72px); /* ruimte voor vaste footer */
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  padding-bottom: 5.5rem; /* voorkomt overlap met vaste footer */
+}
+
+section {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* === Headings & Text === */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-secondary, var(--font-primary));
+  font-weight: 600;
+  color: var(--color-heading, #222);
 }
 
 p {
-  line-height: 1.5;
-  margin-bottom: var(--pp-space-3);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* === Buttons === */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius-sm, 6px);
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
 }
 
 /* === Links === */
 a {
-  color: var(--pp-color-focus);
+  color: var(--color-accent, #007bff);
   text-decoration: none;
-  transition: opacity 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 a:hover {
-  opacity: 0.8;
+  color: var(--color-accent-hover, #0056b3);
 }
 
-/* === Generic Utility Classes === */
-.container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 var(--pp-space-4);
+/* === Grid Utilities === */
+.grid {
+  display: grid;
+  gap: 1rem;
 }
 
-.text-center {
-  text-align: center;
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+/* === Utility Classes === */
 .hidden {
   display: none !important;
 }
 
-/* === Forms === */
-form {
-  width: 100%;
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-label {
-  font-weight: 500;
-}
-
-input,
-select,
-textarea {
-  font-family: inherit;
-  font-size: 1rem;
-}
-
-/* === Scrollbar Styling (non-functional aesthetic) === */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-thumb {
-  background-color: var(--pp-color-secondary);
-  border-radius: var(--pp-radius);
-}
-::-webkit-scrollbar-track {
-  background: var(--pp-color-accent);
+/* === Footer spacing helper (vaste footer in beeld) === */
+.has-fixed-footer {
+  padding-bottom: 5.5rem;
 }
