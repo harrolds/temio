@@ -85,28 +85,41 @@ footer .icon-filled { width: 22px; height: 22px; }
 .home-subtitle { color: var(--color-muted); margin: 0 0 1rem 0; }
 .home-categories-heading { font-family: var(--font-secondary); margin: 0 0 .75rem 0; }
 
-/* ---------------- Home tegels – FORCED kleuren & link-states ---------------- */
+/* ---------------- Home tegels – FORCED kleuren & responsive grid ---------------- */
+
+/* Default: 2 kolommen (smalste toestellen) */
 .home-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
-/* hogere specificiteit om globale a{} te overrulen */
+/* Vanaf ~420px: 3 kolommen (zoals ontwerp) */
+@media (min-width: 420px) {
+  .home-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Iets bredere desktops: houd 3, maar geef minimumtegels wat ruimte */
+@media (min-width: 1024px) {
+  .home-grid { grid-template-columns: repeat(3, minmax(200px, 1fr)); }
+}
+
+/* hogere specificiteit om globale a{} te overrulen (kleur & states) */
 .home-section .home-grid .home-tile,
 .home-section .home-grid .home-tile:link,
 .home-section .home-grid .home-tile:visited,
 .home-section .home-grid .home-tile:hover,
 .home-section .home-grid .home-tile:active {
-  display: flex; flex-direction: column; align-items: center; gap: .5rem;
-  padding: 1.1rem;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem;
+  padding: 0.9rem;
   background: var(--tile-bg) !important;
   color: var(--tile-fg) !important;      /* tekstkleur forceren op link */
   border: 0;
-  border-radius: 18px;
+  border-radius: 20px;
   text-decoration: none;
   box-shadow: var(--shadow-md);
   transition: transform .15s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+  aspect-ratio: 1 / 1;                   /* maak ze vierkant(ig) */
 }
 
 .home-section .home-grid .home-tile:hover {
