@@ -1,59 +1,53 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Home, Grid, PlusCircle, Clock, Settings } from "lucide-react";
+import { Home, FileText, Heart, Car, Shield, PlusCircle } from "lucide-react";
 
 /**
- * Definitieve Footer-component volgens Precision & Pulse design
- * - 5 vaste iconbuttons
- * - centrale "+" knop benadrukt toevoegen
- * - scroll-aware via prop `hidden`
+ * Footer Component – Precision & Pulse (Sprint 2.3)
+ * -------------------------------------------------
+ * - Altijd zichtbaar onderaan (vaste positie)
+ * - 5 vaste icon-knoppen voor navigatie
+ * - Centrale "+"-knop benadrukt het toevoegen van een reminder
+ * - Volledig gestyled via tokens (zie styles.extra.css)
  */
-export default function Footer({ hidden = false }) {
+export default function Footer() {
   const navigate = useNavigate();
   const location = useLocation();
-  const isActive = (path) => location.pathname === path;
 
-  const classes = ["pp-footer", hidden ? "hidden" : ""].join(" ");
+  const buttons = [
+    { icon: <Home />, label: "Home", path: "/" },
+    { icon: <Car />, label: "Auto", path: "/auto" },
+    { icon: <FileText />, label: "Contracten", path: "/contracten" },
+    { icon: <Heart />, label: "Gezondheid", path: "/gezondheid" },
+    { icon: <Shield />, label: "Overheid", path: "/overheid" },
+  ];
+
+  const handleNav = (path) => {
+    if (path && path !== location.pathname) navigate(path);
+  };
 
   return (
-    <footer className={classes}>
-      <nav className="pp-footer-nav">
+    <footer>
+      {buttons.map((btn) => (
         <button
-          onClick={() => navigate("/")}
-          className={isActive("/") ? "active" : ""}
-          aria-label="Home"
+          key={btn.path}
+          onClick={() => handleNav(btn.path)}
+          aria-label={btn.label}
+          className={location.pathname === btn.path ? "active" : ""}
         >
-          <Home />
+          {btn.icon}
+          <span>{btn.label}</span>
         </button>
-        <button
-          onClick={() => navigate("/categories")}
-          className={isActive("/categories") ? "active" : ""}
-          aria-label="Categorieën"
-        >
-          <Grid />
-        </button>
-        <button
-          onClick={() => navigate("/add")}
-          className="pp-footer-add"
-          aria-label="Nieuwe herinnering"
-        >
-          <PlusCircle />
-        </button>
-        <button
-          onClick={() => navigate("/agenda")}
-          className={isActive("/agenda") ? "active" : ""}
-          aria-label="Agenda"
-        >
-          <Clock />
-        </button>
-        <button
-          onClick={() => navigate("/settings")}
-          className={isActive("/settings") ? "active" : ""}
-          aria-label="Instellingen"
-        >
-          <Settings />
-        </button>
-      </nav>
+      ))}
+
+      <button
+        onClick={() => handleNav("/diversen")}
+        aria-label="Nieuwe herinnering"
+        title="Nieuwe herinnering"
+      >
+        <PlusCircle />
+        <span>Nieuw</span>
+      </button>
     </footer>
   );
 }
