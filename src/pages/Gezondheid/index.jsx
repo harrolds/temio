@@ -62,7 +62,7 @@ export default function Gezondheid() {
   };
 
   return (
-    <SectionCard title={t("pages.gezondheid.title") || "Gezondheid Herinneringen"}>
+    <SectionCard title={t("pages.gezondheid.title", "Gezondheid")}>
       <form onSubmit={handleSubmit}>
         <label>
           {t("gezondheid.fields.naam") || "Naam"}
