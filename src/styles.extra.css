@@ -43,7 +43,13 @@
   --shadow-md: 0 2px 8px var(--color-shadow);
 }
 
-/* ---------- Base ---------- */
+/* ---------- Reset & base ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
 body { background-color: var(--color-bg); color: var(--color-text); }
 main { padding-top: calc(64px + 0.75rem); padding-bottom: 7rem; }
 
@@ -72,7 +78,14 @@ footer .icon-filled { width: 22px; height: 22px; }
 .section-card h1, .section-card h2, .section-card h3 { font-family: var(--font-secondary); color: var(--color-heading); }
 
 /* ---------- Home: platte sectie ---------- */
-.home-section { max-width: 920px; margin: 1.25rem auto 1.5rem; padding: 0; background: transparent; }
+.home-section {
+  max-width: 920px;
+  margin: 1.25rem auto 1.5rem;
+  padding-inline: 1rem;          /* gelijke linker/rechter buitenruimte */
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
 .home-title { font-family: var(--font-secondary); font-size: 1.8rem; color: var(--color-heading); margin: 0 0 .25rem; }
 .home-subtitle { color: var(--color-muted); margin: 0 0 1rem; }
 .home-categories-heading { font-family: var(--font-secondary); margin: 0 0 .75rem; }
@@ -83,6 +96,7 @@ footer .icon-filled { width: 22px; height: 22px; }
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+  justify-content: center;       /* verdeel rest-ruimte symmetrisch */
 }
 
 /* Xiaomi e.d. (~360px) -> 3 kolommen */
@@ -122,7 +136,14 @@ footer .icon-filled { width: 22px; height: 22px; }
 
 /* ---------- Forms ---------- */
 form { display: flex; flex-direction: column; gap: .75rem; }
-input, select, textarea { border: 1px solid --var(--color-border); border-radius: var(--radius-sm); padding: .6rem; font-size: var(--font-size-md); background: var(--color-surface); color: var(--color-text); }
+input, select, textarea {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: .6rem;
+  font-size: var(--font-size-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
 input:focus, select:focus, textarea:focus { outline: none; border-color: var(--color-accent); box-shadow: 0 0 0 2px var(--color-accent-light); }
 
 /* ---------- Toast ---------- */
