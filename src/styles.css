@@ -248,3 +248,71 @@ a:hover {
 .home-grid {
   margin-bottom: 0.5rem;
 }
+
+/* ================================================================
+   Sprint 2.4 – Form uitbreidingen (Datum/Tijd/Herhalen/Prioriteit)
+   ================================================================ */
+
+.reminder-form label {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.date-time-row {
+  display: flex;
+  gap: 0.75rem;
+}
+.date-time-row input {
+  width: 100%;
+}
+
+.offsets {
+  margin-bottom: 1rem;
+}
+.offsets .label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.offset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.offset-buttons button {
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: #f7f7f7;
+  cursor: pointer;
+}
+.offset-buttons button.active {
+  background: var(--color-accent, #3b5c80);
+  color: #fff;
+}
+.offset-custom {
+  margin-top: 0.4rem;
+  display: flex;
+  gap: 0.3rem;
+}
+.repeat-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+select {
+  width: 100%;
+  padding: 0.4rem;
+}
+.btn-primary {
+  background: var(--color-accent, #3b5c80);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  opacity: 0.9;
+}
