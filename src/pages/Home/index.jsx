@@ -13,10 +13,9 @@ import HeroClock from "@/components/common/HeroClock";
 import TaskList from "@/components/common/TaskList";
 
 /**
- * Home – Sprint 2.4 Polish
- * - HeroClock bovenaan (live tijd/datum)
- * - TaskList met eerstvolgende reminders (alle categorieën)
- * - Micro-typografie & subtiele animaties
+ * Home – Sprint 2.4 Visual Refinement
+ * - Nieuwe HeroClock met wijzers + digitale tijd
+ * - Categorieën bovenaan, TaskList eronder
  */
 export default function Home() {
   const { t } = useTranslation();
@@ -31,19 +30,21 @@ export default function Home() {
   ];
 
   return (
-    <section className="home-section">
+    <section className="home-section fade-in">
       <header className="home-hero">
-        <h1 className="home-title microtype-tight fade-in">{t("pages.home.title", "Welkom bij de Reminder App")}</h1>
-        <p className="home-subtitle microtype-subtle fade-in-delayed">
+        <h1 className="home-title microtype-tight">{t("pages.home.title", "Welkom bij de Reminder App")}</h1>
+        <p className="home-subtitle microtype-subtle">
           {t("pages.home.subtitle", "Jouw herinneringen, overzichtelijk")}
         </p>
-        <HeroClock />
       </header>
 
-      <TaskList limit={6} />
+      {/* HeroClock Card */}
+      <HeroClock />
 
-      <h3 className="home-categories-heading microtype-caps">{t("pages.home.categories", "Categorieën")}</h3>
-
+      {/* Categorieën */}
+      <h3 className="home-categories-heading microtype-caps">
+        {t("pages.home.categories", "Categorieën")}
+      </h3>
       <div className="home-grid">
         {tiles.map((tile) => (
           <Link key={tile.to} to={tile.to} className="home-tile hover-raise">
@@ -52,6 +53,9 @@ export default function Home() {
           </Link>
         ))}
       </div>
+
+      {/* TaskList onder de categorieën */}
+      <TaskList limit={6} />
     </section>
   );
 }
