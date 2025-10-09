@@ -17,5 +17,8 @@ export const GezondheidFilled = makeIcon("M12 21s-6.7-4.6-9.1-7.1C1.1 12 1 9.5 2
 export const ContractenFilled = makeIcon("M7 3h7l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm7 1v4h4l-4-4zm-6 7h8v2H8v-2zm0 4h8v2H8v-2z");
 export const OverheidFilled = makeIcon("M12 3l7 3v6c0 5.2-3.2 8.7-7 9-3.8-.3-7-3.8-7-9V6l7-3z");
 export const PlusFilled = makeIcon("M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 5v4h4a1 1 0 1 1 0 2h-4v4a1 1 0 1 1-2 0v-4H7a1 1 0 1 1 0-2h4V7a1 1 0 1 1 2 0z");
-export const ClockFilled = makeIcon("M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 5a1 1 0 1 0-2 0v4.3l3.2 1.9a1 1 0 0 0 1-1.7L13 10.1V7z");
+
+/* Extra icons voor jouw footer-IA */
 export const GridFilled = makeIcon("M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z");
+export const ClockFilled = makeIcon("M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 5a1 1 0 1 0-2 0v4.3l3.2 1.9a1 1 0 0 0 1-1.7L13 10.1V7z");
+export const SettingsFilled = makeIcon("M12 2l2.1 1.2 2.3-.5 1.6 1.6-.5 2.3L19 9l1 2-1 2-1.5 1.4.5 2.3-1.6 1.6-2.3-.5L12 22l-2.1-1.2-2.3.5-1.6-1.6.5-2.3L5 13l-1-2 1-2 1.5-1.4-.5-2.3L7.6 3l2.3.5L12 2zm0 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z");
