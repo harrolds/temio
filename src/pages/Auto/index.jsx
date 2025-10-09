@@ -2,55 +2,78 @@ import React, { useState, useEffect } from "react";
 import SectionCard from "@/components/common/SectionCard";
 import { useTranslation } from "react-i18next";
 import { v4 as uuidv4 } from "uuid";
-import { requestPermission, scheduleReminder, toastReminder } from "@/utils/notifications";
+import {
+  requestPermission,
+  scheduleReminder,
+  toastReminder
+} from "@/utils/notifications";
 import usePersistentList from "@/hooks/usePersistentList";
+import DateTimeRow from "@/components/common/DateTimeRow";
+import ReminderOffsets from "@/components/common/ReminderOffsets";
+import RepeatPicker from "@/components/common/RepeatPicker";
 
 /**
- * Auto Reminders Page – Precision & Pulse (Sprint 2.3)
+ * Auto Reminders Page – Sprint 2.4
  * -----------------------------------------------------
- * - Beheert herinneringen gerelateerd aan auto’s (TÜV, verzekering, onderhoud)
- * - Gebruikt SectionCard layout + visuele feedback
- * - Data persistent in localStorage (hook usePersistentList)
+ * Uitgebreide formulierlogica:
+ * - Datum + Tijd
+ * - Meerdere vooraf-herinneringen (presets + custom)
+ * - Herhaling (dagelijks / wekelijks / maandelijks / jaarlijks)
+ * - Einddatum (optioneel)
+ * - Notitie + Prioriteit
  */
 export default function Auto() {
   const { t } = useTranslation();
   const formName = "auto";
-  const [draft, setDraft] = useState({ naam: "", datum: "", beschrijving: "" });
+  const [draft, setDraft] = useState({
+    naam: "",
+    datum: "",
+    tijd: "09:00",
+    beschrijving: "",
+    offsets: [0, 1440], // minuten: 0 = op tijd, 1440 = 1 dag vooraf
+    repeat: "none",
+    repeatEnd: "",
+    prioriteit: "normaal",
+  });
+
   const { items, addItem, removeItem, updateItem } = usePersistentList(`rr_reminders_${formName}`);
   const [editId, setEditId] = useState(null);
 
-  // Vraag notificatiepermissie aan bij laden
-  useEffect(() => {
-    requestPermission();
-  }, []);
+  useEffect(() => { requestPermission(); }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Validatie
     if (!draft.naam || !draft.datum) {
       toastReminder(t("auto.validation.missingFields") || "Vul alle verplichte velden in.");
       return;
     }
-
-    const selectedDate = new Date(draft.datum);
+    const selectedDate = new Date(`${draft.datum}T${draft.tijd}`);
     if (selectedDate < new Date()) {
-      toastReminder(t("auto.validation.datePast") || "Datum mag niet in het verleden liggen.");
+      toastReminder(t("auto.validation.datePast") || "Datum/tijd mag niet in het verleden liggen.");
       return;
     }
+    const newItem = { ...draft, id: editId || uuidv4() };
 
     if (editId) {
-      updateItem(editId, draft);
+      updateItem(editId, newItem);
       setEditId(null);
       toastReminder(t("auto.toast.updated") || "Herinnering bijgewerkt.");
     } else {
-      const newItem = { ...draft, id: uuidv4() };
       addItem(newItem);
       scheduleReminder(newItem);
       toastReminder(t("auto.toast.created") || "Herinnering toegevoegd.");
     }
 
-    setDraft({ naam: "", datum: "", beschrijving: "" });
+    setDraft({
+      naam: "",
+      datum: "",
+      tijd: "09:00",
+      beschrijving: "",
+      offsets: [0, 1440],
+      repeat: "none",
+      repeatEnd: "",
+      prioriteit: "normaal",
+    });
   };
 
   const handleEdit = (item) => {
@@ -65,7 +88,7 @@ export default function Auto() {
 
   return (
     <SectionCard title={t("pages.auto.title", "Auto")}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="reminder-form">
         <label>
           {t("auto.fields.naam") || "Naam"}
           <input
@@ -77,18 +100,25 @@ export default function Auto() {
           />
         </label>
 
-        <label>
-          {t("auto.fields.datum") || "Datum"}
-          <input
-            type="date"
-            value={draft.datum}
-            onChange={(e) => setDraft({ ...draft, datum: e.target.value })}
-            required
-          />
-        </label>
+        <DateTimeRow
+          date={draft.datum}
+          time={draft.tijd}
+          onChange={(d, t) => setDraft({ ...draft, datum: d, tijd: t })}
+        />
+
+        <ReminderOffsets
+          offsets={draft.offsets}
+          onChange={(v) => setDraft({ ...draft, offsets: v })}
+        />
+
+        <RepeatPicker
+          repeat={draft.repeat}
+          repeatEnd={draft.repeatEnd}
+          onChange={(r, end) => setDraft({ ...draft, repeat: r, repeatEnd: end })}
+        />
 
         <label>
-          {t("auto.fields.beschrijving") || "Beschrijving"}
+          {t("auto.fields.beschrijving") || "Notitie"}
           <textarea
             value={draft.beschrijving}
             onChange={(e) => setDraft({ ...draft, beschrijving: e.target.value })}
@@ -96,8 +126,22 @@ export default function Auto() {
           />
         </label>
 
-        <button type="submit">
-          {editId ? t("auto.buttons.bijwerken") || "Bijwerken" : t("auto.buttons.opslaan") || "Opslaan"}
+        <label>
+          {t("auto.fields.prioriteit") || "Prioriteit"}
+          <select
+            value={draft.prioriteit}
+            onChange={(e) => setDraft({ ...draft, prioriteit: e.target.value })}
+          >
+            <option value="laag">{t("auto.priority.low") || "Laag"}</option>
+            <option value="normaal">{t("auto.priority.normal") || "Normaal"}</option>
+            <option value="hoog">{t("auto.priority.high") || "Hoog"}</option>
+          </select>
+        </label>
+
+        <button type="submit" className="btn-primary">
+          {editId
+            ? t("auto.buttons.bijwerken") || "Bijwerken"
+            : t("auto.buttons.opslaan") || "Opslaan"}
         </button>
       </form>
 
@@ -108,8 +152,12 @@ export default function Auto() {
         {items.map((item) => (
           <div key={item.id} className="card-item">
             <strong>{item.naam}</strong>
-            <p>{item.datum}</p>
+            <p>{item.datum} {item.tijd}</p>
             {item.beschrijving && <p className="text-muted">{item.beschrijving}</p>}
+            <p className="small">
+              {item.repeat !== "none" && `🔁 ${t("repeat." + item.repeat) || item.repeat}`}
+              {item.prioriteit === "hoog" && " ⚠️"}
+            </p>
             <div className="mt-2">
               <button type="button" onClick={() => handleEdit(item)}>
                 {t("auto.buttons.bewerken") || "Bewerken"}
