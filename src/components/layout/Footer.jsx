@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   HomeFilled,
   GridFilled,
@@ -9,34 +10,34 @@ import {
 } from "@/components/icons/FilledIcons";
 
 /**
- * Footer – IA conform wens:
- * Home | Categorieën | Nieuw | Overzicht (Agenda) | Instellingen
+ * Footer IA – Home · Categorieën · Nieuw · Overzicht · Instellingen
  */
 export default function Footer() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
 
-  const buttons = [
-    { icon: <HomeFilled />, label: "Home", path: "/" },
-    { icon: <GridFilled />, label: "Categorieën", path: "/categories" },
-    { icon: <PlusFilled />, label: "Nieuw", path: "/add" },
-    { icon: <ClockFilled />, label: "Overzicht", path: "/agenda" },
-    { icon: <SettingsFilled />, label: "Instellingen", path: "/settings" }
+  const items = [
+    { path: "/", label: t("nav.home", "Home"), icon: <HomeFilled /> },
+    { path: "/categories", label: t("nav.categories", "Categorieën"), icon: <GridFilled /> },
+    { path: "/add", label: t("nav.new", "Nieuw"), icon: <PlusFilled /> },
+    { path: "/agenda", label: t("nav.overview", "Overzicht"), icon: <ClockFilled /> },
+    { path: "/settings", label: t("nav.settings", "Instellingen"), icon: <SettingsFilled /> }
   ];
 
   const go = (p) => p && p !== location.pathname && navigate(p);
 
   return (
     <footer>
-      {buttons.map((b) => (
+      {items.map((it) => (
         <button
-          key={b.path}
-          onClick={() => go(b.path)}
-          aria-label={b.label}
-          className={location.pathname === b.path ? "active" : ""}
+          key={it.path}
+          onClick={() => go(it.path)}
+          aria-label={it.label}
+          className={location.pathname === it.path ? "active" : ""}
         >
-          {b.icon}
-          <span>{b.label}</span>
+          {it.icon}
+          <span>{it.label}</span>
         </button>
       ))}
     </footer>

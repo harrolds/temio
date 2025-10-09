@@ -14,6 +14,14 @@
     "diversen": { "title": "Miscellaneous" }
   },
 
+  "nav": {
+  "home": "Home",
+  "categories": "Categories",
+  "new": "New",
+  "overview": "Overview",
+  "settings": "Settings"
+},
+  
   "auto": {
     "fields": { "naam": "Name", "datum": "Date", "beschrijving": "Description" },
     "buttons": { "opslaan": "Save", "bijwerken": "Update", "bewerken": "Edit", "verwijderen": "Delete" },
