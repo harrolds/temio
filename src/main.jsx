@@ -1,12 +1,13 @@
-import React from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import './styles.css'
-import './styles.extra.css'   // ✅ Precision & Pulse design tokens + layout
-import './i18n'
-import { registerPWA } from './pwa'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
 
-const root = document.getElementById('root')
-createRoot(root).render(<App />)
+/* 1) Styles: basis eerst, dan extra (overrides & components) */
+import "./styles.css";
+import "./styles.extra.css";
 
-registerPWA()
+/* 2) i18n & PWA bootstrap */
+import "./i18n";
+import "./pwa";
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
