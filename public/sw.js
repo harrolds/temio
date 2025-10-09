@@ -1,40 +1,19 @@
-/* ============================================================
-   Service Worker – Precision & Pulse (Sprint 2.3)
-   ------------------------------------------------------------
-   Cache statische assets voor offline gebruik.
-   ============================================================ */
-
 const CACHE_NAME = "temio-cache-v3";
 const OFFLINE_URL = "/offline.html";
+const PRECACHE_URLS = ["/", "/index.html", OFFLINE_URL, "/manifest.webmanifest", "/icons/icon-192.png", "/icons/icon-512.png"];
 
-const PRECACHE_URLS = [
-  "/",
-  "/index.html",
-  OFFLINE_URL,
-  "/manifest.webmanifest",
-  "/icons/icon-192.png",
-  "/icons/icon-512.png"
-];
-
-// Install: precache basisbestanden
 self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS))
-  );
+  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS)));
 });
 
-// Activate: verwijder oude caches
 self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.map((key) => key !== CACHE_NAME && caches.delete(key)))
-    )
-  );
+  event.waitUntil(caches.keys().then((keys) => Promise.all(keys.map((k) => k !== CACHE_NAME && caches.delete(k)))));
 });
 
-// Fetch: netwerk eerst, fallback naar cache, dan offlinepagina
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
+  if (!event.request.url.startsWith("http")) return; // voorkomt chrome-extension fout
+
   event.respondWith(
     fetch(event.request)
       .then((resp) => {
@@ -42,8 +21,6 @@ self.addEventListener("fetch", (event) => {
         caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
         return resp;
       })
-      .catch(() =>
-        caches.match(event.request).then((cached) => cached || caches.match(OFFLINE_URL))
-      )
+      .catch(() => caches.match(event.request).then((c) => c || caches.match(OFFLINE_URL)))
   );
 });
