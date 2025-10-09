@@ -1,20 +1,18 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import LanguageSelect from "@/components/common/LanguageSelect";
 
+/**
+ * Header Component – Precision & Pulse (Sprint 2.3)
+ * -------------------------------------------------
+ * - Altijd zichtbaar bovenaan (fixed)
+ * - Gebruikt kleur- en typografietokens uit styles.extra.css
+ * - Bevat app-titel + taalkeuze via <LanguageSelect />
+ */
 export default function Header() {
-  const { i18n } = useTranslation();
-
   return (
     <header className="pp-header">
-      <h1 className="pp-title">temio</h1>
-      <select
-        aria-label="Language"
-        value={i18n.language?.startsWith("nl") ? "nl" : "en"}
-        onChange={(e) => i18n.changeLanguage(e.target.value)}
-      >
-        <option value="nl">Nederlands</option>
-        <option value="en">English</option>
-      </select>
+      <h1 className="pp-title">Temio</h1>
+      <LanguageSelect />
     </header>
   );
 }
