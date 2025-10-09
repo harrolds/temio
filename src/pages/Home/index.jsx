@@ -1,45 +1,41 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { t } from "i18next";
-import { Car, FileText, Heart, Home as HomeIcon, Landmark, Building2, Plus } from "lucide-react";
+import SectionCard from "@/components/common/SectionCard";
+import { useTranslation } from "react-i18next";
+import {
+  AutoFilled,
+  HuurFilled,
+  GezondheidFilled,
+  ContractenFilled,
+  OverheidFilled,
+  PlusFilled
+} from "@/components/icons/FilledIcons";
 
 export default function Home() {
-  return (
-    <div className="rr-page">
-      <header className="pp-header-block">
-        <h1 className="pp-app-title">temio</h1>
-        <p className="pp-subtitle">{t("pages.home.subtitle", "Jouw herinneringen, overzichtelijk")}</p>
-      </header>
+  const { t } = useTranslation();
 
-      <section className="pp-section">
-        <h2>{t("pages.home.categories", "Categorieën")}</h2>
-        <div className="rr-grid-cards">
-          <Link to="/auto" className="pp-card pp-card-link">
-            <Car size={32} />
-            <span>{t("pages.auto.title", "Auto")}</span>
+  const tiles = [
+    { to: "/auto", icon: <AutoFilled />, label: t("pages.auto.title", "Auto") },
+    { to: "/huur", icon: <HuurFilled />, label: t("pages.huur.title", "Huur") },
+    { to: "/gezondheid", icon: <GezondheidFilled />, label: t("pages.gezondheid.title", "Gezondheid") },
+    { to: "/contracten", icon: <ContractenFilled />, label: t("pages.contracten.title", "Contracten") },
+    { to: "/overheid", icon: <OverheidFilled />, label: t("pages.overheid.title", "Overheid") },
+    { to: "/diversen", icon: <PlusFilled />, label: t("pages.diversen.title", "Diversen") }
+  ];
+
+  return (
+    <SectionCard title={t("pages.home.title", "Welkom bij de Reminder App")}>
+      <p className="text-muted mb-3">{t("pages.home.subtitle", "Jouw herinneringen, overzichtelijk")}</p>
+      <h3 className="mb-2">{t("pages.home.categories", "Categorieën")}</h3>
+
+      <div className="home-grid">
+        {tiles.map((tile) => (
+          <Link key={tile.to} to={tile.to} className="home-tile">
+            <span className="tile-icon">{tile.icon}</span>
+            <span>{tile.label}</span>
           </Link>
-          <Link to="/huur" className="pp-card pp-card-link">
-            <Building2 size={32} />
-            <span>{t("pages.huur.title", "Huur")}</span>
-          </Link>
-          <Link to="/gezondheid" className="pp-card pp-card-link">
-            <Heart size={32} />
-            <span>{t("pages.health.title", "Gezondheid")}</span>
-          </Link>
-          <Link to="/contracten" className="pp-card pp-card-link">
-            <FileText size={32} />
-            <span>{t("pages.contracts.title", "Contracten")}</span>
-          </Link>
-          <Link to="/overheid" className="pp-card pp-card-link">
-            <Landmark size={32} />
-            <span>{t("pages.government.title", "Overheid")}</span>
-          </Link>
-          <Link to="/diversen" className="pp-card pp-card-link">
-            <Plus size={32} />
-            <span>{t("pages.misc.title", "Diversen")}</span>
-          </Link>
-        </div>
-      </section>
-    </div>
+        ))}
+      </div>
+    </SectionCard>
   );
 }
