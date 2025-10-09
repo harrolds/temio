@@ -1,7 +1,17 @@
 {
   "app_title": "Temio Erinnerungen",
   "pages": {
-    "home_title": "Willkommen bei der Reminder-App"
+    "home": {
+      "title": "Willkommen bei der Reminder-App",
+      "subtitle": "Deine Erinnerungen, im Überblick",
+      "categories": "Kategorien"
+    },
+    "auto": { "title": "Auto" },
+    "huur": { "title": "Miete" },
+    "gezondheid": { "title": "Gesundheit" },
+    "contracten": { "title": "Verträge" },
+    "overheid": { "title": "Behörde" },
+    "diversen": { "title": "Verschiedenes" }
   },
 
   "auto": {
