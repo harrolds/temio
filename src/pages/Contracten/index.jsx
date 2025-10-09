@@ -61,7 +61,7 @@ export default function Contracten() {
   };
 
   return (
-    <SectionCard title={t("pages.contracten.title") || "Contract Herinneringen"}>
+    <SectionCard title={t("pages.contracten.title"), "Contracten"}>
       <form onSubmit={handleSubmit}>
         <label>
           {t("contracten.fields.naam") || "Naam"}
