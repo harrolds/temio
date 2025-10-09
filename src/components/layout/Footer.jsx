@@ -1,51 +1,46 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Home, FileText, Heart, Car, Shield, PlusCircle } from "lucide-react";
+import {
+  HomeFilled,
+  AutoFilled,
+  ContractenFilled,
+  GezondheidFilled,
+  OverheidFilled,
+  HuurFilled,
+  PlusFilled
+} from "@/components/icons/FilledIcons";
 
-/**
- * Footer Component – Precision & Pulse (Sprint 2.3)
- * -------------------------------------------------
- * - Altijd zichtbaar onderaan (vaste positie)
- * - 5 vaste icon-knoppen voor navigatie
- * - Centrale "+"-knop benadrukt het toevoegen van een reminder
- * - Volledig gestyled via tokens (zie styles.extra.css)
- */
 export default function Footer() {
   const navigate = useNavigate();
   const location = useLocation();
 
   const buttons = [
-    { icon: <Home />, label: "Home", path: "/" },
-    { icon: <Car />, label: "Auto", path: "/auto" },
-    { icon: <FileText />, label: "Contracten", path: "/contracten" },
-    { icon: <Heart />, label: "Gezondheid", path: "/gezondheid" },
-    { icon: <Shield />, label: "Overheid", path: "/overheid" },
+    { icon: <HomeFilled />, label: "Home", path: "/" },
+    { icon: <AutoFilled />, label: "Auto", path: "/auto" },
+    { icon: <HuurFilled />, label: "Huur", path: "/huur" },
+    { icon: <ContractenFilled />, label: "Contracten", path: "/contracten" },
+    { icon: <GezondheidFilled />, label: "Gezondheid", path: "/gezondheid" },
+    { icon: <OverheidFilled />, label: "Overheid", path: "/overheid" }
   ];
 
-  const handleNav = (path) => {
-    if (path && path !== location.pathname) navigate(path);
-  };
+  const go = (p) => p && p !== location.pathname && navigate(p);
 
   return (
     <footer>
-      {buttons.map((btn) => (
+      {buttons.map((b) => (
         <button
-          key={btn.path}
-          onClick={() => handleNav(btn.path)}
-          aria-label={btn.label}
-          className={location.pathname === btn.path ? "active" : ""}
+          key={b.path}
+          onClick={() => go(b.path)}
+          aria-label={b.label}
+          className={location.pathname === b.path ? "active" : ""}
         >
-          {btn.icon}
-          <span>{btn.label}</span>
+          {b.icon}
+          <span>{b.label}</span>
         </button>
       ))}
 
-      <button
-        onClick={() => handleNav("/diversen")}
-        aria-label="Nieuwe herinnering"
-        title="Nieuwe herinnering"
-      >
-        <PlusCircle />
+      <button onClick={() => go("/diversen")} aria-label="Nieuwe herinnering" title="Nieuwe herinnering">
+        <PlusFilled />
         <span>Nieuw</span>
       </button>
     </footer>
