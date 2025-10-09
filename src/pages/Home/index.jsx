@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SectionCard from "@/components/common/SectionCard";
 import { useTranslation } from "react-i18next";
 import {
   AutoFilled,
@@ -11,6 +10,9 @@ import {
   PlusFilled
 } from "@/components/icons/FilledIcons";
 
+/**
+ * Home – platte sectie (géén achtergrond/shadow) + tegels in P&P-stijl
+ */
 export default function Home() {
   const { t } = useTranslation();
 
@@ -24,18 +26,20 @@ export default function Home() {
   ];
 
   return (
-    <SectionCard title={t("pages.home.title", "Welkom bij de Reminder App")}>
-      <p className="text-muted mb-3">{t("pages.home.subtitle", "Jouw herinneringen, overzichtelijk")}</p>
-      <h3 className="mb-2">{t("pages.home.categories", "Categorieën")}</h3>
+    <section className="home-section">
+      <h1 className="home-title">{t("pages.home.title", "Welkom bij de Reminder App")}</h1>
+      <p className="home-subtitle">{t("pages.home.subtitle", "Jouw herinneringen, overzichtelijk")}</p>
+
+      <h3 className="home-categories-heading">{t("pages.home.categories", "Categorieën")}</h3>
 
       <div className="home-grid">
         {tiles.map((tile) => (
           <Link key={tile.to} to={tile.to} className="home-tile">
             <span className="tile-icon">{tile.icon}</span>
-            <span>{tile.label}</span>
+            <span className="tile-label">{tile.label}</span>
           </Link>
         ))}
       </div>
-    </SectionCard>
+    </section>
   );
 }
