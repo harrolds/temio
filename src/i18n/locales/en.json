@@ -1,7 +1,17 @@
 {
   "app_title": "Temio Reminders",
   "pages": {
-    "home_title": "Welcome to the Reminder App"
+    "home": {
+      "title": "Welcome to the Reminder App",
+      "subtitle": "Your reminders, at a glance",
+      "categories": "Categories"
+    },
+    "auto": { "title": "Auto" },
+    "huur": { "title": "Rent" },
+    "gezondheid": { "title": "Health" },
+    "contracten": { "title": "Contracts" },
+    "overheid": { "title": "Government" },
+    "diversen": { "title": "Miscellaneous" }
   },
 
   "auto": {
