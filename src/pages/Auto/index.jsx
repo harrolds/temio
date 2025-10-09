@@ -1,154 +1,126 @@
 import React, { useState, useEffect } from "react";
-import { t } from "i18next";
-import { requestPermission, scheduleReminder } from "@/utils/notifications";
+import SectionCard from "@/components/common/SectionCard";
+import { useTranslation } from "react-i18next";
 import { v4 as uuidv4 } from "uuid";
+import { requestPermission, scheduleReminder, toastReminder } from "@/utils/notifications";
+import usePersistentList from "@/hooks/usePersistentList";
 
+/**
+ * Auto Reminders Page – Precision & Pulse (Sprint 2.3)
+ * -----------------------------------------------------
+ * - Beheert herinneringen gerelateerd aan auto’s (TÜV, verzekering, onderhoud)
+ * - Gebruikt SectionCard layout + visuele feedback
+ * - Data persistent in localStorage (hook usePersistentList)
+ */
 export default function Auto() {
+  const { t } = useTranslation();
   const formName = "auto";
-  const [items, setItems] = useState([]);
-  const [editIndex, setEditIndex] = useState(null);
-  const [draft, setDraft] = useState(null);
+  const [draft, setDraft] = useState({ naam: "", datum: "", beschrijving: "" });
+  const { items, addItem, removeItem, updateItem } = usePersistentList(`rr_reminders_${formName}`);
+  const [editId, setEditId] = useState(null);
 
+  // Vraag notificatiepermissie aan bij laden
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem(formName)) || [];
-    setItems(stored);
+    requestPermission();
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem(formName, JSON.stringify(items));
-  }, [items]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const form = new FormData(e.target);
-    const obj = { form: formName };
-    for (let [k, v] of form.entries()) obj[k] = v;
-    obj.id = draft?.id || uuidv4();
 
-    const expiry = new Date(obj.datum);
-    const offset = parseInt(obj.herinner_vanaf || 14);
-    const remindFrom = new Date(expiry.getTime() - offset * 24 * 60 * 60 * 1000);
-    obj.remindFrom = remindFrom.toISOString();
-    obj.created = new Date().toISOString();
+    // Validatie
+    if (!draft.naam || !draft.datum) {
+      toastReminder(t("auto.validation.missingFields") || "Vul alle verplichte velden in.");
+      return;
+    }
 
-    const updated = [...items];
-    if (editIndex !== null) updated[editIndex] = obj;
-    else updated.push(obj);
+    const selectedDate = new Date(draft.datum);
+    if (selectedDate < new Date()) {
+      toastReminder(t("auto.validation.datePast") || "Datum mag niet in het verleden liggen.");
+      return;
+    }
 
-    setItems(updated);
-    setEditIndex(null);
-    setDraft(null);
-    e.target.reset();
-    requestPermission();
-    scheduleReminder(obj);
+    if (editId) {
+      updateItem(editId, draft);
+      setEditId(null);
+      toastReminder(t("auto.toast.updated") || "Herinnering bijgewerkt.");
+    } else {
+      const newItem = { ...draft, id: uuidv4() };
+      addItem(newItem);
+      scheduleReminder(newItem);
+      toastReminder(t("auto.toast.created") || "Herinnering toegevoegd.");
+    }
+
+    setDraft({ naam: "", datum: "", beschrijving: "" });
   };
 
-  const handleDelete = (i) => setItems(items.filter((_, idx) => idx !== i));
-  const handleEdit = (i) => {
-    setEditIndex(i);
-    setDraft(items[i]);
+  const handleEdit = (item) => {
+    setDraft(item);
+    setEditId(item.id);
   };
-  const cancelEdit = () => {
-    setEditIndex(null);
-    setDraft(null);
-  };
-  const clearAll = () => {
-    localStorage.removeItem(formName);
-    setItems([]);
+
+  const handleDelete = (id) => {
+    removeItem(id);
+    toastReminder(t("auto.toast.deleted") || "Herinnering verwijderd.");
   };
 
   return (
-    <div className="rr-page">
-      <h2>{t("pages.auto.title", "Auto")}</h2>
+    <SectionCard title={t("pages.auto.title", "Auto")}>
+      <form onSubmit={handleSubmit}>
+        <label>
+          {t("auto.fields.naam") || "Naam"}
+          <input
+            type="text"
+            value={draft.naam}
+            onChange={(e) => setDraft({ ...draft, naam: e.target.value })}
+            placeholder={t("auto.placeholders.naam") || "Bijv. APK keuring"}
+            required
+          />
+        </label>
 
-      <form onSubmit={handleSubmit} className="rr-form-grid">
-        <div className="field-group">
-          <div className="field">
-            <label>{t("common.name", "Naam")}</label>
-            <input
-              name="naam"
-              type="text"
-              required
-              defaultValue={draft?.naam || ""}
-            />
-          </div>
+        <label>
+          {t("auto.fields.datum") || "Datum"}
+          <input
+            type="date"
+            value={draft.datum}
+            onChange={(e) => setDraft({ ...draft, datum: e.target.value })}
+            required
+          />
+        </label>
 
-          <div className="field">
-            <label>{t("common.expiry", "Vervaldatum")}</label>
-            <input
-              name="datum"
-              type="date"
-              required
-              defaultValue={draft?.datum || ""}
-            />
-          </div>
+        <label>
+          {t("auto.fields.beschrijving") || "Beschrijving"}
+          <textarea
+            value={draft.beschrijving}
+            onChange={(e) => setDraft({ ...draft, beschrijving: e.target.value })}
+            placeholder={t("auto.placeholders.beschrijving") || "Optionele notitie"}
+          />
+        </label>
 
-          <div className="field">
-            <label>{t("common.remindfrom", "Herinner vanaf")}</label>
-            <select
-              name="herinner_vanaf"
-              defaultValue={draft?.herinner_vanaf || "14"}
-            >
-              <option value="7">7 dagen vóór</option>
-              <option value="14">14 dagen vóór</option>
-              <option value="30">30 dagen vóór</option>
-            </select>
-          </div>
-        </div>
-
-        <div className="field actions">
-          <button type="submit" className="pp-btn">
-            {editIndex !== null
-              ? t("common.save", "Opslaan")
-              : t("common.add", "Toevoegen")}
-          </button>
-          {editIndex !== null && (
-            <button
-              type="button"
-              className="pp-btn-outline"
-              onClick={cancelEdit}
-            >
-              {t("common.cancel", "Annuleren")}
-            </button>
-          )}
-        </div>
+        <button type="submit">
+          {editId ? t("auto.buttons.bijwerken") || "Bijwerken" : t("auto.buttons.opslaan") || "Opslaan"}
+        </button>
       </form>
 
-      <ul className="rr-list">
-        {items.map((item, i) => (
-          <li key={item.id} className="pp-card">
-            <div className="rr-item">
-              <strong>{item.naam}</strong> — {item.datum}
-              <div className="item-actions">
-                <button
-                  type="button"
-                  className="pp-btn-subtle"
-                  onClick={() => handleEdit(i)}
-                >
-                  ✏️
-                </button>
-                <button
-                  type="button"
-                  className="pp-btn-subtle"
-                  onClick={() => handleDelete(i)}
-                >
-                  🗑️
-                </button>
-              </div>
+      <div className="card-list mt-3">
+        {items.length === 0 && (
+          <p className="text-muted">{t("auto.noReminders") || "Nog geen herinneringen toegevoegd."}</p>
+        )}
+        {items.map((item) => (
+          <div key={item.id} className="card-item">
+            <strong>{item.naam}</strong>
+            <p>{item.datum}</p>
+            {item.beschrijving && <p className="text-muted">{item.beschrijving}</p>}
+            <div className="mt-2">
+              <button type="button" onClick={() => handleEdit(item)}>
+                {t("auto.buttons.bewerken") || "Bewerken"}
+              </button>
+              <button type="button" onClick={() => handleDelete(item.id)}>
+                {t("auto.buttons.verwijderen") || "Verwijderen"}
+              </button>
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
-
-      <div className="clear-row">
-        <button
-          type="button"
-          onClick={clearAll}
-          className="btn-clear pp-btn-outline"
-        >
-          {t("common.clear", "Alles wissen")}
-        </button>
       </div>
-    </div>
+    </SectionCard>
   );
 }

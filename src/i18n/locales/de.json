@@ -1,105 +1,70 @@
 {
+  "app_title": "Temio Erinnerungen",
   "pages": {
-    "home": "Willkommen bei der Reminder-App",
-    "auto": {
-      "tuv": {
-        "title": "TÜV",
-        "kenteken": {
-          "label": "Kenteken",
-          "placeholder": "Voer kenteken in"
-        },
-        "datum": {
-          "label": "Datum",
-          "placeholder": "Kies datum"
-        }
-      },
-      "verzekering": {
-        "title": "Versicherung",
-        "verzekeraar": {
-          "label": "Verzekeraar",
-          "placeholder": "Naam verzekeraar"
-        },
-        "vervaldatum": {
-          "label": "Vervaldatum",
-          "placeholder": "Kies datum"
-        }
-      }
+    "home": {
+      "title": "Willkommen bei der Reminder-App",
+      "subtitle": "Deine Erinnerungen, im Überblick",
+      "categories": "Kategorien"
     },
-    "contracten": {
-      "contract": {
-        "title": "Vertrag",
-        "naam": {
-          "label": "Naam",
-          "placeholder": "Naam contract"
-        },
-        "einddatum": {
-          "label": "Einddatum",
-          "placeholder": "Kies datum"
-        }
-      }
-    },
-    "gezondheid": {
-      "zorgverzekering": {
-        "title": "Krankenversicherung",
-        "verzekeraar": {
-          "label": "Verzekeraar",
-          "placeholder": "Naam verzekeraar"
-        },
-        "vervaldatum": {
-          "label": "Vervaldatum",
-          "placeholder": "Kies datum"
-        }
-      }
-    },
-    "huur": {
-      "huurcontract": {
-        "title": "Mietvertrag",
-        "naam": {
-          "label": "Naam",
-          "placeholder": "Naam contract"
-        },
-        "einddatum": {
-          "label": "Enddatum",
-          "placeholder": "z. B. 2026-09-30"
-        },
-        "startdatum": {
-          "label": "Startdatum",
-          "placeholder": "z. B. 2025-10-01"
-        }
-      }
-    },
-    "overheid": {
-      "belasting": {
-        "title": "Steuer",
-        "jaar": {
-          "label": "Jaar",
-          "placeholder": "Bijv. 2025"
-        }
-      }
-    },
-    "autoTitle": "Auto",
-    "contractenTitle": "Verträge",
-    "huurTitle": "Miete",
-    "gezondheidTitle": "Gesundheit",
-    "overheidTitle": "Behörden",
-    "homeTitle": "Startseite"
+    "auto": { "title": "Auto" },
+    "huur": { "title": "Miete" },
+    "gezondheid": { "title": "Gesundheit" },
+    "contracten": { "title": "Verträge" },
+    "overheid": { "title": "Behörde" },
+    "diversen": { "title": "Verschiedenes" }
   },
-  "common": {
-    "submit": "Speichern",
-    "entered": "Eingetragene Erinnerungen",
-    "clear": "Leeren",
-    "repeat": "Herhaling",
-    "notifyAt": "Notificatie tijd",
-    "edit": "Bewerken",
-    "delete": "Verwijderen"
+
+  "auto": {
+    "fields": { "naam": "Name", "datum": "Datum", "beschrijving": "Beschreibung" },
+    "buttons": { "opslaan": "Speichern", "bijwerken": "Aktualisieren", "bewerken": "Bearbeiten", "verwijderen": "Löschen" },
+    "placeholders": { "naam": "z.B. TÜV-Prüfung", "beschrijving": "Optionale Notiz" },
+    "toast": { "created": "Erinnerung hinzugefügt.", "updated": "Erinnerung aktualisiert.", "deleted": "Erinnerung gelöscht." },
+    "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum darf nicht in der Vergangenheit liegen." },
+    "noReminders": "Noch keine Erinnerungen hinzugefügt."
   },
-  "app": {
-    "title": "Reminder App"
+
+  "huur": {
+    "fields": { "naam": "Name", "datum": "Datum", "beschrijving": "Beschreibung" },
+    "buttons": { "opslaan": "Speichern", "bijwerken": "Aktualisieren", "bewerken": "Bearbeiten", "verwijderen": "Löschen" },
+    "placeholders": { "naam": "z.B. monatliche Mietzahlung", "beschrijving": "Optionale Notiz" },
+    "toast": { "created": "Erinnerung hinzugefügt.", "updated": "Erinnerung aktualisiert.", "deleted": "Erinnerung gelöscht." },
+    "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum darf nicht in der Vergangenheit liegen." },
+    "noReminders": "Noch keine Erinnerungen hinzugefügt."
   },
-  "repeat": {
-    "none": "Geen",
-    "daily": "Dagelijks",
-    "weekly": "Wekelijks",
-    "monthly": "Maandelijks"
+
+  "gezondheid": {
+    "fields": { "naam": "Name", "datum": "Datum", "beschrijving": "Beschreibung" },
+    "buttons": { "opslaan": "Speichern", "bijwerken": "Aktualisieren", "bewerken": "Bearbeiten", "verwijderen": "Löschen" },
+    "placeholders": { "naam": "z.B. Zahnarzttermin", "beschrijving": "Optionale Notiz" },
+    "toast": { "created": "Erinnerung hinzugefügt.", "updated": "Erinnerung aktualisiert.", "deleted": "Erinnerung gelöscht." },
+    "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum darf nicht in der Vergangenheit liegen." },
+    "noReminders": "Noch keine Erinnerungen hinzugefügt."
+  },
+
+  "contracten": {
+    "fields": { "naam": "Name", "datum": "Datum", "beschrijving": "Beschreibung" },
+    "buttons": { "opslaan": "Speichern", "bijwerken": "Aktualisieren", "bewerken": "Bearbeiten", "verwijderen": "Löschen" },
+    "placeholders": { "naam": "z.B. Energievertrag", "beschrijving": "Optionale Notiz" },
+    "toast": { "created": "Erinnerung hinzugefügt.", "updated": "Erinnerung aktualisiert.", "deleted": "Erinnerung gelöscht." },
+    "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum darf nicht in der Vergangenheit liegen." },
+    "noReminders": "Noch keine Erinnerungen hinzugefügt."
+  },
+
+  "overheid": {
+    "fields": { "naam": "Name", "datum": "Datum", "beschrijving": "Beschreibung" },
+    "buttons": { "opslaan": "Speichern", "bijwerken": "Aktualisieren", "bewerken": "Bearbeiten", "verwijderen": "Löschen" },
+    "placeholders": { "naam": "z.B. Reisepass verlängern", "beschrijving": "Optionale Notiz" },
+    "toast": { "created": "Erinnerung hinzugefügt.", "updated": "Erinnerung aktualisiert.", "deleted": "Erinnerung gelöscht." },
+    "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum darf nicht in der Vergangenheit liegen." },
+    "noReminders": "Noch keine Erinnerungen hinzugefügt."
+  },
+
+  "diversen": {
+    "fields": { "naam": "Name", "datum": "Datum", "beschrijving": "Beschreibung" },
+    "buttons": { "opslaan": "Speichern", "bijwerken": "Aktualisieren", "bewerken": "Bearbeiten", "verwijderen": "Löschen" },
+    "placeholders": { "naam": "z.B. Geschenk kaufen, Tierarzt, usw.", "beschrijving": "Optionale Notiz" },
+    "toast": { "created": "Erinnerung hinzugefügt.", "updated": "Erinnerung aktualisiert.", "deleted": "Erinnerung gelöscht." },
+    "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum darf nicht in der Vergangenheit liegen." },
+    "noReminders": "Noch keine Erinnerungen hinzugefügt."
   }
 }

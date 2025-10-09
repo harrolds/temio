@@ -1,105 +1,70 @@
 {
+  "app_title": "Temio Reminders",
   "pages": {
-    "home": "Welcome to the Reminder App",
-    "auto": {
-      "tuv": {
-        "title": "MOT",
-        "kenteken": {
-          "label": "Kenteken",
-          "placeholder": "Voer kenteken in"
-        },
-        "datum": {
-          "label": "Datum",
-          "placeholder": "Kies datum"
-        }
-      },
-      "verzekering": {
-        "title": "Insurance",
-        "verzekeraar": {
-          "label": "Verzekeraar",
-          "placeholder": "Naam verzekeraar"
-        },
-        "vervaldatum": {
-          "label": "Vervaldatum",
-          "placeholder": "Kies datum"
-        }
-      }
+    "home": {
+      "title": "Welcome to the Reminder App",
+      "subtitle": "Your reminders, at a glance",
+      "categories": "Categories"
     },
-    "contracten": {
-      "contract": {
-        "title": "Contract",
-        "naam": {
-          "label": "Naam",
-          "placeholder": "Naam contract"
-        },
-        "einddatum": {
-          "label": "Einddatum",
-          "placeholder": "Kies datum"
-        }
-      }
-    },
-    "gezondheid": {
-      "zorgverzekering": {
-        "title": "Health insurance",
-        "verzekeraar": {
-          "label": "Verzekeraar",
-          "placeholder": "Naam verzekeraar"
-        },
-        "vervaldatum": {
-          "label": "Vervaldatum",
-          "placeholder": "Kies datum"
-        }
-      }
-    },
-    "huur": {
-      "huurcontract": {
-        "title": "Rental Contract",
-        "naam": {
-          "label": "Naam",
-          "placeholder": "Naam contract"
-        },
-        "einddatum": {
-          "label": "end date",
-          "placeholder": "e.g. 2026-09-30"
-        },
-        "startdatum": {
-          "label": "start date",
-          "placeholder": "e.g. 2025-10-01"
-        }
-      }
-    },
-    "overheid": {
-      "belasting": {
-        "title": "Taxes",
-        "jaar": {
-          "label": "Jaar",
-          "placeholder": "Bijv. 2025"
-        }
-      }
-    },
-    "autoTitle": "Car",
-    "contractenTitle": "Contracts",
-    "huurTitle": "Rent",
-    "gezondheidTitle": "Health",
-    "overheidTitle": "Government",
-    "homeTitle": "Home"
+    "auto": { "title": "Auto" },
+    "huur": { "title": "Rent" },
+    "gezondheid": { "title": "Health" },
+    "contracten": { "title": "Contracts" },
+    "overheid": { "title": "Government" },
+    "diversen": { "title": "Miscellaneous" }
   },
-  "common": {
-    "submit": "Save",
-    "entered": "Saved reminders",
-    "clear": "Clear",
-    "repeat": "Herhaling",
-    "notifyAt": "Notificatie tijd",
-    "edit": "Bewerken",
-    "delete": "Verwijderen"
+
+  "auto": {
+    "fields": { "naam": "Name", "datum": "Date", "beschrijving": "Description" },
+    "buttons": { "opslaan": "Save", "bijwerken": "Update", "bewerken": "Edit", "verwijderen": "Delete" },
+    "placeholders": { "naam": "e.g. MOT inspection", "beschrijving": "Optional note" },
+    "toast": { "created": "Reminder added.", "updated": "Reminder updated.", "deleted": "Reminder deleted." },
+    "validation": { "missingFields": "Please fill in all required fields.", "datePast": "Date cannot be in the past." },
+    "noReminders": "No reminders added yet."
   },
-  "app": {
-    "title": "Reminder App"
+
+  "huur": {
+    "fields": { "naam": "Name", "datum": "Date", "beschrijving": "Description" },
+    "buttons": { "opslaan": "Save", "bijwerken": "Update", "bewerken": "Edit", "verwijderen": "Delete" },
+    "placeholders": { "naam": "e.g. monthly rent payment", "beschrijving": "Optional note" },
+    "toast": { "created": "Reminder added.", "updated": "Reminder updated.", "deleted": "Reminder deleted." },
+    "validation": { "missingFields": "Please fill in all required fields.", "datePast": "Date cannot be in the past." },
+    "noReminders": "No reminders added yet."
   },
-  "repeat": {
-    "none": "Geen",
-    "daily": "Dagelijks",
-    "weekly": "Wekelijks",
-    "monthly": "Maandelijks"
+
+  "gezondheid": {
+    "fields": { "naam": "Name", "datum": "Date", "beschrijving": "Description" },
+    "buttons": { "opslaan": "Save", "bijwerken": "Update", "bewerken": "Edit", "verwijderen": "Delete" },
+    "placeholders": { "naam": "e.g. Dentist appointment", "beschrijving": "Optional note" },
+    "toast": { "created": "Reminder added.", "updated": "Reminder updated.", "deleted": "Reminder deleted." },
+    "validation": { "missingFields": "Please fill in all required fields.", "datePast": "Date cannot be in the past." },
+    "noReminders": "No reminders added yet."
+  },
+
+  "contracten": {
+    "fields": { "naam": "Name", "datum": "Date", "beschrijving": "Description" },
+    "buttons": { "opslaan": "Save", "bijwerken": "Update", "bewerken": "Edit", "verwijderen": "Delete" },
+    "placeholders": { "naam": "e.g. Energy contract", "beschrijving": "Optional note" },
+    "toast": { "created": "Reminder added.", "updated": "Reminder updated.", "deleted": "Reminder deleted." },
+    "validation": { "missingFields": "Please fill in all required fields.", "datePast": "Date cannot be in the past." },
+    "noReminders": "No reminders added yet."
+  },
+
+  "overheid": {
+    "fields": { "naam": "Name", "datum": "Date", "beschrijving": "Description" },
+    "buttons": { "opslaan": "Save", "bijwerken": "Update", "bewerken": "Edit", "verwijderen": "Delete" },
+    "placeholders": { "naam": "e.g. Renew passport", "beschrijving": "Optional note" },
+    "toast": { "created": "Reminder added.", "updated": "Reminder updated.", "deleted": "Reminder deleted." },
+    "validation": { "missingFields": "Please fill in all required fields.", "datePast": "Date cannot be in the past." },
+    "noReminders": "No reminders added yet."
+  },
+
+  "diversen": {
+    "fields": { "naam": "Name", "datum": "Date", "beschrijving": "Description" },
+    "buttons": { "opslaan": "Save", "bijwerken": "Update", "bewerken": "Edit", "verwijderen": "Delete" },
+    "placeholders": { "naam": "e.g. Buy a gift, vet appointment, etc.", "beschrijving": "Optional note" },
+    "toast": { "created": "Reminder added.", "updated": "Reminder updated.", "deleted": "Reminder deleted." },
+    "validation": { "missingFields": "Please fill in all required fields.", "datePast": "Date cannot be in the past." },
+    "noReminders": "No reminders added yet."
   }
 }

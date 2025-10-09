@@ -8,23 +8,50 @@ import Gezondheid from "@/pages/Gezondheid";
 import Huur from "@/pages/Huur";
 import Overheid from "@/pages/Overheid";
 import Diversen from "@/pages/Diversen";
-import { migrateAll } from "@/utils/migrateStorage";
+import { migrateStorage, ensureStorageDefaults } from "@/utils/migrateStorage";
 
-// tijdelijke placeholders voor nieuwe footer-routes
+/**
+ * Tijdelijke placeholders voor toekomstige Precision & Pulse-modules
+ */
 function Categories() {
-  return <div className="rr-page"><h2>Categorieën</h2><p>Overzicht van alle categorieën (in ontwikkeling)</p></div>;
+  return (
+    <div className="rr-page">
+      <h2>Categorieën</h2>
+      <p>Overzicht van alle categorieën (in ontwikkeling)</p>
+    </div>
+  );
 }
 function Add() {
-  return <div className="rr-page"><h2>Nieuwe herinnering</h2><p>Formulier voor directe toevoeging (in ontwikkeling)</p></div>;
+  return (
+    <div className="rr-page">
+      <h2>Nieuwe herinnering</h2>
+      <p>Formulier voor directe toevoeging (in ontwikkeling)</p>
+    </div>
+  );
 }
 function Agenda() {
-  return <div className="rr-page"><h2>Agenda</h2><p>Weergave van geplande herinneringen (in ontwikkeling)</p></div>;
+  return (
+    <div className="rr-page">
+      <h2>Agenda</h2>
+      <p>Weergave van geplande herinneringen (in ontwikkeling)</p>
+    </div>
+  );
 }
 function Settings() {
-  return <div className="rr-page"><h2>Instellingen</h2><p>Profiel, thema en voorkeuren (in ontwikkeling)</p></div>;
+  return (
+    <div className="rr-page">
+      <h2>Instellingen</h2>
+      <p>Profiel, thema en voorkeuren (in ontwikkeling)</p>
+    </div>
+  );
 }
 
-// Sprint 2.3 – gecontroleerde localStorage reset en migratie
+/**
+ * Sprint 2.3 – gecontroleerde localStorage-reset en migratie
+ * -----------------------------------------------------------
+ * - Verwijdert oude keys uit eerdere builds
+ * - Voert migratie & default-initialisatie uit via migrateStorage()
+ */
 try {
   const VERSION_KEY = "reminder-app-version";
   const CURRENT_VERSION = "v12-precision-pulse";
@@ -45,8 +72,10 @@ try {
       toRemove.forEach((k) => localStorage.removeItem(k));
     }
     localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
+
     try {
-      migrateAll();
+      migrateStorage();
+      ensureStorageDefaults();
     } catch (e) {
       console.warn("Migration error:", e);
     }

@@ -1,304 +1,131 @@
 /* ================================================================
-   Precision & Pulse – complete styles (Sprint 2.3 visual corrections)
-   - Lichte footer met top-shadow en blauwe iconen
-   - Lichte app background + lichte hero/“herinnering” blok
-   - Consistente kaarten/knoppen/grid
+   Precision & Pulse – Extended Stylesheet
+   Sprint 2.3 Visual Uniformity + Fixed Footer (Filled Icons)
    ================================================================ */
 
-/* ---------- Color Tokens ---------- */
 :root {
-  /* Brand / primary scale (warm blauw) */
-  --pp-primary-900: #20384b;
-  --pp-primary-800: #27465a;
-  --pp-primary-700: #2e4b62; /* header/icon-kleur */
-  --pp-primary-600: #345a76;
-  --pp-primary-500: #4f6f86;
-  --pp-primary-400: #6f8ba0;
-  --pp-primary-300: #9ab0bf;
-  --pp-primary-200: #c5d3dd;
-  --pp-primary-100: #dce5ec;
-  --pp-primary-50:  #eef3f6;
+  --color-bg: #f2f5f7;
+  --color-surface: #ffffff;
+  --color-card: #ffffff;
+  --color-border: #dfe5ea;
+  --color-shadow: rgba(0, 0, 0, 0.08);
 
-  /* Surface (algemene achtergronden) – nét lichter dan voorheen */
-  --pp-surface-0:   #ffffff;
-  --pp-surface-25:  #fafcfe; /* algemene app background */
-  --pp-surface-50:  #f6f8fa; /* panel/card bg */
-  --pp-surface:     var(--pp-surface-25);
+  --color-accent: #5c7d92;
+  --color-accent-hover: #3e5e73;
+  --color-accent-light: #e8f0f6;
 
-  /* Text */
-  --pp-on-surface:           #1b2a38;
-  --pp-on-surface-variant:   #46596b;
+  --color-text: #0f2430;
+  --color-heading: #0c1a22;
+  --color-muted: #6d7e8a;
 
-  /* Accents & borders */
-  --pp-border: rgba(0,0,0,0.08);
+  --color-footer-bg: #ffffff;
+  --color-footer-border: #dfe5ea;
+  --color-header-bg: #5c7d92;
+  --color-header-shadow: rgba(0, 0, 0, 0.08);
 
-  /* Shadows */
-  --pp-shadow-bottom: 0 2px 6px rgba(0,0,0,0.10); /* header schaduw omlaag */
-  --pp-shadow-top:    0 -6px 14px rgba(0,0,0,0.06); /* footer schaduw omhoog */
+  --font-primary: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-secondary: "Poppins", var(--font-primary);
 
-  /* Footer (licht paneel + blauwe iconen) */
-  --pp-footer-bg:     #f2f5f8;         /* lichte balk */
-  --pp-footer-icon:   var(--pp-primary-700); /* iconen in header-blauw */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
 
-  /* Radii & spacing */
-  --pp-radius: 16px;
-  --pp-radius-sm: 10px;
-  --pp-space-1: .5rem;
-  --pp-space-2: .75rem;
-  --pp-space-3: 1rem;
-  --pp-space-4: 1.5rem;
-
-  /* Button heights */
-  --pp-btn-h: 44px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --shadow-md: 0 2px 8px var(--color-shadow);
 }
 
-/* Dark mode (optioneel – iconen blijven goed zichtbaar) */
-:root[data-theme="dark"] {
-  --pp-surface-25:  #0e1116;
-  --pp-surface-50:  #141922;
-  --pp-surface:     var(--pp-surface-25);
-  --pp-on-surface:  #e9eef3;
-  --pp-on-surface-variant: #b7c6d4;
+body { background-color: var(--color-bg); color: var(--color-text); }
+main { padding-top: calc(64px + 0.75rem); padding-bottom: 7rem; }
 
-  --pp-footer-bg:   #1a2230; /* nog steeds licht t.o.v. header-donker */
-  --pp-footer-icon: #cfe0ea;
+/* Header */
+.pp-header {
+  position: fixed; top: 0; left: 0; right: 0; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 1rem; background: var(--color-header-bg);
+  color: #fff; box-shadow: 0 1px 6px var(--color-header-shadow); z-index: 1000;
+}
+.pp-title { font-family: var(--font-secondary); font-size: 1.6rem; font-weight: 700; color: #fff; text-decoration: none; }
 
-  --pp-border: rgba(255,255,255,0.08);
-  --pp-shadow-bottom: 0 2px 6px rgba(0,0,0,0.55);
-  --pp-shadow-top:    0 -6px 14px rgba(0,0,0,0.45);
-}
+/* Filled icons */
+.icon-filled { width: 24px; height: 24px; display: inline-block; }
+.tile-icon .icon-filled { width: 28px; height: 28px; }
+footer .icon-filled { width: 22px; height: 22px; }
 
-/* ---------- Base Layout ---------- */
-html, body, #root {
-  height: 100%;
+/* SectionCard */
+.section-card {
+  max-width: 920px; margin: 1.25rem auto 1.5rem; padding: 1.25rem 1.5rem;
+  background: var(--color-card); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
 }
-body {
-  margin: 0;
-  background: var(--pp-surface);
-  color: var(--pp-on-surface);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
+.section-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px var(--color-shadow); }
+.section-card h1, .section-card h2, .section-card h3 { font-family: var(--font-secondary); color: var(--color-heading); }
 
-/* Houd ruimte voor vaste header + footer */
-#content, .app-main, main {
-  padding: calc(var(--pp-space-4) + 16px) var(--pp-space-3) calc(80px + var(--pp-space-3));
-  box-sizing: border-box;
-}
-
-/* ---------- Header (donkerblauw) ---------- */
-.pp-header, header.pp-header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 72px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--pp-space-3);
-  background: var(--pp-primary-700);
-  color: #fff;
-  box-shadow: var(--pp-shadow-bottom);
-  z-index: 1000;
-}
-.pp-header .pp-title, .pp-app-title {
-  font-weight: 700;
-  letter-spacing: .3px;
-  margin: 0;
-}
-
-/* ---------- Footer (licht paneel met top-shadow, blauwe iconen) ---------- */
-.pp-footer {
-  position: fixed;
-  left: 0; right: 0; bottom: 0;
-  height: 68px;
-  background: var(--pp-footer-bg);      /* ✅ licht */
-  box-shadow: var(--pp-shadow-top);     /* ✅ schaduw aan bovenzijde */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  transition: transform .28s ease, opacity .28s ease;
-}
-.pp-footer.hidden {
-  transform: translateY(100%);
-  opacity: 0;
-}
-.pp-footer-nav {
-  width: min(720px, 92vw);
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  align-items: center;
-  gap: var(--pp-space-2);
-}
-.pp-footer-nav button {
-  appearance: none;
-  border: none;
-  background: none;
-  height: 44px;
-  width: 44px;
-  margin: 0 auto;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-}
-.pp-footer svg {
-  width: 24px; height: 24px;
-  stroke: var(--pp-footer-icon);        /* ✅ iconen in header-blauw */
-}
-.pp-footer-nav button.active svg {
-  stroke: var(--pp-primary-900);
-}
-.pp-footer-add {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--pp-surface-0);      /* witte “fab” op lichte footer */
-  box-shadow: 0 6px 14px rgba(0,0,0,0.16);
-  border: 2px solid var(--pp-primary-200);
-}
-
-/* ---------- Hero / “Herinnering” blok (licht) ---------- */
-.pp-header-block {
-  margin-top: 72px; /* onder header */
-  margin-bottom: var(--pp-space-3);
-}
-.pp-hero, .pp-hero-card {
-  background: var(--pp-surface-50);     /* ✅ zelfde lichte bg als rest */
-  border-radius: var(--pp-radius);
-  padding: var(--pp-space-4);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-
-/* ---------- Cards & Grid ---------- */
-.rr-grid-cards {
+/* Home tegels */
+.home-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: var(--pp-space-3);
-  margin-top: var(--pp-space-2);
+  gap: 1rem;
 }
-.pp-card {
-  background: var(--pp-surface-50);
-  border-radius: var(--pp-radius);
-  padding: var(--pp-space-3);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+.home-tile {
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  padding: 1rem; background: #e0e8ee; color: var(--color-text);
+  border: 1px solid #cbd7df; border-radius: var(--radius-md);
+  text-decoration: none; box-shadow: var(--shadow-md);
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
 }
-.pp-card-link {
-  background: var(--pp-primary-100);
-  color: var(--pp-primary-700);
-  text-decoration: none;
-  display: grid;
-  place-items: center;
-  row-gap: .5rem;
-  border-radius: var(--pp-radius);
-  padding: var(--pp-space-3);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  transition: transform .12s ease, box-shadow .12s ease;
+.home-tile:hover { transform: translateY(-2px); box-shadow: 0 6px 16px var(--color-shadow); background: #d6e1e9; }
+
+/* Buttons */
+.btn-primary {
+  background: var(--color-accent); color: #fff;
+  padding: 0.6rem 1rem; border-radius: var(--radius-sm);
+  transition: background-color 0.2s ease, transform 0.15s ease;
 }
-.pp-card-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+.btn-primary:hover { background: var(--color-accent-hover); transform: translateY(-1px); }
+
+/* Forms */
+form { display: flex; flex-direction: column; gap: 0.75rem; }
+input, select, textarea {
+  border: 1px solid var(--color-border); border-radius: var(--radius-sm);
+  padding: 0.6rem; font-size: var(--font-size-md);
+  background: var(--color-surface); color: var(--color-text);
 }
-.pp-card-link svg {
-  width: 28px; height: 28px;
-  stroke: var(--pp-primary-700);
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--color-accent); box-shadow: 0 0 0 2px var(--color-accent-light); }
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%);
+  background: var(--color-accent); color: #fff; padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-md); box-shadow: var(--shadow-md);
+  font-size: var(--font-size-sm); opacity: 0.95; z-index: 2000;
 }
 
-/* ---------- Forms ---------- */
-.rr-page h1, .rr-page h2, .pp-section h2 {
-  margin: 0 0 var(--pp-space-2) 0;
+/* Footer */
+footer {
+  position: fixed; left: 0; bottom: 0; width: 100%; height: 72px;
+  background: #ffffff; border-top: 1px solid var(--color-footer-border);
+  display: flex; justify-content: space-around; align-items: center;
+  box-shadow: 0 -1px 8px var(--color-shadow); z-index: 1000;
 }
-.rr-page {
-  max-width: 960px;
-  margin: 0 auto;
+footer button, footer a {
+  background: transparent; border: none; display: flex;
+  flex-direction: column; align-items: center; gap: 0.25rem;
+  color: var(--color-accent); font-size: var(--font-size-sm);
 }
-.rr-form-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--pp-space-3);
-  margin-top: var(--pp-space-3);
-}
-.field-group {
-  display: grid;
-  gap: var(--pp-space-3);
-}
-.field label {
-  font-size: .9rem;
-  color: var(--pp-on-surface-variant);
-}
-.field input, .field select {
-  width: 100%;
-  height: var(--pp-btn-h);
-  padding: 0 .75rem;
-  border-radius: var(--pp-radius-sm);
-  border: 1px solid var(--pp-border);
-  background: var(--pp-surface-0);
-  color: var(--pp-on-surface);
-  box-sizing: border-box;
-}
-.field.actions {
-  display: flex;
-  gap: var(--pp-space-2);
-  flex-wrap: wrap;
-}
+footer button:hover, footer a:hover { background: transparent !important; transform: none !important; }
+footer .active { color: var(--color-accent-hover); font-weight: 700; }
 
-/* ---------- Buttons ---------- */
-.pp-btn, .pp-btn-outline, .pp-btn-subtle, .btn-clear {
-  height: var(--pp-btn-h);
-  border-radius: var(--pp-radius-sm);
-  padding: 0 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  border: 1px solid transparent;
+/* Lists & utilities */
+.card-list { display: flex; flex-direction: column; gap: 1rem; }
+.card-item {
+  background: var(--color-card); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md); padding: 1rem; box-shadow: var(--shadow-md);
 }
-.pp-btn {
-  background: var(--pp-primary-700);
-  color: #fff;
-}
-.pp-btn:hover { filter: brightness(1.05); }
-.pp-btn-outline {
-  background: transparent;
-  color: var(--pp-primary-700);
-  border-color: var(--pp-primary-300);
-}
-.pp-btn-subtle {
-  background: transparent;
-  color: var(--pp-on-surface-variant);
-}
-.btn-clear {
-  background: var(--pp-surface-50);
-  border-color: var(--pp-border);
-  color: var(--pp-on-surface-variant);
-}
-
-/* ---------- Lists ---------- */
-.rr-list {
-  list-style: none;
-  padding: 0; margin: var(--pp-space-3) 0;
-  display: grid;
-  gap: var(--pp-space-2);
-}
-.rr-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--pp-space-2);
-}
-.item-actions {
-  display: flex;
-  gap: .25rem;
-}
-
-/* ---------- Utilities ---------- */
-.clear-row { margin-top: var(--pp-space-3); }
-
-/* ---------- Responsive tweaks ---------- */
-@media (min-width: 640px) {
-  .rr-form-grid { grid-template-columns: 1fr 1fr; }
-  .field-group { grid-template-columns: 1fr 1fr 1fr; }
-}
-@media (min-width: 960px) {
-  #content, .app-main, main {
-    padding-left: var(--pp-space-4);
-    padding-right: var(--pp-space-4);
-  }
-}
+.text-muted { color: var(--color-muted); }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.25rem; }
