@@ -1,105 +1,60 @@
 {
+  "app_title": "Temio Herinneringen",
   "pages": {
-    "home": "Welkom bij de Reminder App",
-    "auto": {
-      "tuv": {
-        "title": "TÜV",
-        "kenteken": {
-          "label": "Kenteken",
-          "placeholder": "Voer kenteken in"
-        },
-        "datum": {
-          "label": "Datum",
-          "placeholder": "Kies datum"
-        }
-      },
-      "verzekering": {
-        "title": "Verzekering",
-        "verzekeraar": {
-          "label": "Verzekeraar",
-          "placeholder": "Naam verzekeraar"
-        },
-        "vervaldatum": {
-          "label": "Vervaldatum",
-          "placeholder": "Kies datum"
-        }
-      }
-    },
-    "contracten": {
-      "contract": {
-        "title": "Contract",
-        "naam": {
-          "label": "Naam",
-          "placeholder": "Naam contract"
-        },
-        "einddatum": {
-          "label": "Einddatum",
-          "placeholder": "Kies datum"
-        }
-      }
-    },
-    "gezondheid": {
-      "zorgverzekering": {
-        "title": "Zorgverzekering",
-        "verzekeraar": {
-          "label": "Verzekeraar",
-          "placeholder": "Naam verzekeraar"
-        },
-        "vervaldatum": {
-          "label": "Vervaldatum",
-          "placeholder": "Kies datum"
-        }
-      }
-    },
-    "huur": {
-      "huurcontract": {
-        "title": "Huurcontract",
-        "naam": {
-          "label": "Naam",
-          "placeholder": "Naam contract"
-        },
-        "einddatum": {
-          "label": "einddatum",
-          "placeholder": "bijv. 2026-09-30"
-        },
-        "startdatum": {
-          "label": "startdatum",
-          "placeholder": "bijv. 2025-10-01"
-        }
-      }
-    },
-    "overheid": {
-      "belasting": {
-        "title": "Belasting",
-        "jaar": {
-          "label": "Jaar",
-          "placeholder": "Bijv. 2025"
-        }
-      }
-    },
-    "autoTitle": "Auto",
-    "contractenTitle": "Contracten",
-    "huurTitle": "Huur",
-    "gezondheidTitle": "Gezondheid",
-    "overheidTitle": "Overheid",
-    "homeTitle": "Home"
+    "home_title": "Welkom bij de Reminder App"
   },
-  "common": {
-    "submit": "Opslaan",
-    "entered": "Ingevoerde reminders",
-    "clear": "Leegmaken",
-    "repeat": "Herhaling",
-    "notifyAt": "Notificatie tijd",
-    "edit": "Bewerken",
-    "delete": "Verwijderen"
+
+  "auto": {
+    "fields": { "naam": "Naam", "datum": "Datum", "beschrijving": "Beschrijving" },
+    "buttons": { "opslaan": "Opslaan", "bijwerken": "Bijwerken", "bewerken": "Bewerken", "verwijderen": "Verwijderen" },
+    "placeholders": { "naam": "Bijv. APK keuring", "beschrijving": "Optionele notitie" },
+    "toast": { "created": "Herinnering toegevoegd.", "updated": "Herinnering bijgewerkt.", "deleted": "Herinnering verwijderd." },
+    "validation": { "missingFields": "Vul alle verplichte velden in.", "datePast": "Datum mag niet in het verleden liggen." },
+    "noReminders": "Nog geen herinneringen toegevoegd."
   },
-  "app": {
-    "title": "Reminder App"
+
+  "huur": {
+    "fields": { "naam": "Naam", "datum": "Datum", "beschrijving": "Beschrijving" },
+    "buttons": { "opslaan": "Opslaan", "bijwerken": "Bijwerken", "bewerken": "Bewerken", "verwijderen": "Verwijderen" },
+    "placeholders": { "naam": "Bijv. maandelijkse huurbetaling", "beschrijving": "Optionele notitie" },
+    "toast": { "created": "Herinnering toegevoegd.", "updated": "Herinnering bijgewerkt.", "deleted": "Herinnering verwijderd." },
+    "validation": { "missingFields": "Vul alle verplichte velden in.", "datePast": "Datum mag niet in het verleden liggen." },
+    "noReminders": "Nog geen herinneringen toegevoegd."
   },
-  "repeat": {
-    "none": "Geen",
-    "daily": "Dagelijks",
-    "weekly": "Wekelijks",
-    "monthly": "Maandelijks"
+
+  "gezondheid": {
+    "fields": { "naam": "Naam", "datum": "Datum", "beschrijving": "Beschrijving" },
+    "buttons": { "opslaan": "Opslaan", "bijwerken": "Bijwerken", "bewerken": "Bewerken", "verwijderen": "Verwijderen" },
+    "placeholders": { "naam": "Bijv. Tandartscontrole", "beschrijving": "Optionele notitie" },
+    "toast": { "created": "Herinnering toegevoegd.", "updated": "Herinnering bijgewerkt.", "deleted": "Herinnering verwijderd." },
+    "validation": { "missingFields": "Vul alle verplichte velden in.", "datePast": "Datum mag niet in het verleden liggen." },
+    "noReminders": "Nog geen herinneringen toegevoegd."
+  },
+
+  "contracten": {
+    "fields": { "naam": "Naam", "datum": "Datum", "beschrijving": "Beschrijving" },
+    "buttons": { "opslaan": "Opslaan", "bijwerken": "Bijwerken", "bewerken": "Bewerken", "verwijderen": "Verwijderen" },
+    "placeholders": { "naam": "Bijv. energiecontract", "beschrijving": "Optionele notitie" },
+    "toast": { "created": "Herinnering toegevoegd.", "updated": "Herinnering bijgewerkt.", "deleted": "Herinnering verwijderd." },
+    "validation": { "missingFields": "Vul alle verplichte velden in.", "datePast": "Datum mag niet in het verleden liggen." },
+    "noReminders": "Nog geen herinneringen toegevoegd."
+  },
+
+  "overheid": {
+    "fields": { "naam": "Naam", "datum": "Datum", "beschrijving": "Beschrijving" },
+    "buttons": { "opslaan": "Opslaan", "bijwerken": "Bijwerken", "bewerken": "Bewerken", "verwijderen": "Verwijderen" },
+    "placeholders": { "naam": "Bijv. Paspoort verlengen", "beschrijving": "Optionele notitie" },
+    "toast": { "created": "Herinnering toegevoegd.", "updated": "Herinnering bijgewerkt.", "deleted": "Herinnering verwijderd." },
+    "validation": { "missingFields": "Vul alle verplichte velden in.", "datePast": "Datum mag niet in het verleden liggen." },
+    "noReminders": "Nog geen herinneringen toegevoegd."
+  },
+
+  "diversen": {
+    "fields": { "naam": "Naam", "datum": "Datum", "beschrijving": "Beschrijving" },
+    "buttons": { "opslaan": "Opslaan", "bijwerken": "Bijwerken", "bewerken": "Bewerken", "verwijderen": "Verwijderen" },
+    "placeholders": { "naam": "Bijv. Cadeau kopen, dierenarts, etc.", "beschrijving": "Optionele notitie" },
+    "toast": { "created": "Herinnering toegevoegd.", "updated": "Herinnering bijgewerkt.", "deleted": "Herinnering verwijderd." },
+    "validation": { "missingFields": "Vul alle verplichte velden in.", "datePast": "Datum mag niet in het verleden liggen." },
+    "noReminders": "Nog geen herinneringen toegevoegd."
   }
 }
