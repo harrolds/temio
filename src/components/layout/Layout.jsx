@@ -4,19 +4,21 @@ import Footer from "./Footer";
 import useScrollDirection from "@/hooks/useScrollDirection";
 
 /**
- * Layout-component
- * - behoudt bestaande structuur met Header en Footer
- * - voegt scroll-aware gedrag toe aan de footer
+ * Layout Component – Precision & Pulse (Sprint 2.3)
+ * -------------------------------------------------
+ * - Omhult alle pagina's met vaste Header en Footer
+ * - Voegt automatische spacing toe zodat content nooit overlapt
+ * - ScrollDirection hook behouden voor toekomstige header-animaties
  */
 export default function Layout({ children }) {
-  const scrollDir = useScrollDirection(); // "up" | "down"
+  // Scroll direction hook wordt alleen gebruikt voor optionele header-effecten
+  const scrollDir = useScrollDirection();
 
   return (
-    <div className="app-container">
-      <Header />
-      <main className="app-main">{children}</main>
-      {/* doorgeven van de scrollstatus aan de footer */}
-      <Footer hidden={scrollDir === "down"} />
+    <div className="app-layout">
+      <Header scrollDir={scrollDir} />
+      <main className="has-fixed-footer">{children}</main>
+      <Footer />
     </div>
   );
 }
