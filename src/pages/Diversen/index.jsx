@@ -62,7 +62,7 @@ export default function Diversen() {
   };
 
   return (
-    <SectionCard title={t("pages.diversen.title"), "Overige Herinneringen")}>
+    <SectionCard title={t("pages.diversen.title", "Overige Herinneringen")}>
       <form onSubmit={handleSubmit}>
         <label>
           {t("diversen.fields.naam") || "Naam"}
