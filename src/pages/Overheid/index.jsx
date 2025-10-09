@@ -61,7 +61,7 @@ export default function Overheid() {
   };
 
   return (
-    <SectionCard title={t("pages.overheid.title") || "Overheid Herinneringen"}>
+    <SectionCard title={t("pages.overheid.title"), "Overheid Herinneringen")}>
       <form onSubmit={handleSubmit}>
         <label>
           {t("overheid.fields.naam") || "Naam"}
