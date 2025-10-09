@@ -62,7 +62,7 @@ export default function Huur() {
   };
 
   return (
-    <SectionCard title={t("pages.huur.title") || "Huur Herinneringen"}>
+    <SectionCard title={t("pages.huur.title"), "Huur Herinneringen")}>
       <form onSubmit={handleSubmit}>
         <label>
           {t("huur.fields.naam") || "Naam"}
