@@ -14,14 +14,14 @@
     "diversen": { "title": "Diversen" }
   },
 
-"nav": {
-  "home": "Home",
-  "categories": "Categorieën",
-  "new": "Nieuw",
-  "overview": "Overzicht",
-  "settings": "Instellingen"
-},
-  
+  "nav": {
+    "home": "Home",
+    "categories": "Categorieën",
+    "new": "Nieuw",
+    "overview": "Overzicht",
+    "settings": "Instellingen"
+  },
+
   "auto": {
     "fields": { "naam": "Naam", "datum": "Datum", "beschrijving": "Beschrijving" },
     "buttons": { "opslaan": "Opslaan", "bijwerken": "Bijwerken", "bewerken": "Bewerken", "verwijderen": "Verwijderen" },
@@ -75,53 +75,4 @@
     "validation": { "missingFields": "Vul alle verplichte velden in.", "datePast": "Datum mag niet in het verleden liggen." },
     "noReminders": "Nog geen herinneringen toegevoegd."
   }
-  "fields": {
-  "naam": "Naam",
-  "datum": "Datum",
-  "tijd": "Tijd",
-  "beschrijving": "Notitie",
-  "prioriteit": "Prioriteit"
-},
-"buttons": {
-  "opslaan": "Opslaan",
-  "bijwerken": "Bijwerken",
-  "bewerken": "Bewerken",
-  "verwijderen": "Verwijderen"
-},
-"placeholders": {
-  "naam": "Bijv. afspraak of taak",
-  "beschrijving": "Optionele notitie"
-},
-"priority": {
-  "low": "Laag",
-  "normal": "Normaal",
-  "high": "Hoog"
-},
-"repeat": {
-  "none": "Geen",
-  "daily": "Dagelijks",
-  "weekly": "Wekelijks",
-  "monthly": "Maandelijks",
-  "yearly": "Jaarlijks"
-},
-"offsets": {
-  "title": "Vooraf-herinneringen",
-  "custom": "Custom (minuten)",
-  "presets": {
-    "ontime": "Op tijd",
-    "10m": "10 minuten vooraf",
-    "1h": "1 uur vooraf",
-    "1d": "1 dag vooraf",
-    "1w": "1 week vooraf"
-  }
-},
-"validation": {
-  "missingFields": "Vul alle verplichte velden in.",
-  "datePast": "Datum/tijd mag niet in het verleden liggen."
-},
-"toast": {
-  "created": "Herinnering toegevoegd.",
-  "updated": "Herinnering bijgewerkt.",
-  "deleted": "Herinnering verwijderd."
-}
 }
