@@ -22,57 +22,166 @@
     "settings": "Settings"
   },
 
+  "home": {
+    "tasks": {
+      "title": "Upcoming reminders",
+      "empty": "No reminders yet.",
+      "unnamed": "Untitled"
+    }
+  },
+
+  "fields": {
+    "naam": "Name",
+    "datum": "Date",
+    "tijd": "Time",
+    "beschrijving": "Note",
+    "prioriteit": "Priority",
+    "herhalen": "Repeat",
+    "eindigtOp": "Ends on"
+  },
+
+  "buttons": {
+    "opslaan": "Save",
+    "bijwerken": "Update",
+    "bewerken": "Edit",
+    "verwijderen": "Delete"
+  },
+
+  "placeholders": {
+    "naam": "e.g. appointment or task",
+    "beschrijving": "Optional note"
+  },
+
+  "priority": {
+    "low": "Low",
+    "normal": "Normal",
+    "high": "High"
+  },
+
+  "repeat": {
+    "none": "None",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "yearly": "Yearly"
+  },
+
+  "offsets": {
+    "title": "Pre-reminders",
+    "custom": "Custom (minutes)",
+    "presets": {
+      "ontime": "On time",
+      "10m": "10 minutes before",
+      "1h": "1 hour before",
+      "1d": "1 day before",
+      "1w": "1 week before"
+    }
+  },
+
+  "validation": {
+    "missingFields": "Please fill in all required fields.",
+    "datePast": "Date/time cannot be in the past."
+  },
+
+  "toast": {
+    "created": "Reminder added.",
+    "updated": "Reminder updated.",
+    "deleted": "Reminder deleted."
+  },
+
   "auto": {
-    "fields": { "naam": "Name", "datum": "Date", "beschrijving": "Description" },
+    "fields": { "naam": "Name", "datum": "Date", "tijd": "Time", "beschrijving": "Description", "prioriteit": "Priority" },
     "buttons": { "opslaan": "Save", "bijwerken": "Update", "bewerken": "Edit", "verwijderen": "Delete" },
     "placeholders": { "naam": "e.g. MOT inspection", "beschrijving": "Optional note" },
+    "priority": { "low": "Low", "normal": "Normal", "high": "High" },
+    "repeat": { "none": "None", "daily": "Daily", "weekly": "Weekly", "monthly": "Monthly", "yearly": "Yearly" },
+    "offsets": {
+      "title": "Pre-reminders",
+      "custom": "Custom (minutes)",
+      "presets": { "ontime": "On time", "10m": "10 minutes before", "1h": "1 hour before", "1d": "1 day before", "1w": "1 week before" }
+    },
+    "validation": { "missingFields": "Please fill in all required fields.", "datePast": "Date/time cannot be in the past." },
     "toast": { "created": "Reminder added.", "updated": "Reminder updated.", "deleted": "Reminder deleted." },
-    "validation": { "missingFields": "Please fill in all required fields.", "datePast": "Date cannot be in the past." },
     "noReminders": "No reminders added yet."
   },
 
   "huur": {
-    "fields": { "naam": "Name", "datum": "Date", "beschrijving": "Description" },
+    "fields": { "naam": "Name", "datum": "Date", "tijd": "Time", "beschrijving": "Description", "prioriteit": "Priority" },
     "buttons": { "opslaan": "Save", "bijwerken": "Update", "bewerken": "Edit", "verwijderen": "Delete" },
     "placeholders": { "naam": "e.g. monthly rent payment", "beschrijving": "Optional note" },
+    "priority": { "low": "Low", "normal": "Normal", "high": "High" },
+    "repeat": { "none": "None", "daily": "Daily", "weekly": "Weekly", "monthly": "Monthly", "yearly": "Yearly" },
+    "offsets": {
+      "title": "Pre-reminders",
+      "custom": "Custom (minutes)",
+      "presets": { "ontime": "On time", "10m": "10 minutes before", "1h": "1 hour before", "1d": "1 day before", "1w": "1 week before" }
+    },
+    "validation": { "missingFields": "Please fill in all required fields.", "datePast": "Date/time cannot be in the past." },
     "toast": { "created": "Reminder added.", "updated": "Reminder updated.", "deleted": "Reminder deleted." },
-    "validation": { "missingFields": "Please fill in all required fields.", "datePast": "Date cannot be in the past." },
     "noReminders": "No reminders added yet."
   },
 
   "gezondheid": {
-    "fields": { "naam": "Name", "datum": "Date", "beschrijving": "Description" },
+    "fields": { "naam": "Name", "datum": "Date", "tijd": "Time", "beschrijving": "Description", "prioriteit": "Priority" },
     "buttons": { "opslaan": "Save", "bijwerken": "Update", "bewerken": "Edit", "verwijderen": "Delete" },
     "placeholders": { "naam": "e.g. Dentist appointment", "beschrijving": "Optional note" },
+    "priority": { "low": "Low", "normal": "Normal", "high": "High" },
+    "repeat": { "none": "None", "daily": "Daily", "weekly": "Weekly", "monthly": "Monthly", "yearly": "Yearly" },
+    "offsets": {
+      "title": "Pre-reminders",
+      "custom": "Custom (minutes)",
+      "presets": { "ontime": "On time", "10m": "10 minutes before", "1h": "1 hour before", "1d": "1 day before", "1w": "1 week before" }
+    },
+    "validation": { "missingFields": "Please fill in all required fields.", "datePast": "Date/time cannot be in the past." },
     "toast": { "created": "Reminder added.", "updated": "Reminder updated.", "deleted": "Reminder deleted." },
-    "validation": { "missingFields": "Please fill in all required fields.", "datePast": "Date cannot be in the past." },
     "noReminders": "No reminders added yet."
   },
 
   "contracten": {
-    "fields": { "naam": "Name", "datum": "Date", "beschrijving": "Description" },
+    "fields": { "naam": "Name", "datum": "Date", "tijd": "Time", "beschrijving": "Description", "prioriteit": "Priority" },
     "buttons": { "opslaan": "Save", "bijwerken": "Update", "bewerken": "Edit", "verwijderen": "Delete" },
     "placeholders": { "naam": "e.g. Energy contract", "beschrijving": "Optional note" },
+    "priority": { "low": "Low", "normal": "Normal", "high": "High" },
+    "repeat": { "none": "None", "daily": "Daily", "weekly": "Weekly", "monthly": "Monthly", "yearly": "Yearly" },
+    "offsets": {
+      "title": "Pre-reminders",
+      "custom": "Custom (minutes)",
+      "presets": { "ontime": "On time", "10m": "10 minutes before", "1h": "1 hour before", "1d": "1 day before", "1w": "1 week before" }
+    },
+    "validation": { "missingFields": "Please fill in all required fields.", "datePast": "Date/time cannot be in the past." },
     "toast": { "created": "Reminder added.", "updated": "Reminder updated.", "deleted": "Reminder deleted." },
-    "validation": { "missingFields": "Please fill in all required fields.", "datePast": "Date cannot be in the past." },
     "noReminders": "No reminders added yet."
   },
 
   "overheid": {
-    "fields": { "naam": "Name", "datum": "Date", "beschrijving": "Description" },
+    "fields": { "naam": "Name", "datum": "Date", "tijd": "Time", "beschrijving": "Description", "prioriteit": "Priority" },
     "buttons": { "opslaan": "Save", "bijwerken": "Update", "bewerken": "Edit", "verwijderen": "Delete" },
     "placeholders": { "naam": "e.g. Renew passport", "beschrijving": "Optional note" },
+    "priority": { "low": "Low", "normal": "Normal", "high": "High" },
+    "repeat": { "none": "None", "daily": "Daily", "weekly": "Weekly", "monthly": "Monthly", "yearly": "Yearly" },
+    "offsets": {
+      "title": "Pre-reminders",
+      "custom": "Custom (minutes)",
+      "presets": { "ontime": "On time", "10m": "10 minutes before", "1h": "1 hour before", "1d": "1 day before", "1w": "1 week before" }
+    },
+    "validation": { "missingFields": "Please fill in all required fields.", "datePast": "Date/time cannot be in the past." },
     "toast": { "created": "Reminder added.", "updated": "Reminder updated.", "deleted": "Reminder deleted." },
-    "validation": { "missingFields": "Please fill in all required fields.", "datePast": "Date cannot be in the past." },
     "noReminders": "No reminders added yet."
   },
 
   "diversen": {
-    "fields": { "naam": "Name", "datum": "Date", "beschrijving": "Description" },
+    "fields": { "naam": "Name", "datum": "Date", "tijd": "Time", "beschrijving": "Description", "prioriteit": "Priority" },
     "buttons": { "opslaan": "Save", "bijwerken": "Update", "bewerken": "Edit", "verwijderen": "Delete" },
     "placeholders": { "naam": "e.g. Buy a gift, vet appointment, etc.", "beschrijving": "Optional note" },
+    "priority": { "low": "Low", "normal": "Normal", "high": "High" },
+    "repeat": { "none": "None", "daily": "Daily", "weekly": "Weekly", "monthly": "Monthly", "yearly": "Yearly" },
+    "offsets": {
+      "title": "Pre-reminders",
+      "custom": "Custom (minutes)",
+      "presets": { "ontime": "On time", "10m": "10 minutes before", "1h": "1 hour before", "1d": "1 day before", "1w": "1 week before" }
+    },
+    "validation": { "missingFields": "Please fill in all required fields.", "datePast": "Date/time cannot be in the past." },
     "toast": { "created": "Reminder added.", "updated": "Reminder updated.", "deleted": "Reminder deleted." },
-    "validation": { "missingFields": "Please fill in all required fields.", "datePast": "Date cannot be in the past." },
     "noReminders": "No reminders added yet."
   }
 }
