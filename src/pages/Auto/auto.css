@@ -1,0 +1,171 @@
+/* Precision & Pulse – Auto pagina (UX v2.4) */
+
+/* Algemene pagina */
+.reminder-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 1rem;
+}
+
+@media (min-width: 400px) {
+  .reminder-grid {
+    grid-template-columns: 1fr 1fr; /* twee kolommen vanaf 400 px */
+  }
+}
+
+/* Reminder cards */
+.reminder-card {
+  background: var(--pp-surface);
+  border-radius: var(--pp-radius);
+  box-shadow: var(--pp-shadow);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reminder-card:active {
+  transform: scale(0.98);
+}
+
+.reminder-header {
+  margin-bottom: 0.5rem;
+}
+
+.reminder-date {
+  font-size: 0.9rem;
+  color: var(--pp-secondary);
+}
+
+.text-muted {
+  color: var(--pp-secondary);
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Buttons in cards */
+.btn-edit,
+.btn-delete {
+  border: none;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.btn-edit {
+  background: #e5e7eb;
+}
+
+.btn-delete {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* Floating Action Button (FAB) */
+.fab {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--pp-accent);
+  color: #fff;
+  font-size: 2rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--pp-shadow);
+  transition: transform 0.2s ease;
+  z-index: 20;
+}
+
+.fab:active {
+  transform: scale(0.9);
+}
+
+/* Formulier Overlay */
+.form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+}
+
+.form-card {
+  background: var(--pp-surface);
+  border-radius: var(--pp-radius);
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: var(--pp-shadow);
+  animation: fadeIn 0.2s ease-in;
+}
+
+.form-card h2 {
+  margin-top: 0;
+  font-size: 1.25rem;
+  color: var(--pp-primary);
+}
+
+/* Input velden */
+.form-card label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.75rem;
+  color: var(--pp-primary);
+  font-size: 0.875rem;
+}
+
+.form-card input,
+.form-card select,
+.form-card textarea {
+  margin-top: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-family: var(--pp-font);
+}
+
+.form-card textarea {
+  min-height: 60px;
+}
+
+/* Formulierknoppen */
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.btn-primary {
+  background: var(--pp-accent);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #e5e7eb;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
