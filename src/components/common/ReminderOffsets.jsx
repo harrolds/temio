@@ -1,15 +1,19 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 /**
  * ReminderOffsets – preset & custom vooraf-herinneringen
+ * → Volledige i18n-ondersteuning
  */
 export default function ReminderOffsets({ offsets, onChange }) {
+  const { t } = useTranslation();
+
   const presets = [
-    { label: "Op tijd", value: 0 },
-    { label: "10 minuten vooraf", value: 10 },
-    { label: "1 uur vooraf", value: 60 },
-    { label: "1 dag vooraf", value: 1440 },
-    { label: "1 week vooraf", value: 10080 },
+    { label: t("offsets.presets.ontime"), value: 0 },
+    { label: t("offsets.presets.10m"), value: 10 },
+    { label: t("offsets.presets.1h"), value: 60 },
+    { label: t("offsets.presets.1d"), value: 1440 },
+    { label: t("offsets.presets.1w"), value: 10080 },
   ];
 
   const [custom, setCustom] = useState("");
@@ -27,7 +31,7 @@ export default function ReminderOffsets({ offsets, onChange }) {
 
   return (
     <div className="offsets">
-      <p className="label">Vooraf-herinneringen</p>
+      <p className="label">{t("offsets.title")}</p>
       <div className="offset-buttons">
         {presets.map((p) => (
           <button
@@ -44,7 +48,7 @@ export default function ReminderOffsets({ offsets, onChange }) {
         <input
           type="number"
           min="1"
-          placeholder="Custom (minuten)"
+          placeholder={t("offsets.custom")}
           value={custom}
           onChange={(e) => setCustom(e.target.value)}
         />
