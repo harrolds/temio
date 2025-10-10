@@ -161,21 +161,3 @@ footer .active { color: var(--color-accent-hover); font-weight: 700; }
 .text-muted { color: var(--color-muted); }
 .mb-2 { margin-bottom: 1rem; }
 .mb-3 { margin-bottom: 1.25rem; }
-
-/*-------- overlay fix for add-reminder-button issues -----------*/
-main {
-  position: relative;
-  overflow: visible;
-  z-index: 0;
-}
-
-main::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 5.5rem; /* behoud ruimte voor footer */
-  background: transparent; /* niet klikblokkerend */
-  pointer-events: none;     /* laat clicks door! */
-}
