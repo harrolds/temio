@@ -3,7 +3,7 @@
   "pages": {
     "home": {
       "title": "Willkommen bei der Reminder-App",
-      "subtitle": "Deine Erinnerungen, im Überblick",
+      "subtitle": "Deine Erinnerungen im Überblick",
       "categories": "Kategorien"
     },
     "auto": { "title": "Auto" },
@@ -14,65 +14,174 @@
     "diversen": { "title": "Verschiedenes" }
   },
 
- "nav": {
-  "home": "Start",
-  "categories": "Kategorien",
-  "new": "Neu",
-  "overview": "Übersicht",
-  "settings": "Einstellungen"
-},
-  
+  "nav": {
+    "home": "Start",
+    "categories": "Kategorien",
+    "new": "Neu",
+    "overview": "Übersicht",
+    "settings": "Einstellungen"
+  },
+
+  "home": {
+    "tasks": {
+      "title": "Bevorstehende Erinnerungen",
+      "empty": "Noch keine Erinnerungen.",
+      "unnamed": "Ohne Titel"
+    }
+  },
+
+  "fields": {
+    "naam": "Name",
+    "datum": "Datum",
+    "tijd": "Uhrzeit",
+    "beschrijving": "Notiz",
+    "prioriteit": "Priorität",
+    "herhalen": "Wiederholen",
+    "eindigtOp": "Endet am"
+  },
+
+  "buttons": {
+    "opslaan": "Speichern",
+    "bijwerken": "Aktualisieren",
+    "bewerken": "Bearbeiten",
+    "verwijderen": "Löschen"
+  },
+
+  "placeholders": {
+    "naam": "z. B. Termin oder Aufgabe",
+    "beschrijving": "Optionale Notiz"
+  },
+
+  "priority": {
+    "low": "Niedrig",
+    "normal": "Normal",
+    "high": "Hoch"
+  },
+
+  "repeat": {
+    "none": "Keine",
+    "daily": "Täglich",
+    "weekly": "Wöchentlich",
+    "monthly": "Monatlich",
+    "yearly": "Jährlich"
+  },
+
+  "offsets": {
+    "title": "Vorab-Erinnerungen",
+    "custom": "Benutzerdefiniert (Minuten)",
+    "presets": {
+      "ontime": "Pünktlich",
+      "10m": "10 Minuten vorher",
+      "1h": "1 Stunde vorher",
+      "1d": "1 Tag vorher",
+      "1w": "1 Woche vorher"
+    }
+  },
+
+  "validation": {
+    "missingFields": "Bitte alle Pflichtfelder ausfüllen.",
+    "datePast": "Datum/Uhrzeit darf nicht in der Vergangenheit liegen."
+  },
+
+  "toast": {
+    "created": "Erinnerung hinzugefügt.",
+    "updated": "Erinnerung aktualisiert.",
+    "deleted": "Erinnerung gelöscht."
+  },
+
   "auto": {
-    "fields": { "naam": "Name", "datum": "Datum", "beschrijving": "Beschreibung" },
+    "fields": { "naam": "Name", "datum": "Datum", "tijd": "Uhrzeit", "beschrijving": "Beschreibung", "prioriteit": "Priorität" },
     "buttons": { "opslaan": "Speichern", "bijwerken": "Aktualisieren", "bewerken": "Bearbeiten", "verwijderen": "Löschen" },
-    "placeholders": { "naam": "z.B. TÜV-Prüfung", "beschrijving": "Optionale Notiz" },
+    "placeholders": { "naam": "z. B. TÜV-Prüfung", "beschrijving": "Optionale Notiz" },
+    "priority": { "low": "Niedrig", "normal": "Normal", "high": "Hoch" },
+    "repeat": { "none": "Keine", "daily": "Täglich", "weekly": "Wöchentlich", "monthly": "Monatlich", "yearly": "Jährlich" },
+    "offsets": {
+      "title": "Vorab-Erinnerungen",
+      "custom": "Benutzerdefiniert (Minuten)",
+      "presets": { "ontime": "Pünktlich", "10m": "10 Minuten vorher", "1h": "1 Stunde vorher", "1d": "1 Tag vorher", "1w": "1 Woche vorher" }
+    },
+    "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum/Uhrzeit darf nicht in der Vergangenheit liegen." },
     "toast": { "created": "Erinnerung hinzugefügt.", "updated": "Erinnerung aktualisiert.", "deleted": "Erinnerung gelöscht." },
-    "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum darf nicht in der Vergangenheit liegen." },
     "noReminders": "Noch keine Erinnerungen hinzugefügt."
   },
 
   "huur": {
-    "fields": { "naam": "Name", "datum": "Datum", "beschrijving": "Beschreibung" },
+    "fields": { "naam": "Name", "datum": "Datum", "tijd": "Uhrzeit", "beschrijving": "Beschreibung", "prioriteit": "Priorität" },
     "buttons": { "opslaan": "Speichern", "bijwerken": "Aktualisieren", "bewerken": "Bearbeiten", "verwijderen": "Löschen" },
-    "placeholders": { "naam": "z.B. monatliche Mietzahlung", "beschrijving": "Optionale Notiz" },
+    "placeholders": { "naam": "z. B. monatliche Mietzahlung", "beschrijving": "Optionale Notiz" },
+    "priority": { "low": "Niedrig", "normal": "Normal", "high": "Hoch" },
+    "repeat": { "none": "Keine", "daily": "Täglich", "weekly": "Wöchentlich", "monthly": "Monatlich", "yearly": "Jährlich" },
+    "offsets": {
+      "title": "Vorab-Erinnerungen",
+      "custom": "Benutzerdefiniert (Minuten)",
+      "presets": { "ontime": "Pünktlich", "10m": "10 Minuten vorher", "1h": "1 Stunde vorher", "1d": "1 Tag vorher", "1w": "1 Woche vorher" }
+    },
+    "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum/Uhrzeit darf nicht in der Vergangenheit liegen." },
     "toast": { "created": "Erinnerung hinzugefügt.", "updated": "Erinnerung aktualisiert.", "deleted": "Erinnerung gelöscht." },
-    "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum darf nicht in der Vergangenheit liegen." },
     "noReminders": "Noch keine Erinnerungen hinzugefügt."
   },
 
   "gezondheid": {
-    "fields": { "naam": "Name", "datum": "Datum", "beschrijving": "Beschreibung" },
+    "fields": { "naam": "Name", "datum": "Datum", "tijd": "Uhrzeit", "beschrijving": "Beschreibung", "prioriteit": "Priorität" },
     "buttons": { "opslaan": "Speichern", "bijwerken": "Aktualisieren", "bewerken": "Bearbeiten", "verwijderen": "Löschen" },
-    "placeholders": { "naam": "z.B. Zahnarzttermin", "beschrijving": "Optionale Notiz" },
+    "placeholders": { "naam": "z. B. Zahnarzttermin", "beschrijving": "Optionale Notiz" },
+    "priority": { "low": "Niedrig", "normal": "Normal", "high": "Hoch" },
+    "repeat": { "none": "Keine", "daily": "Täglich", "weekly": "Wöchentlich", "monthly": "Monatlich", "yearly": "Jährlich" },
+    "offsets": {
+      "title": "Vorab-Erinnerungen",
+      "custom": "Benutzerdefiniert (Minuten)",
+      "presets": { "ontime": "Pünktlich", "10m": "10 Minuten vorher", "1h": "1 Stunde vorher", "1d": "1 Tag vorher", "1w": "1 Woche vorher" }
+    },
+    "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum/Uhrzeit darf nicht in der Vergangenheit liegen." },
     "toast": { "created": "Erinnerung hinzugefügt.", "updated": "Erinnerung aktualisiert.", "deleted": "Erinnerung gelöscht." },
-    "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum darf nicht in der Vergangenheit liegen." },
     "noReminders": "Noch keine Erinnerungen hinzugefügt."
   },
 
   "contracten": {
-    "fields": { "naam": "Name", "datum": "Datum", "beschrijving": "Beschreibung" },
+    "fields": { "naam": "Name", "datum": "Datum", "tijd": "Uhrzeit", "beschrijving": "Beschreibung", "prioriteit": "Priorität" },
     "buttons": { "opslaan": "Speichern", "bijwerken": "Aktualisieren", "bewerken": "Bearbeiten", "verwijderen": "Löschen" },
-    "placeholders": { "naam": "z.B. Energievertrag", "beschrijving": "Optionale Notiz" },
+    "placeholders": { "naam": "z. B. Energievertrag", "beschrijving": "Optionale Notiz" },
+    "priority": { "low": "Niedrig", "normal": "Normal", "high": "Hoch" },
+    "repeat": { "none": "Keine", "daily": "Täglich", "weekly": "Wöchentlich", "monthly": "Monatlich", "yearly": "Jährlich" },
+    "offsets": {
+      "title": "Vorab-Erinnerungen",
+      "custom": "Benutzerdefiniert (Minuten)",
+      "presets": { "ontime": "Pünktlich", "10m": "10 Minuten vorher", "1h": "1 Stunde vorher", "1d": "1 Tag vorher", "1w": "1 Woche vorher" }
+    },
+    "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum/Uhrzeit darf nicht in der Vergangenheit liegen." },
     "toast": { "created": "Erinnerung hinzugefügt.", "updated": "Erinnerung aktualisiert.", "deleted": "Erinnerung gelöscht." },
-    "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum darf nicht in der Vergangenheit liegen." },
     "noReminders": "Noch keine Erinnerungen hinzugefügt."
   },
 
   "overheid": {
-    "fields": { "naam": "Name", "datum": "Datum", "beschrijving": "Beschreibung" },
+    "fields": { "naam": "Name", "datum": "Datum", "tijd": "Uhrzeit", "beschrijving": "Beschreibung", "prioriteit": "Priorität" },
     "buttons": { "opslaan": "Speichern", "bijwerken": "Aktualisieren", "bewerken": "Bearbeiten", "verwijderen": "Löschen" },
-    "placeholders": { "naam": "z.B. Reisepass verlängern", "beschrijving": "Optionale Notiz" },
+    "placeholders": { "naam": "z. B. Reisepass verlängern", "beschrijving": "Optionale Notiz" },
+    "priority": { "low": "Niedrig", "normal": "Normal", "high": "Hoch" },
+    "repeat": { "none": "Keine", "daily": "Täglich", "weekly": "Wöchentlich", "monthly": "Monatlich", "yearly": "Jährlich" },
+    "offsets": {
+      "title": "Vorab-Erinnerungen",
+      "custom": "Benutzerdefiniert (Minuten)",
+      "presets": { "ontime": "Pünktlich", "10m": "10 Minuten vorher", "1h": "1 Stunde vorher", "1d": "1 Tag vorher", "1w": "1 Woche vorher" }
+    },
+    "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum/Uhrzeit darf nicht in der Vergangenheit liegen." },
     "toast": { "created": "Erinnerung hinzugefügt.", "updated": "Erinnerung aktualisiert.", "deleted": "Erinnerung gelöscht." },
-    "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum darf nicht in der Vergangenheit liegen." },
     "noReminders": "Noch keine Erinnerungen hinzugefügt."
   },
 
   "diversen": {
-    "fields": { "naam": "Name", "datum": "Datum", "beschrijving": "Beschreibung" },
+    "fields": { "naam": "Name", "datum": "Datum", "tijd": "Uhrzeit", "beschrijving": "Beschreibung", "prioriteit": "Priorität" },
     "buttons": { "opslaan": "Speichern", "bijwerken": "Aktualisieren", "bewerken": "Bearbeiten", "verwijderen": "Löschen" },
-    "placeholders": { "naam": "z.B. Geschenk kaufen, Tierarzt, usw.", "beschrijving": "Optionale Notiz" },
+    "placeholders": { "naam": "z. B. Geschenk kaufen, Tierarzt, usw.", "beschrijving": "Optionale Notiz" },
+    "priority": { "low": "Niedrig", "normal": "Normal", "high": "Hoch" },
+    "repeat": { "none": "Keine", "daily": "Täglich", "weekly": "Wöchentlich", "monthly": "Monatlich", "yearly": "Jährlich" },
+    "offsets": {
+      "title": "Vorab-Erinnerungen",
+      "custom": "Benutzerdefiniert (Minuten)",
+      "presets": { "ontime": "Pünktlich", "10m": "10 Minuten vorher", "1h": "1 Stunde vorher", "1d": "1 Tag vorher", "1w": "1 Woche vorher" }
+    },
+    "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum/Uhrzeit darf nicht in der Vergangenheit liegen." },
     "toast": { "created": "Erinnerung hinzugefügt.", "updated": "Erinnerung aktualisiert.", "deleted": "Erinnerung gelöscht." },
-    "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum darf nicht in der Vergangenheit liegen." },
     "noReminders": "Noch keine Erinnerungen hinzugefügt."
   }
 }

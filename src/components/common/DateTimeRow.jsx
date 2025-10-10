@@ -1,13 +1,17 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 /**
  * DateTimeRow – gecombineerde invoer voor datum + tijd
+ * → Volledige i18n-ondersteuning
  */
 export default function DateTimeRow({ date, time, onChange }) {
+  const { t } = useTranslation();
+
   return (
     <div className="row date-time-row">
       <label>
-        Datum
+        {t("fields.datum")}
         <input
           type="date"
           value={date}
@@ -16,7 +20,7 @@ export default function DateTimeRow({ date, time, onChange }) {
         />
       </label>
       <label>
-        Tijd
+        {t("fields.tijd")}
         <input
           type="time"
           value={time}
