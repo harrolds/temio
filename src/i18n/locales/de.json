@@ -14,14 +14,14 @@
     "diversen": { "title": "Verschiedenes" }
   },
 
- "nav": {
-  "home": "Start",
-  "categories": "Kategorien",
-  "new": "Neu",
-  "overview": "Übersicht",
-  "settings": "Einstellungen"
-},
-  
+  "nav": {
+    "home": "Start",
+    "categories": "Kategorien",
+    "new": "Neu",
+    "overview": "Übersicht",
+    "settings": "Einstellungen"
+  },
+
   "auto": {
     "fields": { "naam": "Name", "datum": "Datum", "beschrijving": "Beschreibung" },
     "buttons": { "opslaan": "Speichern", "bijwerken": "Aktualisieren", "bewerken": "Bearbeiten", "verwijderen": "Löschen" },
@@ -74,55 +74,5 @@
     "toast": { "created": "Erinnerung hinzugefügt.", "updated": "Erinnerung aktualisiert.", "deleted": "Erinnerung gelöscht." },
     "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum darf nicht in der Vergangenheit liegen." },
     "noReminders": "Noch keine Erinnerungen hinzugefügt."
-  },
-
- "fields": {
-  "naam": "Name",
-  "datum": "Datum",
-  "tijd": "Uhrzeit",
-  "beschrijving": "Notiz",
-  "prioriteit": "Priorität"
-},
-"buttons": {
-  "opslaan": "Speichern",
-  "bijwerken": "Aktualisieren",
-  "bewerken": "Bearbeiten",
-  "verwijderen": "Löschen"
-},
-"placeholders": {
-  "naam": "z. B. Termin oder Aufgabe",
-  "beschrijving": "Optionale Notiz"
-},
-"priority": {
-  "low": "Niedrig",
-  "normal": "Normal",
-  "high": "Hoch"
-},
-"repeat": {
-  "none": "Keine",
-  "daily": "Täglich",
-  "weekly": "Wöchentlich",
-  "monthly": "Monatlich",
-  "yearly": "Jährlich"
-},
-"offsets": {
-  "title": "Vorab-Erinnerungen",
-  "custom": "Benutzerdefiniert (Minuten)",
-  "presets": {
-    "ontime": "Pünktlich",
-    "10m": "10 Minuten vorher",
-    "1h": "1 Stunde vorher",
-    "1d": "1 Tag vorher",
-    "1w": "1 Woche vorher"
   }
-},
-"validation": {
-  "missingFields": "Bitte alle Pflichtfelder ausfüllen.",
-  "datePast": "Datum/Uhrzeit darf nicht in der Vergangenheit liegen."
-},
-"toast": {
-  "created": "Erinnerung hinzugefügt.",
-  "updated": "Erinnerung aktualisiert.",
-  "deleted": "Erinnerung gelöscht."
-}
 }
