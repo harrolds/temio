@@ -1,31 +1,60 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from "react";
 
 /**
- * usePersistentList
- * Simple helper to persist a list of objects to localStorage under a stable key.
- * Ensures data survives navigation and reloads.
+ * usePersistentList – bewaart een array in localStorage en
+ * biedt bewerkingen om items toe te voegen, te updaten of te verwijderen.
+ * 
+ * Uitgebreid in Sprint 2.4:
+ * - Aliassen `updateItem` en `removeItem` toegevoegd
+ *   (compatibiliteit met bestaande pagina’s)
  */
-export default function usePersistentList(storageKey) {
-  const safeKey = typeof storageKey === 'string' && storageKey ? storageKey : 'rr_list'
+export default function usePersistentList(key, initialValue = []) {
   const [items, setItems] = useState(() => {
     try {
-      const raw = localStorage.getItem(safeKey)
-      return raw ? JSON.parse(raw) : []
+      const stored = localStorage.getItem(key);
+      return stored ? JSON.parse(stored) : initialValue;
     } catch {
-      return []
+      return initialValue;
     }
-  })
+  });
 
+  // Synchroniseer wijzigingen naar localStorage
   useEffect(() => {
     try {
-      localStorage.setItem(safeKey, JSON.stringify(items))
-    } catch {}
-  }, [safeKey, items])
+      localStorage.setItem(key, JSON.stringify(items));
+    } catch (err) {
+      console.error(`[Temio] Fout bij opslaan van ${key}:`, err);
+    }
+  }, [key, items]);
 
-  const addItem = (obj) => setItems(prev => [...prev, obj])
-  const updateAt = (index, obj) => setItems(prev => prev.map((it,i)=> i===index? obj: it))
-  const removeAt = (index) => setItems(prev => prev.filter((_,i)=> i!==index))
-  const clear = () => setItems([])
+  // --- CRUD-functies -------------------------------------------------------
 
-  return { items, setItems, addItem, updateAt, removeAt, clear }
+  const addItem = (item) => setItems((prev) => [...prev, item]);
+
+  const updateAt = (index, newItem) =>
+    setItems((prev) =>
+      prev.map((item, i) => (i === index ? newItem : item))
+    );
+
+  const removeAt = (index) =>
+    setItems((prev) => prev.filter((_, i) => i !== index));
+
+  const clear = () => setItems([]);
+
+  // --- Aliassen (Sprint 2.4 compat) ---------------------------------------
+  // Hiermee blijven bestaande pagina’s die updateItem/removeItem gebruiken gewoon werken.
+  const updateItem = (index, newItem) => updateAt(index, newItem);
+  const removeItem = (index) => removeAt(index);
+
+  // ------------------------------------------------------------------------
+
+  return {
+    items,
+    addItem,
+    updateAt,
+    removeAt,
+    clear,
+    updateItem, // alias
+    removeItem, // alias
+  };
 }
