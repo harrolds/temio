@@ -74,7 +74,7 @@
     "toast": { "created": "Erinnerung hinzugefügt.", "updated": "Erinnerung aktualisiert.", "deleted": "Erinnerung gelöscht." },
     "validation": { "missingFields": "Bitte alle Pflichtfelder ausfüllen.", "datePast": "Datum darf nicht in der Vergangenheit liegen." },
     "noReminders": "Noch keine Erinnerungen hinzugefügt."
-  }
+  },
 
  "fields": {
   "naam": "Name",
