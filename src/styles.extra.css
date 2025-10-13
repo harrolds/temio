@@ -1,32 +1,40 @@
 /* ================================================================
    Temio / Reminder App
-   Precision & Pulse – Extended Stylesheet (Compatibele Mapping)
+   Precision & Pulse – Extended Stylesheet
+   v2.1.2 – Definitief Home Correctie
    ================================================================ */
 
+/* ================================================================
+   TOKENS & ALIASLAGEN
+   ================================================================ */
 :root {
-  /* ===== Nieuwe officiële tokens (v2.1) ===== */
+  /* --- Basiskleuren --- */
   --temio-color-bg: #f9fafb;
   --temio-color-surface: #ffffff;
   --temio-color-header: #496e8a;
-  --temio-color-primary: #0076ff;
-  --temio-color-primary-hover: #0063d9;
-  --temio-color-primary-active: #004ea8;
+  --temio-color-primary: #496e8a;
+  --temio-color-primary-hover: #3f627c;
+  --temio-color-primary-active: #365770;
   --temio-color-tile: #d8e1e4;
   --temio-color-chip: #eef2f7;
   --temio-color-border: #e5e7eb;
   --temio-color-text-primary: #1a1a1a;
   --temio-color-text-secondary: #6b7280;
-  --temio-color-icon: #ebedef;
+  --temio-color-icon: #496e8a;
 
+  /* --- Typografie --- */
   --temio-font-primary: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --temio-font-secondary: "Poppins", var(--temio-font-primary);
 
+  /* --- Radius & schaduw --- */
   --temio-radius-sm: 8px;
   --temio-radius-md: 16px;
   --temio-radius-lg: 24px;
-  --temio-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --temio-shadow-light: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --temio-shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --temio-overlay-light: rgba(255, 255, 255, 0.15);
 
-  /* ===== Compatibele aliaslaag ===== */
+  /* --- Aliaslaag (voor bestaande code) --- */
   --color-bg: var(--temio-color-bg);
   --color-surface: var(--temio-color-surface);
   --color-card: var(--temio-color-surface);
@@ -44,7 +52,7 @@
   --color-header-shadow: rgba(0, 0, 0, 0.08);
   --tile-bg: var(--temio-color-tile);
   --tile-fg: var(--temio-color-icon);
-  --tile-bg-hover: var(--temio-color-header);
+  --tile-bg-hover: var(--temio-color-primary-hover);
 
   --font-primary: var(--temio-font-primary);
   --font-secondary: var(--temio-font-secondary);
@@ -54,19 +62,22 @@
   --shadow-md: var(--temio-shadow-light);
 }
 
-/* ---------- Reset & base ---------- */
+/* ================================================================
+   RESET & BASIS
+   ================================================================ */
 *,
 *::before,
 *::after { box-sizing: border-box; }
 
-html, body { margin: 0; padding: 0; }
-
-body { background-color: var(--color-bg); color: var(--color-text); }
+html, body { margin: 0; padding: 0; background: var(--color-bg); color: var(--color-text); }
 main { padding-top: calc(64px + 0.75rem); padding-bottom: 7rem; }
 
-/* ---------- Header ---------- */
+/* ================================================================
+   HEADER
+   ================================================================ */
 .pp-header {
-  position: fixed; top: 0; left: 0; right: 0; height: 64px;
+  position: fixed;
+  top: 0; left: 0; right: 0; height: 64px;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 1rem;
   background: var(--color-header-bg);
@@ -82,12 +93,16 @@ main { padding-top: calc(64px + 0.75rem); padding-bottom: 7rem; }
   text-decoration: none;
 }
 
-/* ---------- Icons (filled) ---------- */
+/* ================================================================
+   ICONS
+   ================================================================ */
 .icon-filled { width: 28px; height: 28px; display: inline-block; }
 .tile-icon .icon-filled { width: 40px; height: 40px; }
 footer .icon-filled { width: 22px; height: 22px; }
 
-/* ---------- SectionCard (generic) ---------- */
+/* ================================================================
+   SECTION CARDS
+   ================================================================ */
 .section-card {
   max-width: 920px;
   margin: 1.25rem auto 1.5rem;
@@ -100,14 +115,16 @@ footer .icon-filled { width: 22px; height: 22px; }
 }
 .section-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px var(--color-shadow);
+  box-shadow: var(--temio-shadow-soft);
 }
 .section-card h1, .section-card h2, .section-card h3 {
   font-family: var(--font-secondary);
   color: var(--color-heading);
 }
 
-/* ---------- Home Section ---------- */
+/* ================================================================
+   HOME / CATEGORY GRID
+   ================================================================ */
 .home-section {
   max-width: 920px;
   margin: 1.25rem auto 1.5rem;
@@ -123,9 +140,13 @@ footer .icon-filled { width: 22px; height: 22px; }
   margin: 0 0 .25rem;
 }
 .home-subtitle { color: var(--color-muted); margin: 0 0 1rem; }
-.home-categories-heading { font-family: var(--font-secondary); margin: 0 0 .75rem; }
+.home-categories-heading {
+  font-family: var(--font-secondary);
+  margin: 0 0 .75rem;
+  color: var(--color-heading);
+}
 
-/* ---------- Home Tiles ---------- */
+/* GRID */
 .home-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -138,34 +159,40 @@ footer .icon-filled { width: 22px; height: 22px; }
 @media (min-width: 1024px) {
   .home-grid { grid-template-columns: repeat(3, minmax(200px, 1fr)); }
 }
-.home-section .home-grid .home-tile,
-.home-section .home-grid .home-tile:link,
-.home-section .home-grid .home-tile:visited,
-.home-section .home-grid .home-tile:hover,
-.home-section .home-grid .home-tile:active {
+
+/* TILE STYLING */
+.home-grid .home-tile,
+.home-grid .home-tile:link,
+.home-grid .home-tile:visited {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: .5rem;
   padding: .9rem;
-  background: var(--tile-bg) !important;
-  color: var(--tile-fg) !important;
+  background: var(--tile-bg);
+  color: var(--tile-fg);
   border: 0;
   border-radius: 20px;
   text-decoration: none;
   box-shadow: var(--shadow-md);
-  transition: transform .15s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+  transition: transform .15s ease;
   aspect-ratio: 1 / 1;
 }
-.home-section .home-grid .home-tile:hover {
-  transform: translateY(-1px);
-  background: var(--tile-bg-hover) !important;
+.home-grid .home-tile:hover {
+  transform: translateY(-2px);
 }
-.home-section .home-grid .home-tile .icon-filled { color: var(--tile-fg) !important; }
-.tile-label { color: var(--tile-fg) !important; font-weight: 600; }
+.home-grid .home-tile .icon-filled {
+  color: var(--temio-color-header);
+}
+.home-grid .home-tile .tile-label {
+  color: var(--temio-color-header);
+  font-weight: 600;
+}
 
-/* ---------- Buttons ---------- */
+/* ================================================================
+   BUTTONS
+   ================================================================ */
 .btn-primary {
   background: var(--color-accent);
   color: #fff;
@@ -178,7 +205,9 @@ footer .icon-filled { width: 22px; height: 22px; }
   transform: translateY(-1px);
 }
 
-/* ---------- Forms ---------- */
+/* ================================================================
+   FORMS
+   ================================================================ */
 form { display: flex; flex-direction: column; gap: .75rem; }
 input, select, textarea {
   border: 1px solid var(--color-border);
@@ -194,7 +223,9 @@ input:focus, select:focus, textarea:focus {
   box-shadow: 0 0 0 2px var(--color-accent-light);
 }
 
-/* ---------- Toast ---------- */
+/* ================================================================
+   TOAST
+   ================================================================ */
 .toast {
   position: fixed;
   bottom: 90px;
@@ -210,15 +241,15 @@ input:focus, select:focus, textarea:focus {
   z-index: 2000;
 }
 
-/* ---------- Footer ---------- */
+/* ================================================================
+   FOOTER
+   ================================================================ */
 footer {
   position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 72px;
-  background: var(--color-footer-bg);
-  border-top: 1px solid var(--color-footer-border);
+  left: 0; bottom: 0;
+  width: 100%; height: 72px;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -232,13 +263,21 @@ footer button, footer a {
   flex-direction: column;
   align-items: center;
   gap: .25rem;
-  color: var(--color-accent);
+  color: var(--color-muted);
   font-size: .875rem;
 }
-footer button:hover, footer a:hover { background: transparent !important; transform: none !important; }
-footer .active { color: var(--color-accent-hover); font-weight: 700; }
+footer button:hover, footer a:hover {
+  background: transparent !important;
+  transform: none !important;
+}
+footer .active {
+  color: var(--color-accent);
+  font-weight: 700;
+}
 
-/* ---------- Lists & utilities ---------- */
+/* ================================================================
+   LISTS & UTILITIES
+   ================================================================ */
 .card-list { display: flex; flex-direction: column; gap: 1rem; }
 .card-item {
   background: var(--color-card);
