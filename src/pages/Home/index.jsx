@@ -1,3 +1,22 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import {
+  AutoFilled,
+  HuurFilled,
+  GezondheidFilled,
+  ContractenFilled,
+  OverheidFilled,
+  PlusFilled
+} from "@/components/icons/FilledIcons";
+import HeroClock from "@/components/common/HeroClock";
+import TaskList from "@/components/common/TaskList";
+
+/**
+ * Home – Definitieve structuur (v2.1.2)
+ * - HeroClock buiten de section, met aparte hero-clock-zone
+ * - Categorieën en herinneringen in de home-section
+ */
 export default function Home() {
   const { t } = useTranslation();
 
@@ -12,16 +31,18 @@ export default function Home() {
 
   return (
     <>
-      {/* HeroClock zone (volledige blauwe band) */}
+      {/* HeroClock zone (volledige blauwe band direct onder header) */}
       <div className="hero-clock-zone">
         <HeroClock />
       </div>
 
+      {/* Hoofdsectie met categorieën en aankomende herinneringen */}
       <section className="home-section fade-in">
         {/* Categorieën */}
         <h3 className="home-categories-heading microtype-caps">
           {t("pages.home.categories", "Categorieën")}
         </h3>
+
         <div className="home-grid">
           {tiles.map((tile) => (
             <Link key={tile.to} to={tile.to} className="home-tile hover-raise">
@@ -35,5 +56,5 @@ export default function Home() {
         <TaskList limit={6} />
       </section>
     </>
-      );
+  );
 }
