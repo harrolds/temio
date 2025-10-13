@@ -82,7 +82,7 @@ main { padding-top: calc(64px + 0.75rem); padding-bottom: 7rem; }
   padding: 0 1rem;
   background: var(--color-header-bg);
   color: #fff;
-  box-shadow: 0 1px 6px var(--color-header-shadow);
+  /* box-shadow: 0 1px 6px var(--color-header-shadow); */
   z-index: 1000;
 }
 .pp-title {
