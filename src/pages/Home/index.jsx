@@ -31,12 +31,6 @@ export default function Home() {
 
   return (
     <section className="home-section fade-in">
-      <header className="home-hero">
-        <h1 className="home-title microtype-tight">{t("pages.home.title", "Welkom bij de Reminder App")}</h1>
-        <p className="home-subtitle microtype-subtle">
-          {t("pages.home.subtitle", "Jouw herinneringen, overzichtelijk")}
-        </p>
-      </header>
 
       {/* HeroClock Card */}
       <HeroClock />
