@@ -130,7 +130,7 @@ a:hover { color: var(--color-accent-hover); }
 /* ================================================================
    HERO CLOCK – DEFINITIEF
    ================================================================ */
-/* === HeroClock – Temio v3 exact volgens ontwerp === */
+/* === HeroClock – Temio v3.1 (eindcorrectie) === */
 .hero-clock-zone {
   background: var(--color-header-bg);
   color: #fff;
@@ -139,28 +139,33 @@ a:hover { color: var(--color-accent-hover); }
   margin-top: -0.75rem;
 }
 
+/* Blauwe kaart achter de witte klok */
 .hero-clock--temio {
   max-width: 520px;
   margin: 0 auto;
   padding: 22px 18px 26px;
   border-radius: 20px;
-  background: #fff;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-header-bg) 95%, #000 0%) 0%,
+    color-mix(in srgb, var(--color-header-bg) 80%, #fff 15%) 100%
+  );
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
 }
 
+/* Klok zelf */
 .hero-clock-face {
   width: 210px;
   height: 210px;
   margin: 6px auto 10px;
 }
-
 .hero-clock-svg {
   width: 100%;
   height: 100%;
   display: block;
 }
 
-/* Digitale tijd */
+/* Digitale tijd en subtitel */
 .hero-clock-digital {
   font-family: var(--font-secondary);
   font-weight: 700;
@@ -168,16 +173,14 @@ a:hover { color: var(--color-accent-hover); }
   font-variant-numeric: tabular-nums;
   font-size: 2.4rem;
   margin-top: 8px;
-  color: var(--color-header-bg);
+  color: #ffffff; /* ← terug naar wit */
 }
 
 .hero-clock-subtitle {
   font-family: var(--font-primary);
   font-size: 1rem;
-  color: var(--color-header-bg);
-  opacity: 0.9;
+  color: rgba(255, 255, 255, 0.9); /* ← ook wit */
 }
-
 
 /* ================================================================
    CATEGORIEËN
