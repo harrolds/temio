@@ -130,7 +130,7 @@ a:hover { color: var(--color-accent-hover); }
 /* ================================================================
    HERO CLOCK – DEFINITIEF
    ================================================================ */
-/* === HeroClock – Temio v3.1 (eindcorrectie) === */
+/* === HeroClock – Temio v3.2 (definitieve afwerking) === */
 .hero-clock-zone {
   background: var(--color-header-bg);
   color: #fff;
@@ -139,7 +139,7 @@ a:hover { color: var(--color-accent-hover); }
   margin-top: -0.75rem;
 }
 
-/* Blauwe kaart achter de witte klok */
+/* Blauwe kaart achter de klok (zonder schaduw) */
 .hero-clock--temio {
   max-width: 520px;
   margin: 0 auto;
@@ -150,10 +150,10 @@ a:hover { color: var(--color-accent-hover); }
     color-mix(in srgb, var(--color-header-bg) 95%, #000 0%) 0%,
     color-mix(in srgb, var(--color-header-bg) 80%, #fff 15%) 100%
   );
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+  /* schaduw verwijderd */
 }
 
-/* Klok zelf */
+/* Klok */
 .hero-clock-face {
   width: 210px;
   height: 210px;
@@ -173,14 +173,28 @@ a:hover { color: var(--color-accent-hover); }
   font-variant-numeric: tabular-nums;
   font-size: 2.4rem;
   margin-top: 8px;
-  color: #ffffff; /* ← terug naar wit */
+  color: #ffffff;
 }
-
 .hero-clock-subtitle {
   font-family: var(--font-primary);
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.9); /* ← ook wit */
+  color: rgba(255, 255, 255, 0.9);
 }
+
+/* Donkerdere klokaccenten (rand, ticks, wijzers) */
+.hero-clock-svg circle[stroke] {
+  stroke: color-mix(in srgb, var(--color-header-bg) 100%, #000 10%);
+}
+.hero-clock-svg line[stroke] {
+  stroke: color-mix(in srgb, var(--color-header-bg) 100%, #000 10%);
+}
+.hero-clock-svg .hands line {
+  stroke: color-mix(in srgb, var(--color-header-bg) 100%, #000 15%);
+}
+.hero-clock-svg .hands circle {
+  fill: color-mix(in srgb, var(--color-header-bg) 100%, #000 15%);
+}
+
 
 /* ================================================================
    CATEGORIEËN
