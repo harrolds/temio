@@ -1,12 +1,11 @@
 /* ================================================================
    Temio / Reminder App
    Stylesheet – Base Layout & Structure
-   Precision & Pulse v2.1.2 – Definitief Home Correctie
+   Precision & Pulse v2.1.3 – HeroClock Definitief
    ================================================================ */
 
 /* === DESIGN TOKENS ================================================= */
 :root {
-  /* --- Kleuren --- */
   --temio-color-bg: #f9fafb;
   --temio-color-surface: #ffffff;
   --temio-color-header: #496e8a;
@@ -20,11 +19,9 @@
   --temio-color-text-secondary: #6b7280;
   --temio-color-icon: #496e8a;
 
-  /* --- Typografie --- */
   --temio-font-primary: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --temio-font-secondary: "Poppins", var(--temio-font-primary);
 
-  /* --- Radius & Shadow --- */
   --temio-radius-sm: 8px;
   --temio-radius-md: 16px;
   --temio-radius-lg: 24px;
@@ -32,7 +29,6 @@
   --temio-shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.06);
   --temio-overlay-light: rgba(255, 255, 255, 0.15);
 
-  /* === ALIASLAAG (Backward compatibility) === */
   --color-bg: var(--temio-color-bg);
   --color-surface: var(--temio-color-surface);
   --color-header-bg: var(--temio-color-header);
@@ -63,9 +59,7 @@
   padding: 0;
 }
 
-html,
-body,
-#root {
+html, body, #root {
   height: 100%;
   width: 100%;
   font-family: var(--font-primary);
@@ -83,20 +77,16 @@ main {
   background: var(--color-bg);
 }
 
-section {
-  width: 100%;
-  margin: 0 auto;
-}
+section { width: 100%; margin: 0 auto; }
 
 /* ================================================================
    TYPOGRAFIE
    ================================================================ */
-h1, h2, h3, h4, h5, h6 {
+h1,h2,h3,h4,h5,h6 {
   font-family: var(--font-secondary);
   font-weight: 600;
   color: var(--color-heading);
 }
-
 p { line-height: 1.6; margin-bottom: 1rem; }
 
 /* ================================================================
@@ -107,26 +97,24 @@ button {
   border: none;
   border-radius: var(--radius-sm);
   font-weight: 500;
-  transition: background-color 0.2s ease, transform 0.15s ease;
+  transition: background-color .2s ease, transform .15s ease;
 }
 button:hover { transform: translateY(-1px); }
 
 .btn-primary {
   background: var(--color-accent);
   color: #fff;
-  border: none;
-  padding: 0.6rem 1rem;
+  padding: .6rem 1rem;
   border-radius: var(--radius-sm);
   font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color .2s ease;
 }
 .btn-primary:hover { background: var(--color-accent-hover); }
 
 a {
   color: var(--color-accent);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color .2s ease;
 }
 a:hover { color: var(--color-accent-hover); }
 
@@ -134,257 +122,192 @@ a:hover { color: var(--color-accent-hover); }
    GRID & UTILITIES
    ================================================================ */
 .grid { display: grid; gap: 1rem; }
-.grid-2 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-.grid-3 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-.hidden { display: none !important; }
-.center { display: flex; justify-content: center; align-items: center; }
+.grid-2 { grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); }
+.hidden { display:none!important; }
+.center { display:flex;justify-content:center;align-items:center; }
 
 /* ================================================================
-   HERO CLOCK (NIEUW – TEMIO STIJL)
+   HERO CLOCK – DEFINITIEF
    ================================================================ */
-
-/* Blauwe band onder de header */
 .hero-clock-zone {
   background: var(--color-header-bg);
-  color: #fff;
-  text-align: center;
-  padding: 2rem 1rem 1.5rem;
-  /* verwijdert de extra ruimte uit main op de home */
-  margin-top: -0.75rem;
+  color:#fff;
+  text-align:center;
+  padding:2rem 1rem 1.5rem;
+  margin-top:-.75rem;
 }
 
-/* Card + klok in Temio-stijl */
+/* Kaart / container */
 .hero-clock--temio {
-  max-width: 560px;
-  margin: 0 auto;
-  padding: 20px 18px 22px;
-  border-radius: 18px;
-  background: linear-gradient(
+  max-width:520px;
+  margin:0 auto;
+  padding:22px 18px 24px;
+  border-radius:20px;
+  background:linear-gradient(
     180deg,
-    color-mix(in srgb, var(--color-header-bg) 92%, #000 0%) 0%,
-    color-mix(in srgb, var(--color-header-bg) 70%, #fff 30%) 100%
+    color-mix(in srgb,var(--color-header-bg) 92%,#000 0%) 0%,
+    color-mix(in srgb,var(--color-header-bg) 60%,#fff 30%) 100%
   );
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18), 0 6px 12px rgba(0, 0, 0, 0.12);
-  color: #fff;
+  box-shadow:0 12px 24px rgba(0,0,0,0.18);
+  color:#fff;
 }
 
+/* Analoge klok */
 .hero-clock-face {
-  width: clamp(160px, 46vw, 220px);
-  height: clamp(160px, 46vw, 220px);
-  margin: 6px auto 8px;
-  position: relative;
+  width:210px;
+  height:210px;
+  margin:4px auto 10px;
+  position:relative;
 }
-
-.hero-clock-svg { width: 100%; height: 100%; display: block; }
+.hero-clock-svg { width:100%; height:100%; display:block; }
 
 .clock-face {
-  stroke: rgba(255, 255, 255, 0.25);
-  stroke-width: 4;
+  fill:url(#faceGlow);
+  stroke:rgba(255,255,255,0.25);
+  stroke-width:4;
 }
-
 .tick {
-  stroke: rgba(255, 255, 255, 0.85);
-  stroke-linecap: round;
+  stroke:rgba(255,255,255,0.85);
+  stroke-linecap:round;
 }
-
 .hands .hand {
-  stroke-linecap: round;
-  transform-origin: 100px 100px;
+  stroke-linecap:round;
+  transform-origin:100px 100px;
 }
-.hands .hand.hour   { stroke: #ffffff; stroke-width: 6.5; }
-.hands .hand.minute { stroke: #ffffff; stroke-width: 4.5; }
-.hands .hand.second { stroke: rgba(255,255,255,0.85); stroke-width: 2; }
+.hands .hand.hour   { stroke:#fff; stroke-width:6; }
+.hands .hand.minute { stroke:#fff; stroke-width:4; }
+.hands .hand.second { stroke:rgba(255,255,255,0.85); stroke-width:2; }
+.clock-center { fill:#fff; }
 
-.clock-center { fill: #ffffff; }
-
+/* Digitale tijd */
 .hero-clock-digital {
-  font-family: var(--font-secondary);
-  font-weight: 700;
-  letter-spacing: .02em;
-  font-variant-numeric: tabular-nums;
-  font-size: clamp(1.8rem, 1.2rem + 2.6vw, 2.5rem);
-  text-align: center;
-  margin-top: 6px;
-  color: #fff;
+  font-family:var(--font-secondary);
+  font-weight:700;
+  letter-spacing:.02em;
+  font-variant-numeric:tabular-nums;
+  font-size:2.4rem;
+  margin-top:8px;
+  color:#fff;
 }
-
 .hero-clock-subtitle {
-  text-align: center;
-  margin-top: 2px;
-  font-size: clamp(.9rem, .8rem + .4vw, 1.05rem);
-  color: rgba(255,255,255,0.9);
-  font-weight: 500;
+  font-family:var(--font-primary);
+  font-size:1rem;
+  color:rgba(255,255,255,0.9);
 }
 
 /* ================================================================
    CATEGORIEËN
    ================================================================ */
 .home-section {
-  background: var(--color-surface);
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 1.25rem 1rem;
+  background:var(--color-surface);
+  max-width:960px;
+  margin:0 auto;
+  padding:1.25rem 1rem;
 }
 .home-title {
-  font-family: var(--font-secondary);
-  font-size: clamp(1.25rem, 1rem + 1.6vw, 2rem);
-  line-height: 1.15;
-  color: var(--color-heading);
+  font-family:var(--font-secondary);
+  font-size:clamp(1.25rem,1rem + 1.6vw,2rem);
+  line-height:1.15;
+  color:var(--color-heading);
 }
 .home-subtitle {
-  margin-top: .25rem;
-  font-size: clamp(.9rem, .85rem + .3vw, 1.05rem);
-  color: var(--color-muted);
+  margin-top:.25rem;
+  font-size:clamp(.9rem,.85rem + .3vw,1.05rem);
+  color:var(--color-muted);
 }
 .home-categories-heading {
-  margin: 1rem 0 .75rem;
-  color: var(--color-heading);
-  font-family: var(--font-secondary);
+  margin:1rem 0 .75rem;
+  color:var(--color-heading);
+  font-family:var(--font-secondary);
 }
-
 .home-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  justify-content: center;
-  margin-bottom: 1.5rem;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1rem;
+  justify-content:center;
+  margin-bottom:1.5rem;
 }
-@media (min-width: 640px) { .home-grid { grid-template-columns: repeat(3, 1fr); } }
-
+@media(min-width:640px){.home-grid{grid-template-columns:repeat(3,1fr);}}
 .home-tile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: .5rem;
-  padding: .9rem;
-  background: var(--temio-color-tile);
-  color: var(--temio-color-icon);
-  border-radius: 20px;
-  text-decoration: none;
-  border: 0;
-  box-shadow: var(--temio-shadow-light);
-  transition: transform .15s ease;
-  aspect-ratio: 1 / 1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.5rem;padding:.9rem;background:var(--temio-color-tile);
+  color:var(--temio-color-icon);
+  border-radius:20px;text-decoration:none;border:0;
+  box-shadow:var(--temio-shadow-light);
+  transition:transform .15s ease;aspect-ratio:1/1;
 }
-.home-tile:hover { transform: translateY(-2px); }
-.home-tile .icon-filled { color: var(--temio-color-header); }
-.tile-label {
-  font-weight: 600;
-  color: var(--temio-color-header);
-}
+.home-tile:hover{transform:translateY(-2px);}
+.home-tile .icon-filled{color:var(--temio-color-header);}
+.tile-label{font-weight:600;color:var(--temio-color-header);}
 
 /* ================================================================
    AANKOMENDE HERINNERINGEN
    ================================================================ */
-.tasklist {
-  background: transparent;
-  margin: 1.5rem 0 1.5rem;
-  padding: 0;
+.tasklist{background:transparent;margin:1.5rem 0;padding:0;}
+.tasklist__header{
+  display:flex;align-items:baseline;justify-content:space-between;
+  padding:0 0 .5rem 0;
 }
-.tasklist__header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  padding: 0 0 .5rem 0;
+.tasklist__title{font-size:1rem;color:var(--color-heading);}
+.tasklist__count{font-variant-numeric:tabular-nums;color:var(--color-muted);}
+.tasklist__list{
+  list-style:none;display:grid;grid-template-columns:1fr;gap:.75rem;
 }
-.tasklist__title { font-size: 1rem; color: var(--color-heading); }
-.tasklist__count { font-variant-numeric: tabular-nums; color: var(--color-muted); }
-
-.tasklist__list {
-  list-style: none;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: .75rem;
+.tasklist__item{
+  background:var(--temio-color-tile);
+  border-radius:.75rem;border:1px solid var(--color-border);
+  box-shadow:var(--temio-shadow-light);
 }
-.tasklist__item {
-  background: var(--temio-color-tile);
-  border-radius: .75rem;
-  border: 1px solid var(--color-border);
-  box-shadow: var(--temio-shadow-light);
-}
-.tasklist__link {
-  display: block;
-  padding: .9rem 1rem;
-  color: var(--color-text);
-  text-decoration: none;
-}
-.tasklist__name { font-weight: 600; color: var(--color-heading); }
-.tasklist__date { font-variant-numeric: tabular-nums; color: var(--color-muted); }
-.tasklist__meta { margin-top: .25rem; opacity: .7; font-weight: 500; }
+.tasklist__link{display:block;padding:.9rem 1rem;color:var(--color-text);text-decoration:none;}
+.tasklist__name{font-weight:600;color:var(--color-heading);}
+.tasklist__date{font-variant-numeric:tabular-nums;color:var(--color-muted);}
+.tasklist__meta{margin-top:.25rem;opacity:.7;font-weight:500;}
 
 /* ================================================================
    FOOTER
    ================================================================ */
-footer {
-  position: fixed;
-  left: 0; bottom: 0;
-  width: 100%; height: 72px;
-  background: var(--color-surface);
-  border-top: 1px solid var(--color-border);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  box-shadow: 0 -1px 8px var(--color-shadow);
-  z-index: 1000;
+footer{
+  position:fixed;left:0;bottom:0;width:100%;height:72px;
+  background:var(--color-surface);
+  border-top:1px solid var(--color-border);
+  display:flex;justify-content:space-around;align-items:center;
+  box-shadow:0 -1px 8px var(--color-shadow);
+  z-index:1000;
 }
-footer button, footer a {
-  background: transparent;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .25rem;
-  color: var(--color-muted);
-  font-size: .875rem;
+footer button,footer a{
+  background:transparent;border:none;display:flex;flex-direction:column;
+  align-items:center;gap:.25rem;color:var(--color-muted);font-size:.875rem;
 }
-footer button:hover, footer a:hover {
-  background: transparent !important;
-  transform: none !important;
+footer button:hover,footer a:hover{
+  background:transparent!important;transform:none!important;
 }
-footer .active {
-  color: var(--color-accent);
-  font-weight: 700;
-}
+footer .active{color:var(--color-accent);font-weight:700;}
 
 /* ================================================================
    FORMS
    ================================================================ */
-.reminder-form label {
-  display: block;
-  margin-bottom: 0.75rem;
+.reminder-form label{display:block;margin-bottom:.75rem;}
+.date-time-row{display:flex;gap:.75rem;}
+.date-time-row input{width:100%;}
+.offsets{margin-bottom:1rem;}
+.offsets .label{font-weight:600;margin-bottom:.3rem;}
+.offset-buttons{display:flex;flex-wrap:wrap;gap:.4rem;}
+.offset-buttons button{
+  padding:.3rem .6rem;border-radius:6px;border:1px solid var(--color-border);
+  background:var(--temio-color-chip);cursor:pointer;
 }
-.date-time-row { display: flex; gap: 0.75rem; }
-.date-time-row input { width: 100%; }
-
-.offsets { margin-bottom: 1rem; }
-.offsets .label { font-weight: 600; margin-bottom: 0.3rem; }
-.offset-buttons {
-  display: flex; flex-wrap: wrap; gap: 0.4rem;
-}
-.offset-buttons button {
-  padding: 0.3rem 0.6rem;
-  border-radius: 6px;
-  border: 1px solid var(--color-border);
-  background: var(--temio-color-chip);
-  cursor: pointer;
-}
-.offset-buttons button.active {
-  background: var(--color-accent);
-  color: #fff;
-}
-.offset-custom { margin-top: 0.4rem; display: flex; gap: 0.3rem; }
-.repeat-picker {
-  display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;
-}
-select { width: 100%; padding: 0.4rem; }
+.offset-buttons button.active{background:var(--color-accent);color:#fff;}
+.offset-custom{margin-top:.4rem;display:flex;gap:.3rem;}
+.repeat-picker{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem;}
+select{width:100%;padding:.4rem;}
 
 /* ================================================================
    MISC UTILITIES
    ================================================================ */
-.has-fixed-footer { padding-bottom: 5.5rem; }
-.fade-in { animation: fadeInUp .4s both; }
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
+.has-fixed-footer{padding-bottom:5.5rem;}
+.fade-in{animation:fadeInUp .4s both;}
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(4px);}
+  to{opacity:1;transform:translateY(0);}
 }
