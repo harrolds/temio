@@ -1,7 +1,8 @@
 import React from "react";
 
 /**
- * Filled icon factory — houdt stijl consistent en vult automatisch met currentColor.
+ * Helperfunctie om een consistent gevuld pictogram te genereren
+ * – gebruikt altijd currentColor zodat de kleur via CSS wordt bepaald.
  */
 const makeIcon = (d, viewBox = "0 0 24 24") =>
   function Icon(props) {
@@ -20,32 +21,37 @@ const makeIcon = (d, viewBox = "0 0 24 24") =>
   };
 
 /* ============================================================
-   MAIN HOME CATEGORIES – PRECISION & PULSE DESIGN MATCH
+   MAIN HOME CATEGORIES – PRECISION & PULSE STYLE
    ============================================================ */
 
-/* 🚗 Auto (licht afgeronde, solide wagen) */
+/* 🏠 Home (voor footer-navigatie en startpagina) */
+export const HomeFilled = makeIcon(
+  "M3 10.5L12 3l9 7.5v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9z"
+);
+
+/* 🚗 Auto */
 export const AutoFilled = makeIcon(
-  "M3 13.5a1.5 1.5 0 0 1 1.4-1.5l1.7-4.6A3 3 0 0 1 9 6h6a3 3 0 0 1 2.9 1.9l1.7 4.1A1.5 1.5 0 0 1 21 13.5V17a1 1 0 0 1-1 1h-.3a1.8 1.8 0 0 1-3.4 0H7.7a1.8 1.8 0 0 1-3.4 0H4a1 1 0 0 1-1-1v-3.5zm3.2-2h11.6l-1-2.3A1.5 1.5 0 0 0 15.5 8h-7a1.5 1.5 0 0 0-1.4.9l-1 2.6z"
+  "M5 16a2 2 0 1 0 0 4h1a2 2 0 1 0 0-4H5zm13 0a2 2 0 1 0 0 4h1a2 2 0 1 0 0-4h-1zM4.6 14l1.2-4.2A3 3 0 0 1 8.7 8h6.6a3 3 0 0 1 2.9 1.8L19.4 14H4.6zM6 12h12l-.6-1.5A1.5 1.5 0 0 0 16 9.5H8A1.5 1.5 0 0 0 6.6 10.5L6 12z"
 );
 
 /* 🏠 Huur (huis met euro) */
 export const HuurFilled = makeIcon(
-  "M12 3l8 6v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9l8-6zm-2.5 13.5h3a1 1 0 1 0 0-2h-1.5c-.7 0-1-.2-1-.6s.3-.6 1-.6h2a1 1 0 1 0 0-2h-1.4v-.7a1 1 0 1 0-2 0v.8c-1.1.2-1.9 1-1.9 2.2 0 1.4 1 2.4 2.8 2.4z"
+  "M12 3l8 6v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9l8-6zm-1.2 13.8h2.7a1 1 0 1 0 0-2h-1.3c-.8 0-1.2-.2-1.2-.7 0-.5.4-.7 1.1-.7h2.2a1 1 0 0 0 0-2h-1.6v-.8a1 1 0 1 0-2 0v.9c-1.3.3-2.2 1.2-2.2 2.5 0 1.6 1.2 2.8 3 2.8z"
 );
 
-/* 💙 Gezondheid (vol hart met lichte afronding) */
+/* 💙 Gezondheid (hart) */
 export const GezondheidFilled = makeIcon(
-  "M12 21s-6.3-4.3-8.7-6.8C1.3 12.2 1.2 9.9 2.8 8.3a4.7 4.7 0 0 1 6.6 0L12 10.8l2.6-2.5a4.7 4.7 0 0 1 6.6 0c1.6 1.6 1.5 3.9-.5 5.9C18.3 16.6 12 21 12 21z"
+  "M12 21s-6.7-4.6-9.1-7.1C1.1 12 1 9.5 2.6 7.9a4.8 4.8 0 0 1 6.8 0L12 10.5l2.6-2.6a4.8 4.8 0 0 1 6.8 0c1.6 1.6 1.5 4.1-.3 6C18.7 16.4 12 21 12 21z"
 );
 
-/* 📄 Contracten (document met vouwhoek) */
+/* 📄 Contracten (document) */
 export const ContractenFilled = makeIcon(
-  "M7 2h8l5 5v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1v5h5l-5-5zm-7 8h9v2H8v-2zm0 4h9v2H8v-2z"
+  "M7 3h7l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm7 1v4h4l-4-4zm-6 7h8v2H8v-2zm0 4h8v2H8v-2z"
 );
 
-/* 🛡️ Overheid (schildvorm) */
+/* 🛡️ Overheid (schild) */
 export const OverheidFilled = makeIcon(
-  "M12 2l7 3v6c0 5.4-3.4 9.2-7 9.5-3.6-.3-7-4.1-7-9.5V5l7-3z"
+  "M12 3l7 3v6c0 5.2-3.2 8.7-7 9-3.8-.3-7-3.8-7-9V6l7-3z"
 );
 
 /* ➕ Diversen (plus in cirkel) */
@@ -54,7 +60,7 @@ export const PlusFilled = makeIcon(
 );
 
 /* ============================================================
-   FOOTER NAVIGATION ICONS (consistent filled stijl)
+   FOOTER / NAVIGATION ICONS
    ============================================================ */
 
 export const GridFilled = makeIcon(
@@ -62,9 +68,9 @@ export const GridFilled = makeIcon(
 );
 
 export const ClockFilled = makeIcon(
-  "M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 5a1 1 0 1 0-2 0v4.1l3.1 1.8a1 1 0 0 0 1-1.7L13 10.3V7z"
+  "M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 5a1 1 0 1 0-2 0v4.3l3.2 1.9a1 1 0 0 0 1-1.7L13 10.1V7z"
 );
 
 export const SettingsFilled = makeIcon(
-  "M12 2l2 1.2 2.4-.5 1.5 1.6-.5 2.3L19 9l1 3-1 3-1.6 1.4.5 2.3-1.5 1.6-2.4-.5L12 22l-2-1.2-2.4.5-1.5-1.6.5-2.3L5 15l-1-3 1-3 1.6-1.4-.5-2.3L7.6 3l2.4.5L12 2zm0 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"
+  "M12 2l2.1 1.2 2.3-.5 1.6 1.6-.5 2.3L19 9l1 2-1 2-1.5 1.4.5 2.3-1.6 1.6-2.3-.5L12 22l-2.1-1.2-2.3.5-1.6-1.6.5-2.3L5 13l-1-2 1-2 1.5-1.4-.5-2.3L7.6 3l2.3.5L12 2zm0 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"
 );
