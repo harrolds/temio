@@ -286,6 +286,32 @@ footer .active {
   padding: 1rem;
   box-shadow: var(--shadow-md);
 }
+
+/* Header: titel en taalselector netjes begrenzen */
+.pp-title {
+  flex: 0 1 auto;              /* mag krimpen als het moet */
+  white-space: nowrap;
+}
+
+/* wrapper rond select (als je die niet hebt, target direct het select) */
+.pp-lang,
+.pp-header select {
+  flex: 0 0 auto;               /* niet meerekken */
+}
+
+.pp-header select {
+  max-width: 160px;             /* stel evt. 140–180px in wat het mooiste oogt */
+  width: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* op hele smalle schermen iets smaller maken */
+@media (max-width: 380px) {
+  .pp-header select { max-width: 140px; }
+}
+
 .text-muted { color: var(--color-muted); }
 .mb-2 { margin-bottom: 1rem; }
 .mb-3 { margin-bottom: 1.25rem; }
