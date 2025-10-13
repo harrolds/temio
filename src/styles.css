@@ -209,6 +209,10 @@ a:hover { color: var(--color-accent-hover); }
   padding: 1.25rem 1rem;
   margin-top: 0;
 }
+.hero-clock-zone + .pp-header,
+body.home .pp-header {
+  box-shadow: none !important;
+}
 
 /* ---- einde extra div om klok aanpassingen --*/
 
