@@ -1,7 +1,57 @@
 /* ================================================================
-   Base Layout & Structure Styles
-   Sprint 2.3 – Temio / Reminder App
+   Temio / Reminder App
+   Stylesheet – Base Layout & Structure
+   Precision & Pulse v2.1  (Compatibele Mapping)
    ================================================================ */
+
+/* === Design Tokens – Precision & Pulse v2.1 === */
+:root {
+  /* --- Kleuren (officiële tokens) --- */
+  --temio-color-bg: #f9fafb;
+  --temio-color-surface: #ffffff;
+  --temio-color-header: #496e8a;
+  --temio-color-primary: #0076ff;
+  --temio-color-primary-hover: #0063d9;
+  --temio-color-primary-active: #004ea8;
+  --temio-color-tile: #d8e1e4;
+  --temio-color-chip: #eef2f7;
+  --temio-color-border: #e5e7eb;
+  --temio-color-text-primary: #1a1a1a;
+  --temio-color-text-secondary: #6b7280;
+  --temio-color-icon: #ebedef;
+
+  /* --- Typografie & radius --- */
+  --temio-font-primary: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --temio-font-secondary: "Poppins", var(--temio-font-primary);
+  --temio-radius-sm: 8px;
+  --temio-radius-md: 16px;
+  --temio-radius-lg: 24px;
+
+  /* --- Schaduwen & effecten --- */
+  --temio-shadow-light: 0 2px 8px rgba(0,0,0,0.08);
+  --temio-shadow-soft: 0 6px 24px rgba(0,0,0,.06), 0 2px 8px rgba(0,0,0,.04);
+  --temio-overlay-light: rgba(255,255,255,0.15);
+
+  /* --- Aliaslaag (backward compatibility) --- */
+  --color-bg: var(--temio-color-bg);
+  --color-surface: var(--temio-color-surface);
+  --color-header-bg: var(--temio-color-header);
+  --color-accent: var(--temio-color-primary);
+  --color-accent-hover: var(--temio-color-primary-hover);
+  --color-accent-light: var(--temio-color-chip);
+  --color-text: var(--temio-color-text-primary);
+  --color-heading: var(--temio-color-text-primary);
+  --color-muted: var(--temio-color-text-secondary);
+  --color-border: var(--temio-color-border);
+  --color-shadow: rgba(0,0,0,0.08);
+
+  --font-primary: var(--temio-font-primary);
+  --font-secondary: var(--temio-font-secondary);
+
+  --radius-sm: var(--temio-radius-sm);
+  --radius-md: var(--temio-radius-md);
+  --radius-lg: var(--temio-radius-lg);
+}
 
 /* === Reset & Box Model === */
 *,
@@ -18,9 +68,9 @@ body,
 #root {
   height: 100%;
   width: 100%;
-  font-family: var(--font-primary, system-ui, sans-serif);
-  background-color: var(--color-bg, #f8f9fa);
-  color: var(--color-text, #111);
+  font-family: var(--font-primary);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -41,9 +91,9 @@ section {
 
 /* === Headings & Text === */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-secondary, var(--font-primary));
+  font-family: var(--font-secondary);
   font-weight: 600;
-  color: var(--color-heading, #222);
+  color: var(--color-heading);
 }
 
 p {
@@ -55,7 +105,7 @@ p {
 button {
   cursor: pointer;
   border: none;
-  border-radius: var(--radius-sm, 6px);
+  border-radius: var(--radius-sm);
   font-weight: 500;
   transition: background-color 0.2s ease, transform 0.15s ease;
 }
@@ -66,13 +116,13 @@ button:hover {
 
 /* === Links === */
 a {
-  color: var(--color-accent, #007bff);
+  color: var(--color-accent);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: var(--color-accent-hover, #0056b3);
+  color: var(--color-accent-hover);
 }
 
 /* === Grid Utilities === */
@@ -105,14 +155,12 @@ a:hover {
   padding-bottom: 5.5rem;
 }
 
-
 /* ================================================================
    Sprint 2.4 – Home Polish: HeroClock + TaskList + Micro-typography
    ================================================================ */
 
 :root {
   --fx-ease: cubic-bezier(.2,.8,.2,1);
-  --shadow-soft: 0 6px 24px rgba(0,0,0,.06), 0 2px 8px rgba(0,0,0,.04);
   --caps-letterspace: .06em;
 }
 
@@ -130,7 +178,7 @@ a:hover {
 .fade-in { animation: fadeInUp .4s var(--fx-ease) both; }
 .fade-in-delayed { animation: fadeInUp .6s var(--fx-ease) both; }
 .hover-raise { transition: transform .18s var(--fx-ease), box-shadow .18s var(--fx-ease); }
-.hover-raise:hover { transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+.hover-raise:hover { transform: translateY(-2px); box-shadow: var(--temio-shadow-soft); }
 @media (prefers-reduced-motion: reduce) {
   .fade-in, .fade-in-delayed { animation: none !important; }
   .hover-raise, .hover-raise:hover { transition: none !important; transform: none !important; box-shadow: none !important; }
@@ -144,39 +192,8 @@ a:hover {
 .home-categories-heading { margin: 1rem 0 .5rem; }
 
 /* HeroClock */
-.hero-clock { display: flex; align-items: center; gap: .75rem; padding: .75rem 1rem; border-radius: .875rem; background: linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.02)); margin-top: .75rem; }
-.hero-clock__icon .icon-filled { width: 28px; height: 28px; opacity: .9; }
-.hero-clock__time { font-variant-numeric: tabular-nums; font-size: clamp(1.1rem, 1rem + .8vw, 1.6rem); font-weight: 600; }
-.hero-clock__date { font-size: .9rem; }
-
-/* TaskList */
-.tasklist { margin: 1rem 0 1.25rem; padding: .5rem; border-radius: .75rem; background: rgba(0,0,0,.02); }
-.tasklist__header { display: flex; align-items: baseline; justify-content: space-between; padding: .25rem .5rem .5rem; }
-.tasklist__title { font-size: 1rem; }
-.tasklist__count { font-variant-numeric: tabular-nums; }
-.tasklist__empty { padding: .5rem; }
-.tasklist__list { list-style: none; display: grid; grid-template-columns: 1fr; gap: .5rem; }
-.tasklist__item { background: #fff; border-radius: .75rem; border: 1px solid rgba(0,0,0,.06); }
-.tasklist__link { display: block; padding: .75rem .9rem; color: inherit; text-decoration: none; }
-.tasklist__line1 { display: flex; justify-content: space-between; gap: .5rem; }
-.tasklist__name { font-weight: 600; }
-.tasklist__date { font-variant-numeric: tabular-nums; opacity: .8; }
-.tasklist__line2 { margin-top: .15rem; }
-.tasklist__meta { margin-top: .35rem; opacity: .65; font-weight: 500; }
-
-/* Tiles */
-.home-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin: .5rem 0 1.5rem; }
-@media (min-width: 640px) { .home-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-.home-tile { display: flex; flex-direction: column; align-items: center; gap: .35rem; padding: .9rem; border-radius: 1rem; background: #fff; text-decoration: none; color: inherit; border: 1px solid rgba(0,0,0,.06); }
-.home-tile .tile-icon .icon-filled { width: 28px; height: 28px; }
-.home-tile .tile-label { font-weight: 600; font-size: .95rem; }
-
-/* ================================================================
-   Sprint 2.4 – Home Visual Refinement (HeroClock redesign)
-   ================================================================ */
-
 .hero-clock-card {
-  background-color: #3b5c80;
+  background-color: var(--color-header-bg);
   color: #fff;
   border-radius: 1rem;
   padding: 1.25rem 0;
@@ -185,7 +202,7 @@ a:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 20px var(--color-shadow);
 }
 
 .hero-clock-face {
@@ -202,117 +219,82 @@ a:hover {
 
 .clock-bg {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.15);
+  stroke: var(--temio-overlay-light);
   stroke-width: 3;
 }
 
-.hand {
-  stroke-linecap: round;
-  transform-origin: 50% 50%;
-  transition: transform 0.4s cubic-bezier(0.4, 0.2, 0.3, 1);
-}
+.hand { stroke-linecap: round; transform-origin: 50% 50%; transition: transform 0.4s cubic-bezier(0.4,0.2,0.3,1); }
+.hand.hour { stroke: #fff; stroke-width: 3.5; }
+.hand.minute { stroke: #fff; stroke-width: 2.5; }
+.hand.second { stroke: #e0e0e0; stroke-width: 1.5; opacity: 0.8; }
+.clock-center { fill: #fff; }
 
-.hand.hour {
-  stroke: #fff;
-  stroke-width: 3.5;
-}
+.hero-clock-digital { font-size: 2.2rem; font-weight: 600; letter-spacing: 0.05em; text-align: center; }
 
-.hand.minute {
-  stroke: #fff;
-  stroke-width: 2.5;
-}
+/* TaskList */
+.tasklist { margin: 1.75rem 0 1.25rem; padding: .5rem; border-radius: .75rem; background: rgba(0,0,0,.02); }
+.tasklist__header { display: flex; align-items: baseline; justify-content: space-between; padding: .25rem .5rem .5rem; }
+.tasklist__title { font-size: 1rem; }
+.tasklist__count { font-variant-numeric: tabular-nums; }
+.tasklist__empty { padding: .5rem; }
+.tasklist__list { list-style: none; display: grid; grid-template-columns: 1fr; gap: .5rem; }
+.tasklist__item { background: var(--color-surface); border-radius: .75rem; border: 1px solid var(--color-border); }
+.tasklist__link { display: block; padding: .75rem .9rem; color: inherit; text-decoration: none; }
+.tasklist__line1 { display: flex; justify-content: space-between; gap: .5rem; }
+.tasklist__name { font-weight: 600; }
+.tasklist__date { font-variant-numeric: tabular-nums; opacity: .8; }
+.tasklist__line2 { margin-top: .15rem; }
+.tasklist__meta { margin-top: .35rem; opacity: .65; font-weight: 500; }
 
-.hand.second {
-  stroke: #e0e0e0;
-  stroke-width: 1.5;
-  opacity: 0.8;
+/* Tiles */
+.home-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin: .5rem 0 1.5rem; }
+@media (min-width: 640px) { .home-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.home-tile {
+  display: flex; flex-direction: column; align-items: center; gap: .35rem;
+  padding: .9rem; border-radius: 1rem;
+  background: var(--color-surface); text-decoration: none; color: inherit;
+  border: 1px solid var(--color-border);
 }
-
-.clock-center {
-  fill: #fff;
-}
-
-.hero-clock-digital {
-  font-size: 2.2rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-align: center;
-}
-
-/* TaskList repositioning */
-.tasklist {
-  margin-top: 1.75rem;
-}
-
-/* Home grid spacing refinement */
-.home-grid {
-  margin-bottom: 0.5rem;
-}
+.home-tile .tile-icon .icon-filled { width: 28px; height: 28px; }
+.home-tile .tile-label { font-weight: 600; font-size: .95rem; }
 
 /* ================================================================
-   Sprint 2.4 – Form uitbreidingen (Datum/Tijd/Herhalen/Prioriteit)
+   Form uitbreidingen (Datum/Tijd/Herhalen/Prioriteit)
    ================================================================ */
 
-.reminder-form label {
-  display: block;
-  margin-bottom: 0.75rem;
-}
+.reminder-form label { display: block; margin-bottom: 0.75rem; }
+.date-time-row { display: flex; gap: 0.75rem; }
+.date-time-row input { width: 100%; }
 
-.date-time-row {
-  display: flex;
-  gap: 0.75rem;
-}
-.date-time-row input {
-  width: 100%;
-}
-
-.offsets {
-  margin-bottom: 1rem;
-}
-.offsets .label {
-  font-weight: 600;
-  margin-bottom: 0.3rem;
-}
-.offset-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
+.offsets { margin-bottom: 1rem; }
+.offsets .label { font-weight: 600; margin-bottom: 0.3rem; }
+.offset-buttons { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .offset-buttons button {
   padding: 0.3rem 0.6rem;
   border-radius: 6px;
-  border: 1px solid rgba(0,0,0,0.1);
-  background: #f7f7f7;
+  border: 1px solid var(--color-border);
+  background: var(--temio-color-chip);
   cursor: pointer;
 }
 .offset-buttons button.active {
-  background: var(--color-accent, #3b5c80);
+  background: var(--color-accent);
   color: #fff;
 }
-.offset-custom {
-  margin-top: 0.4rem;
-  display: flex;
-  gap: 0.3rem;
-}
-.repeat-picker {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-select {
-  width: 100%;
-  padding: 0.4rem;
-}
+.offset-custom { margin-top: 0.4rem; display: flex; gap: 0.3rem; }
+
+.repeat-picker { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+
+select { width: 100%; padding: 0.4rem; }
+
 .btn-primary {
-  background: var(--color-accent, #3b5c80);
+  background: var(--color-accent);
   color: #fff;
   border: none;
   padding: 0.6rem 1rem;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
-.btn-primary:hover {
-  opacity: 0.9;
-}
+
+.btn-primary:hover { background: var(--color-accent-hover); }
