@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 /**
- * HeroClock – Sprint 2.4 Visual Refinement
+ * HeroClock – Sprint 2.4 Precision & Pulse v2.1
  * -------------------------------------------------
- * - Donkerblauw kaartvlak (#3B5C80)
+ * - Themakleur via var(--color-header)
  * - Analoge klok met wijzers (SVG)
  * - Digitale tijd (HH:MM)
  * - Geen datum of label
@@ -27,7 +27,7 @@ export default function HeroClock() {
   const formattedTime = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 
   return (
-    <div className="hero-clock-card fade-in">
+    <div className="hero-clock-card fade-in" style={{ backgroundColor: "var(--color-header)" }}>
       <div className="hero-clock-face">
         <svg viewBox="0 0 100 100" className="hero-clock-svg" aria-hidden="true">
           <circle className="clock-bg" cx="50" cy="50" r="48" />
