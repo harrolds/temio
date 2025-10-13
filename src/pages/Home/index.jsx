@@ -1,22 +1,3 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import {
-  AutoFilled,
-  HuurFilled,
-  GezondheidFilled,
-  ContractenFilled,
-  OverheidFilled,
-  PlusFilled
-} from "@/components/icons/FilledIcons";
-import HeroClock from "@/components/common/HeroClock";
-import TaskList from "@/components/common/TaskList";
-
-/**
- * Home – Sprint 2.4 Visual Refinement
- * - Nieuwe HeroClock met wijzers + digitale tijd
- * - Categorieën bovenaan, TaskList eronder
- */
 export default function Home() {
   const { t } = useTranslation();
 
@@ -30,26 +11,29 @@ export default function Home() {
   ];
 
   return (
-    <section className="home-section fade-in">
-
-      {/* HeroClock Card */}
-      <HeroClock />
-
-      {/* Categorieën */}
-      <h3 className="home-categories-heading microtype-caps">
-        {t("pages.home.categories", "Categorieën")}
-      </h3>
-      <div className="home-grid">
-        {tiles.map((tile) => (
-          <Link key={tile.to} to={tile.to} className="home-tile hover-raise">
-            <span className="tile-icon">{tile.icon}</span>
-            <span className="tile-label">{tile.label}</span>
-          </Link>
-        ))}
+    <>
+      {/* HeroClock zone (volledige blauwe band) */}
+      <div className="hero-clock-zone">
+        <HeroClock />
       </div>
 
-      {/* TaskList onder de categorieën */}
-      <TaskList limit={6} />
-    </section>
+      <section className="home-section fade-in">
+        {/* Categorieën */}
+        <h3 className="home-categories-heading microtype-caps">
+          {t("pages.home.categories", "Categorieën")}
+        </h3>
+        <div className="home-grid">
+          {tiles.map((tile) => (
+            <Link key={tile.to} to={tile.to} className="home-tile hover-raise">
+              <span className="tile-icon">{tile.icon}</span>
+              <span className="tile-label">{tile.label}</span>
+            </Link>
+          ))}
+        </div>
+
+        {/* TaskList onder de categorieën */}
+        <TaskList limit={6} />
+      </section>
+    </>
   );
 }
