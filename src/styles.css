@@ -1,38 +1,38 @@
 /* ================================================================
    Temio / Reminder App
    Stylesheet – Base Layout & Structure
-   Precision & Pulse v2.1  (Compatibele Mapping)
+   Precision & Pulse v2.1.2 – Definitief Home Correctie
    ================================================================ */
 
-/* === Design Tokens – Precision & Pulse v2.1 === */
+/* === DESIGN TOKENS ================================================= */
 :root {
-  /* --- Kleuren (officiële tokens) --- */
+  /* --- Kleuren --- */
   --temio-color-bg: #f9fafb;
   --temio-color-surface: #ffffff;
   --temio-color-header: #496e8a;
-  --temio-color-primary: #0076ff;
-  --temio-color-primary-hover: #0063d9;
-  --temio-color-primary-active: #004ea8;
+  --temio-color-primary: #496e8a;
+  --temio-color-primary-hover: #3f627c;
+  --temio-color-primary-active: #365770;
   --temio-color-tile: #d8e1e4;
   --temio-color-chip: #eef2f7;
   --temio-color-border: #e5e7eb;
   --temio-color-text-primary: #1a1a1a;
   --temio-color-text-secondary: #6b7280;
-  --temio-color-icon: #ebedef;
+  --temio-color-icon: #496e8a;
 
-  /* --- Typografie & radius --- */
+  /* --- Typografie --- */
   --temio-font-primary: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --temio-font-secondary: "Poppins", var(--temio-font-primary);
+
+  /* --- Radius & Shadow --- */
   --temio-radius-sm: 8px;
   --temio-radius-md: 16px;
   --temio-radius-lg: 24px;
+  --temio-shadow-light: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --temio-shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --temio-overlay-light: rgba(255, 255, 255, 0.15);
 
-  /* --- Schaduwen & effecten --- */
-  --temio-shadow-light: 0 2px 8px rgba(0,0,0,0.08);
-  --temio-shadow-soft: 0 6px 24px rgba(0,0,0,.06), 0 2px 8px rgba(0,0,0,.04);
-  --temio-overlay-light: rgba(255,255,255,0.15);
-
-  /* --- Aliaslaag (backward compatibility) --- */
+  /* === ALIASLAAG (Backward compatibility) === */
   --color-bg: var(--temio-color-bg);
   --color-surface: var(--temio-color-surface);
   --color-header-bg: var(--temio-color-header);
@@ -43,17 +43,18 @@
   --color-heading: var(--temio-color-text-primary);
   --color-muted: var(--temio-color-text-secondary);
   --color-border: var(--temio-color-border);
-  --color-shadow: rgba(0,0,0,0.08);
+  --color-shadow: rgba(0, 0, 0, 0.08);
 
   --font-primary: var(--temio-font-primary);
   --font-secondary: var(--temio-font-secondary);
-
   --radius-sm: var(--temio-radius-sm);
   --radius-md: var(--temio-radius-md);
   --radius-lg: var(--temio-radius-lg);
 }
 
-/* === Reset & Box Model === */
+/* ================================================================
+   RESET & BASICS
+   ================================================================ */
 *,
 *::before,
 *::after {
@@ -62,7 +63,6 @@
   padding: 0;
 }
 
-/* === Root, HTML & Body === */
 html,
 body,
 #root {
@@ -75,13 +75,12 @@ body,
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* === Layout Containers === */
 main {
-  min-height: calc(100vh - 72px); /* ruimte voor vaste footer */
+  min-height: calc(100vh - 72px);
   display: flex;
   flex-direction: column;
-  padding: 1rem;
-  padding-bottom: 5.5rem; /* voorkomt overlap met vaste footer */
+  padding: 0;
+  background: var(--color-bg);
 }
 
 section {
@@ -89,19 +88,20 @@ section {
   margin: 0 auto;
 }
 
-/* === Headings & Text === */
+/* ================================================================
+   TYPOGRAFIE
+   ================================================================ */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-secondary);
   font-weight: 600;
   color: var(--color-heading);
 }
 
-p {
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
+p { line-height: 1.6; margin-bottom: 1rem; }
 
-/* === Buttons === */
+/* ================================================================
+   BUTTONS & LINKS
+   ================================================================ */
 button {
   cursor: pointer;
   border: none;
@@ -109,166 +109,229 @@ button {
   font-weight: 500;
   transition: background-color 0.2s ease, transform 0.15s ease;
 }
+button:hover { transform: translateY(-1px); }
 
-button:hover {
-  transform: translateY(-1px);
+.btn-primary {
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
+.btn-primary:hover { background: var(--color-accent-hover); }
 
-/* === Links === */
 a {
   color: var(--color-accent);
   text-decoration: none;
   transition: color 0.2s ease;
 }
-
-a:hover {
-  color: var(--color-accent-hover);
-}
-
-/* === Grid Utilities === */
-.grid {
-  display: grid;
-  gap: 1rem;
-}
-
-.grid-2 {
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-
-.grid-3 {
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-}
-
-/* === Utility Classes === */
-.hidden {
-  display: none !important;
-}
-
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* === Footer spacing helper (vaste footer in beeld) === */
-.has-fixed-footer {
-  padding-bottom: 5.5rem;
-}
+a:hover { color: var(--color-accent-hover); }
 
 /* ================================================================
-   Sprint 2.4 – Home Polish: HeroClock + TaskList + Micro-typography
+   GRID & UTILITIES
    ================================================================ */
+.grid { display: grid; gap: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.hidden { display: none !important; }
+.center { display: flex; justify-content: center; align-items: center; }
 
-:root {
-  --fx-ease: cubic-bezier(.2,.8,.2,1);
-  --caps-letterspace: .06em;
-}
-
-/* Micro-typography helpers */
-.microtype-tight { letter-spacing: -0.01em; }
-.microtype-subtle { opacity: .8; }
-.microtype-caps { text-transform: uppercase; letter-spacing: var(--caps-letterspace); font-size: .78rem; }
-.clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-
-/* Subtle fade + hover lift */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(4px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.fade-in { animation: fadeInUp .4s var(--fx-ease) both; }
-.fade-in-delayed { animation: fadeInUp .6s var(--fx-ease) both; }
-.hover-raise { transition: transform .18s var(--fx-ease), box-shadow .18s var(--fx-ease); }
-.hover-raise:hover { transform: translateY(-2px); box-shadow: var(--temio-shadow-soft); }
-@media (prefers-reduced-motion: reduce) {
-  .fade-in, .fade-in-delayed { animation: none !important; }
-  .hover-raise, .hover-raise:hover { transition: none !important; transform: none !important; box-shadow: none !important; }
-}
-
-/* Home layout */
-.home-section { padding: 1rem; max-width: 960px; margin: 0 auto; }
-.home-hero { margin-bottom: 1rem; }
-.home-title { font-size: clamp(1.25rem, 1rem + 1.6vw, 2rem); line-height: 1.15; }
-.home-subtitle { margin-top: .25rem; font-size: clamp(.9rem, .85rem + .3vw, 1.05rem); }
-.home-categories-heading { margin: 1rem 0 .5rem; }
-
-/* HeroClock */
-.hero-clock-card {
-  background-color: var(--color-header-bg);
+/* ================================================================
+   HERO CLOCK ZONE
+   ================================================================ */
+.home-hero {
+  background: var(--color-header-bg);
   color: #fff;
-  border-radius: 1rem;
-  padding: 1.25rem 0;
-  margin: 1rem 0 1.5rem;
+  padding: 2rem 1rem 1.5rem;
+  text-align: center;
+}
+.hero-clock-card {
+  background: transparent;
+  color: #fff;
+  border: 0;
+  border-radius: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 20px var(--color-shadow);
 }
-
 .hero-clock-face {
   width: 120px;
   height: 120px;
   position: relative;
   margin-bottom: 0.75rem;
 }
-
-.hero-clock-svg {
-  width: 100%;
-  height: 100%;
-}
-
+.hero-clock-svg { width: 100%; height: 100%; }
 .clock-bg {
   fill: none;
   stroke: var(--temio-overlay-light);
   stroke-width: 3;
 }
-
-.hand { stroke-linecap: round; transform-origin: 50% 50%; transition: transform 0.4s cubic-bezier(0.4,0.2,0.3,1); }
+.hand {
+  stroke-linecap: round;
+  transform-origin: 50% 50%;
+  transition: transform 0.4s cubic-bezier(0.4, 0.2, 0.3, 1);
+}
 .hand.hour { stroke: #fff; stroke-width: 3.5; }
 .hand.minute { stroke: #fff; stroke-width: 2.5; }
 .hand.second { stroke: #e0e0e0; stroke-width: 1.5; opacity: 0.8; }
 .clock-center { fill: #fff; }
-
-.hero-clock-digital { font-size: 2.2rem; font-weight: 600; letter-spacing: 0.05em; text-align: center; }
-
-/* TaskList */
-.tasklist { margin: 1.75rem 0 1.25rem; padding: .5rem; border-radius: .75rem; background: rgba(0,0,0,.02); }
-.tasklist__header { display: flex; align-items: baseline; justify-content: space-between; padding: .25rem .5rem .5rem; }
-.tasklist__title { font-size: 1rem; }
-.tasklist__count { font-variant-numeric: tabular-nums; }
-.tasklist__empty { padding: .5rem; }
-.tasklist__list { list-style: none; display: grid; grid-template-columns: 1fr; gap: .5rem; }
-.tasklist__item { background: var(--color-surface); border-radius: .75rem; border: 1px solid var(--color-border); }
-.tasklist__link { display: block; padding: .75rem .9rem; color: inherit; text-decoration: none; }
-.tasklist__line1 { display: flex; justify-content: space-between; gap: .5rem; }
-.tasklist__name { font-weight: 600; }
-.tasklist__date { font-variant-numeric: tabular-nums; opacity: .8; }
-.tasklist__line2 { margin-top: .15rem; }
-.tasklist__meta { margin-top: .35rem; opacity: .65; font-weight: 500; }
-
-/* Tiles */
-.home-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin: .5rem 0 1.5rem; }
-@media (min-width: 640px) { .home-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-.home-tile {
-  display: flex; flex-direction: column; align-items: center; gap: .35rem;
-  padding: .9rem; border-radius: 1rem;
-  background: var(--color-surface); text-decoration: none; color: inherit;
-  border: 1px solid var(--color-border);
+.hero-clock-digital {
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-align: center;
 }
-.home-tile .tile-icon .icon-filled { width: 28px; height: 28px; }
-.home-tile .tile-label { font-weight: 600; font-size: .95rem; }
 
 /* ================================================================
-   Form uitbreidingen (Datum/Tijd/Herhalen/Prioriteit)
+   CATEGORIEËN
    ================================================================ */
+.home-section {
+  background: var(--color-surface);
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem;
+}
+.home-title {
+  font-family: var(--font-secondary);
+  font-size: clamp(1.25rem, 1rem + 1.6vw, 2rem);
+  line-height: 1.15;
+  color: var(--color-heading);
+}
+.home-subtitle {
+  margin-top: .25rem;
+  font-size: clamp(.9rem, .85rem + .3vw, 1.05rem);
+  color: var(--color-muted);
+}
+.home-categories-heading {
+  margin: 1rem 0 .75rem;
+  color: var(--color-heading);
+  font-family: var(--font-secondary);
+}
 
-.reminder-form label { display: block; margin-bottom: 0.75rem; }
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 640px) { .home-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.home-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .9rem;
+  background: var(--temio-color-tile);
+  color: var(--temio-color-icon);
+  border-radius: 20px;
+  text-decoration: none;
+  border: 0;
+  box-shadow: var(--temio-shadow-light);
+  transition: transform .15s ease;
+  aspect-ratio: 1 / 1;
+}
+.home-tile:hover { transform: translateY(-2px); }
+.home-tile .icon-filled { color: var(--temio-color-header); }
+.tile-label {
+  font-weight: 600;
+  color: var(--temio-color-header);
+}
+
+/* ================================================================
+   AANKOMENDE HERINNERINGEN
+   ================================================================ */
+.tasklist {
+  background: transparent;
+  margin: 1.5rem 0 1.5rem;
+  padding: 0;
+}
+.tasklist__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0 0 .5rem 0;
+}
+.tasklist__title { font-size: 1rem; color: var(--color-heading); }
+.tasklist__count { font-variant-numeric: tabular-nums; color: var(--color-muted); }
+
+.tasklist__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .75rem;
+}
+.tasklist__item {
+  background: var(--temio-color-tile);
+  border-radius: .75rem;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--temio-shadow-light);
+}
+.tasklist__link {
+  display: block;
+  padding: .9rem 1rem;
+  color: var(--color-text);
+  text-decoration: none;
+}
+.tasklist__name { font-weight: 600; color: var(--color-heading); }
+.tasklist__date { font-variant-numeric: tabular-nums; color: var(--color-muted); }
+.tasklist__meta { margin-top: .25rem; opacity: .7; font-weight: 500; }
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+footer {
+  position: fixed;
+  left: 0; bottom: 0;
+  width: 100%; height: 72px;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -1px 8px var(--color-shadow);
+  z-index: 1000;
+}
+footer button, footer a {
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .25rem;
+  color: var(--color-muted);
+  font-size: .875rem;
+}
+footer button:hover, footer a:hover {
+  background: transparent !important;
+  transform: none !important;
+}
+footer .active {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* ================================================================
+   FORMS
+   ================================================================ */
+.reminder-form label {
+  display: block;
+  margin-bottom: 0.75rem;
+}
 .date-time-row { display: flex; gap: 0.75rem; }
 .date-time-row input { width: 100%; }
 
 .offsets { margin-bottom: 1rem; }
 .offsets .label { font-weight: 600; margin-bottom: 0.3rem; }
-.offset-buttons { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.offset-buttons {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+}
 .offset-buttons button {
   padding: 0.3rem 0.6rem;
   border-radius: 6px;
@@ -281,20 +344,17 @@ a:hover {
   color: #fff;
 }
 .offset-custom { margin-top: 0.4rem; display: flex; gap: 0.3rem; }
-
-.repeat-picker { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
-
+.repeat-picker {
+  display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;
+}
 select { width: 100%; padding: 0.4rem; }
 
-.btn-primary {
-  background: var(--color-accent);
-  color: #fff;
-  border: none;
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+/* ================================================================
+   MISC UTILITIES
+   ================================================================ */
+.has-fixed-footer { padding-bottom: 5.5rem; }
+.fade-in { animation: fadeInUp .4s both; }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-.btn-primary:hover { background: var(--color-accent-hover); }
