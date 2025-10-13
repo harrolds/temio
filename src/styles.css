@@ -185,6 +185,31 @@ a:hover { color: var(--color-accent-hover); }
   letter-spacing: 0.05em;
   text-align: center;
 }
+/* ---- extra div om klok aanpassingen --*/
+.hero-clock-zone {
+  background: var(--color-header-bg);
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem 1.5rem;
+}
+
+.hero-clock-zone .hero-clock-card {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: #fff;
+}
+
+.hero-clock-zone .hero-clock-digital { color: #fff; }
+
+/* Section direct eronder sluit naadloos aan */
+.home-section {
+  background: var(--color-surface);
+  padding: 1.25rem 1rem;
+  margin-top: 0;
+}
+
+/* ---- einde extra div om klok aanpassingen --*/
 
 /* ================================================================
    CATEGORIEËN
