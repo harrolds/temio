@@ -34,6 +34,5 @@ export default function Home() {
         {/* TaskList onder de categorieën */}
         <TaskList limit={6} />
       </section>
-    </>
   );
 }
