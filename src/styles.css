@@ -163,10 +163,10 @@ a:hover { color: var(--color-accent-hover); }
 /* Digitale tijd en subtitel */
 .hero-clock-digital {
   font-family: var(--font-secondary);
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.02em;
   font-variant-numeric: tabular-nums;
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   margin-top: 8px;
   color: #ffffff;
 }
