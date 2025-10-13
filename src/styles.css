@@ -145,12 +145,7 @@ a:hover { color: var(--color-accent-hover); }
   margin: 0 auto;
   padding: 22px 18px 26px;
   border-radius: 20px;
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--color-header-bg) 95%, #000 0%) 0%,
-    color-mix(in srgb, var(--color-header-bg) 80%, #fff 15%) 100%
-  );
-  /* schaduw verwijderd */
+  background: color-mix(in srgb, var(--color-header-bg) 80%, #fff 15%);
 }
 
 /* Klok */
@@ -168,16 +163,16 @@ a:hover { color: var(--color-accent-hover); }
 /* Digitale tijd en subtitel */
 .hero-clock-digital {
   font-family: var(--font-secondary);
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.02em;
   font-variant-numeric: tabular-nums;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   margin-top: 8px;
   color: #ffffff;
 }
 .hero-clock-subtitle {
   font-family: var(--font-primary);
-  font-size: 1rem;
+  font-size: 1.15rem;
   color: rgba(255, 255, 255, 0.9);
 }
 
