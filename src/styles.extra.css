@@ -1,14 +1,13 @@
 /* ================================================================
    Temio / Reminder App
    Precision & Pulse – Extended Stylesheet
-   v2.1.3 – Definitief Home Icon Fix
+   v2.1.5 – Home Icon Correctie (gebaseerd op origineel)
    ================================================================ */
 
 /* ================================================================
    TOKENS & ALIASLAGEN
    ================================================================ */
 :root {
-  /* --- Basiskleuren --- */
   --temio-color-bg: #f9fafb;
   --temio-color-surface: #ffffff;
   --temio-color-header: #496e8a;
@@ -22,11 +21,9 @@
   --temio-color-text-secondary: #6b7280;
   --temio-color-icon: #496e8a;
 
-  /* --- Typografie --- */
   --temio-font-primary: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --temio-font-secondary: "Poppins", var(--temio-font-primary);
 
-  /* --- Radius & schaduw --- */
   --temio-radius-sm: 8px;
   --temio-radius-md: 16px;
   --temio-radius-lg: 24px;
@@ -34,7 +31,6 @@
   --temio-shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.06);
   --temio-overlay-light: rgba(255, 255, 255, 0.15);
 
-  /* --- Aliaslaag (voor oudere code) --- */
   --color-bg: var(--temio-color-bg);
   --color-surface: var(--temio-color-surface);
   --color-card: var(--temio-color-surface);
@@ -70,7 +66,8 @@
 *::after {
   box-sizing: border-box;
 }
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   background: var(--color-bg);
@@ -107,27 +104,30 @@ main {
 }
 
 /* ================================================================
-   ICONS – gecorrigeerd voor filled style
+   ICONS (verbeterd – alleen gescoped op tegels en footer)
    ================================================================ */
-.icon-filled {
-  width: 44px;
-  height: 44px;
-  display: inline-block;
+
+/* Alleen iconen in tegels – groot & gevuld */
+.home-tile .icon-filled,
+.home-tile svg {
+  width: 44px !important;
+  height: 44px !important;
   fill: currentColor !important;
   stroke: none !important;
   color: var(--temio-color-header);
 }
-.tile-icon .icon-filled {
-  width: 44px;
-  height: 44px;
+
+/* Footer-iconen – klein en gevuld */
+footer .icon-filled,
+footer svg.icon-filled {
+  width: 22px !important;
+  height: 22px !important;
   fill: currentColor !important;
   stroke: none !important;
   color: var(--temio-color-header);
 }
-footer .icon-filled {
-  width: 22px;
-  height: 22px;
-}
+
+/* HeroClock-SVG’s worden niet beïnvloed door bovenstaande regels */
 
 /* ================================================================
    SECTION CARDS
@@ -154,7 +154,7 @@ footer .icon-filled {
 }
 
 /* ================================================================
-   HOME / CATEGORY GRID – gecorrigeerd
+   HOME / CATEGORY GRID
    ================================================================ */
 .home-section {
   max-width: 920px;
@@ -198,7 +198,7 @@ footer .icon-filled {
   }
 }
 
-/* TILE STYLING – geforceerde filled icons */
+/* TILES */
 .home-grid .home-tile,
 .home-grid .home-tile:link,
 .home-grid .home-tile:visited {
@@ -219,14 +219,6 @@ footer .icon-filled {
 }
 .home-grid .home-tile:hover {
   transform: translateY(-2px);
-}
-.home-grid .home-tile svg,
-.home-grid .home-tile .icon-filled {
-  width: 44px !important;
-  height: 44px !important;
-  fill: currentColor !important;
-  stroke: none !important;
-  color: var(--temio-color-header);
 }
 .home-grid .home-tile .tile-label {
   color: var(--temio-color-header);
@@ -275,6 +267,24 @@ textarea:focus {
   outline: none;
   border-color: var(--color-accent);
   box-shadow: 0 0 0 2px var(--color-accent-light);
+}
+
+/* ================================================================
+   TOAST
+   ================================================================ */
+.toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-accent);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  font-size: 0.875rem;
+  opacity: 0.95;
+  z-index: 2000;
 }
 
 /* ================================================================
@@ -331,7 +341,6 @@ footer .active {
   box-shadow: var(--shadow-md);
 }
 
-/* Header: titel en taalselector */
 .pp-title {
   flex: 0 1 auto;
   white-space: nowrap;
