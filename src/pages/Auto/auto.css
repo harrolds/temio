@@ -1,0 +1,84 @@
+/* ===== Precision & Pulse – Auto (Portal-safe) ===== */
+
+/* Verwijder de witte SectionCard-achtergrond alleen op de Auto-pagina */
+.page-auto section.section-card {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Lijst */
+.reminder-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 1rem;
+}
+@media (min-width: 400px) {
+  .reminder-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.reminder-card {
+  background: var(--pp-surface);
+  border-radius: var(--pp-radius, 1rem);
+  box-shadow: var(--pp-shadow, 0 2px 8px rgba(0,0,0,0.08));
+  padding: 1rem;
+}
+.reminder-name { font-weight: 600; color: var(--pp-primary); }
+.reminder-date, .text-muted { color: var(--pp-secondary); }
+.small { font-size: 0.875rem; }
+.meta { margin-top: 0.25rem; }
+
+.card-actions {
+  display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 0.5rem;
+}
+.btn-edit, .btn-delete {
+  border: none; padding: 0.4rem 0.75rem; border-radius: 0.5rem; font-size: 0.875rem; cursor: pointer;
+}
+.btn-edit { background: #e5e7eb; }
+.btn-delete { background: #fee2e2; color: #b91c1c; }
+
+/* FAB – via portal onder <body>, altijd boven alles */
+.fab {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 5.5rem;          /* boven de vaste footer */
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--pp-accent); color: #fff; border: 2px solid #fff;
+  font-size: 1.75rem; line-height: 1; text-align: center;
+  box-shadow: var(--pp-shadow);
+  cursor: pointer;
+  z-index: 2147483647;     /* max, om stacking-conflicten te vermijden */
+}
+
+/* Overlay + form – via portal, altijd boven alles */
+.form-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2147483647;
+}
+
+.form-card {
+  background: var(--pp-surface);
+  border-radius: var(--pp-radius, 1rem);
+  padding: 1.25rem;
+  width: 92%; max-width: 420px;
+  box-shadow: var(--pp-shadow);
+  animation: fadeIn .18s ease;
+}
+.form-card h2 { margin: 0 0 .75rem 0; font-size: 1.125rem; color: var(--pp-primary); }
+
+.form-card label {
+  display: flex; flex-direction: column; gap: .25rem;
+  margin-bottom: .75rem; color: var(--pp-primary); font-size: .9rem;
+}
+.form-card input, .form-card select, .form-card textarea {
+  padding: .5rem .75rem; border: 1px solid #d1d5db; border-radius: .5rem; font: inherit;
+}
+.form-card textarea { min-height: 64px; }
+
+.form-buttons { display: flex; justify-content: flex-end; gap: .5rem; margin-top: .75rem; }
+.btn-primary { background: var(--pp-accent); color: #fff; border: none; padding: .5rem .9rem; border-radius: .5rem; }
+.btn-secondary { background: #e5e7eb; border: none; padding: .5rem .9rem; border-radius: .5rem; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
