@@ -180,23 +180,31 @@ footer svg.icon-filled {
   color: var(--color-heading);
 }
 
-/* GRID */
+
+/* ================================================================
+   HOME / CATEGORY GRID (Revised – Sprint 2.4 Overflow Structural Fix)
+   ================================================================ */
 .home-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  gap: 0.75rem;
   justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
 }
-@media (min-width: 360px) {
+
+@media (min-width: 400px) {
   .home-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-@media (min-width: 1024px) {
-  .home-grid {
-    grid-template-columns: repeat(3, minmax(200px, 1fr));
-  }
+
+.home-grid .home-tile {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
+
 
 /* TILES */
 .home-grid .home-tile,
@@ -426,8 +434,7 @@ footer {
   .home-scroll-wrapper { padding-bottom: 4rem; }
 }
 
-/* ================================================================
-   HOME PAGE – Overflow Fix (Sprint 2.4 Overflow Baseline Extension)
+
    ================================================================ */
 .home-page,
 .home-scroll-wrapper,
