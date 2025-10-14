@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 /**
  * HeroClock – Temio v3 (volledig volgens ontwerp)
  * Witte klok met dikke blauwe rand, blauwe wijzers en 5-minuten indicators.
- * Versie 2.5 fix: klok schaalt automatisch met viewport-breedte/hoogte.
+ * Versie 2.5 fix: klok schaalt automatisch met viewport-breedte/hoogte (class .responsive).
  */
 export default function HeroClock() {
   const [now, setNow] = useState(new Date());
@@ -17,7 +17,8 @@ export default function HeroClock() {
   const m = now.getMinutes();
   const s = now.getSeconds();
 
-  const hourAngle = (h + m / 60) * 30;
+  // hoeken t.o.v. 12-uurspositie
+  const hourAngle = (h + m / 60) * 30; // 360/12
   const minuteAngle = (m + s / 60) * 6;
   const secondAngle = s * 6;
 
@@ -25,13 +26,14 @@ export default function HeroClock() {
   const digital = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
 
   return (
-    <div className="hero-clock-card hero-clock--temio">
+    <div className="hero-clock-card hero-clock--temio responsive">
       <div className="hero-clock-face">
         <svg
           className="hero-clock-svg"
           viewBox="0 0 200 200"
           xmlns="http://www.w3.org/2000/svg"
         >
+          {/* klokachtergrond */}
           <circle
             cx="100"
             cy="100"
@@ -40,8 +42,10 @@ export default function HeroClock() {
             stroke="var(--color-header-bg)"
             strokeWidth="10"
           />
+
+          {/* 5-minuten indicators */}
           {Array.from({ length: 12 }).map((_, i) => {
-            const angle = (i * Math.PI) / 6;
+            const angle = (i * Math.PI) / 6; // 30°
             const inner = 74;
             const outer = 84;
             const x1 = 100 + Math.sin(angle) * inner;
@@ -61,6 +65,8 @@ export default function HeroClock() {
               />
             );
           })}
+
+          {/* wijzers */}
           <g className="hands">
             <line
               x1="100"
@@ -97,6 +103,7 @@ export default function HeroClock() {
           </g>
         </svg>
       </div>
+
       <div className="hero-clock-digital">{digital}</div>
       <div className="hero-clock-subtitle">Herinnering</div>
     </div>
