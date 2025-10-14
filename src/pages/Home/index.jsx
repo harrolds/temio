@@ -1,3 +1,8 @@
+/* ==========================================================
+   TEMIO – Home/index.jsx
+   Sprint 2.4 – Beeldscherm issues / Mobile Overflow & Category Grid Fix
+   ========================================================== */
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";

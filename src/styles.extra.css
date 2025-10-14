@@ -425,3 +425,22 @@ footer {
 @media (max-width: 400px) {
   .home-scroll-wrapper { padding-bottom: 4rem; }
 }
+
+/* ================================================================
+   HOME PAGE – Overflow Fix (Sprint 2.4 Overflow Baseline Extension)
+   ================================================================ */
+.home-page,
+.home-scroll-wrapper,
+.home-grid {
+  overflow-x: hidden;
+}
+
+.home-grid {
+  max-width: 100%;
+  margin-inline: auto;
+  padding-inline: 0.5rem;
+  box-sizing: border-box;
+}
+.home-grid > * {
+  max-width: 100%;
+}
