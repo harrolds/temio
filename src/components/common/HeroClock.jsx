@@ -1,3 +1,7 @@
+/* ==========================================================
+   TEMIO – HeroClock.jsx
+   Sprint 2.4 – Beeldscherm issues / Mobile Overflow Fix
+   ========================================================== */
 import React, { useEffect, useState } from "react";
 
 /**
@@ -27,7 +31,7 @@ export default function HeroClock() {
   return (
     <div className="hero-clock-card hero-clock--temio">
       <div className="hero-clock-face">
-        <svg
+        <svg preserveAspectRatio="xMidYMid meet"
           className="hero-clock-svg"
           viewBox="0 0 200 200"
           xmlns="http://www.w3.org/2000/svg"
