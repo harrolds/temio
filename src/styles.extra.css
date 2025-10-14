@@ -371,3 +371,57 @@ footer .active {
 .mb-3 {
   margin-bottom: 1.25rem;
 }
+
+/* --- Sprint 2.4 – Mobile Overflow & Clock Scaling Fix (do not remove) --- *//* HeroClock responsive scaling */
+.hero-clock-zone svg,
+.hero-clock-svg {
+  width: 100%;
+  height: auto;
+  max-height: 55vh;
+}
+
+.hero-clock-face,
+.hero-clock-zone .clock-face {
+  aspect-ratio: 1 / 1;
+}
+
+/* Page scroll & safe-area */
+.home-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.home-scroll-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 5rem;
+}
+
+/* Footer fixed on mobile */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+/* Responsive limits */
+@media (max-height: 700px) {
+  .hero-clock-zone svg,
+  .hero-clock-svg {
+    max-height: 50vh;
+  }
+}
+
+@media (max-width: 400px) {
+  .home-scroll-wrapper { padding-bottom: 4rem; }
+}
