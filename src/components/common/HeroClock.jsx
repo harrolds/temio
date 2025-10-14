@@ -1,65 +1,110 @@
 import React, { useEffect, useState } from "react";
 
 /**
- * HeroClock – Sprint 2.4 Visual Refinement
- * -------------------------------------------------
- * - Donkerblauw kaartvlak (#3B5C80)
- * - Analoge klok met wijzers (SVG)
- * - Digitale tijd (HH:MM)
- * - Geen datum of label
+ * HeroClock – Temio v3 (volledig volgens ontwerp)
+ * Witte klok met dikke blauwe rand, blauwe wijzers en 5-minuten indicators.
  */
 export default function HeroClock() {
   const [now, setNow] = useState(new Date());
 
   useEffect(() => {
-    const id = setInterval(() => setNow(new Date()), 1000);
-    return () => clearInterval(id);
+    const timer = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(timer);
   }, []);
 
-  const seconds = now.getSeconds();
-  const minutes = now.getMinutes();
-  const hours = now.getHours();
+  const h = now.getHours() % 12;
+  const m = now.getMinutes();
+  const s = now.getSeconds();
 
-  const secondDeg = seconds * 6; // 360 / 60
-  const minuteDeg = minutes * 6 + seconds * 0.1;
-  const hourDeg = ((hours % 12) / 12) * 360 + minutes * 0.5;
+  // hoeken t.o.v. 12-uurspositie
+  const hourAngle = (h + m / 60) * 30; // 360/12
+  const minuteAngle = (m + s / 60) * 6;
+  const secondAngle = s * 6;
 
-  const formattedTime = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  const pad = (n) => String(n).padStart(2, "0");
+  const digital = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
 
   return (
-    <div className="hero-clock-card fade-in">
+    <div className="hero-clock-card hero-clock--temio">
       <div className="hero-clock-face">
-        <svg viewBox="0 0 100 100" className="hero-clock-svg" aria-hidden="true">
-          <circle className="clock-bg" cx="50" cy="50" r="48" />
-          <line
-            className="hand hour"
-            x1="50"
-            y1="50"
-            x2="50"
-            y2="30"
-            style={{ transform: `rotate(${hourDeg}deg)`, transformOrigin: "50% 50%" }}
+        <svg
+          className="hero-clock-svg"
+          viewBox="0 0 200 200"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* klokachtergrond */}
+          <circle
+            cx="100"
+            cy="100"
+            r="90"
+            fill="#ffffff"
+            stroke="var(--color-header-bg)"
+            strokeWidth="10"
           />
-          <line
-            className="hand minute"
-            x1="50"
-            y1="50"
-            x2="50"
-            y2="20"
-            style={{ transform: `rotate(${minuteDeg}deg)`, transformOrigin: "50% 50%" }}
-          />
-          <line
-            className="hand second"
-            x1="50"
-            y1="50"
-            x2="50"
-            y2="15"
-            style={{ transform: `rotate(${secondDeg}deg)`, transformOrigin: "50% 50%" }}
-          />
-          <circle className="clock-center" cx="50" cy="50" r="2.5" />
+
+          {/* 5-minuten indicators */}
+          {Array.from({ length: 12 }).map((_, i) => {
+            const angle = (i * Math.PI) / 6; // 30°
+            const inner = 74;
+            const outer = 84;
+            const x1 = 100 + Math.sin(angle) * inner;
+            const y1 = 100 - Math.cos(angle) * inner;
+            const x2 = 100 + Math.sin(angle) * outer;
+            const y2 = 100 - Math.cos(angle) * outer;
+            return (
+              <line
+                key={i}
+                x1={x1}
+                y1={y1}
+                x2={x2}
+                y2={y2}
+                stroke="var(--color-header-bg)"
+                strokeWidth="4"
+                strokeLinecap="round"
+              />
+            );
+          })}
+
+          {/* wijzers */}
+          <g className="hands">
+            <line
+              x1="100"
+              y1="100"
+              x2="100"
+              y2="55"
+              stroke="var(--color-header-bg)"
+              strokeWidth="7"
+              strokeLinecap="round"
+              transform={`rotate(${hourAngle} 100 100)`}
+            />
+            <line
+              x1="100"
+              y1="100"
+              x2="100"
+              y2="35"
+              stroke="var(--color-header-bg)"
+              strokeWidth="5"
+              strokeLinecap="round"
+              transform={`rotate(${minuteAngle} 100 100)`}
+            />
+            <line
+              x1="100"
+              y1="100"
+              x2="100"
+              y2="25"
+              stroke="var(--color-header-bg)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              opacity="0.6"
+              transform={`rotate(${secondAngle} 100 100)`}
+            />
+            <circle cx="100" cy="100" r="5" fill="var(--color-header-bg)" />
+          </g>
         </svg>
       </div>
 
-      <div className="hero-clock-digital">{formattedTime}</div>
+      <div className="hero-clock-digital">{digital}</div>
+      <div className="hero-clock-subtitle">Herinnering</div>
     </div>
   );
 }
