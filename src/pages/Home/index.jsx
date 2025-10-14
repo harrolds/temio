@@ -14,47 +14,45 @@ import TaskList from "@/components/common/TaskList";
 
 /**
  * Home – Definitieve structuur (v2.1.2)
- * - HeroClock buiten de section, met aparte hero-clock-zone
- * - Categorieën en herinneringen in de home-section
+ * - HeroClock + Categorieën-grid + TaskList
+ * - Router-links i.p.v. hash anchors
+ * - Volgt Precision & Pulse v2.1 tokens
  */
 export default function Home() {
   const { t } = useTranslation();
 
   const tiles = [
-    { to: "/auto", icon: <AutoFilled />, label: t("pages.auto.title", "Auto") },
-    { to: "/huur", icon: <HuurFilled />, label: t("pages.huur.title", "Huur") },
-    { to: "/gezondheid", icon: <GezondheidFilled />, label: t("pages.gezondheid.title", "Gezondheid") },
-    { to: "/contracten", icon: <ContractenFilled />, label: t("pages.contracten.title", "Contracten") },
-    { to: "/overheid", icon: <OverheidFilled />, label: t("pages.overheid.title", "Overheid") },
-    { to: "/diversen", icon: <PlusFilled />, label: t("pages.diversen.title", "Diversen") }
+    { to: "/auto", icon: <AutoFilled />, label: t("pages.auto.title") },
+    { to: "/huur", icon: <HuurFilled />, label: t("pages.huur.title") },
+    { to: "/gezondheid", icon: <GezondheidFilled />, label: t("pages.gezondheid.title") },
+    { to: "/contracten", icon: <ContractenFilled />, label: t("pages.contracten.title") },
+    { to: "/overheid", icon: <OverheidFilled />, label: t("pages.overheid.title") },
+    { to: "/diversen", icon: <PlusFilled />, label: t("pages.diversen.title") }
   ];
 
   return (
-    <>
-      {/* HeroClock zone (volledige blauwe band direct onder header) */}
-      <div className="hero-clock-zone">
+    <main id="home-main" className="home-page">
+      <div className="home-scroll-wrapper">
         <HeroClock />
+
+        <section aria-labelledby="home-categories-title" className="home-categories">
+          <h2 id="home-categories-title" className="home-category-title">
+            {t("pages.home.categories")}
+          </h2>
+
+          <div className="home-tiles-grid">
+            {tiles.map((tile) => (
+              <Link key={tile.to} to={tile.to} className="home-tile hover-raise">
+                <span className="tile-icon">{tile.icon}</span>
+                <span className="tile-label">{tile.label}</span>
+              </Link>
+            ))}
+          </div>
+
+          {/* TaskList onder de categorieën */}
+          <TaskList limit={6} />
+        </section>
       </div>
-
-      {/* Hoofdsectie met categorieën en aankomende herinneringen */}
-      <section className="home-section fade-in">
-        {/* Categorieën */}
-        <h3 className="home-categories-heading microtype-caps">
-          {t("pages.home.categories", "Categorieën")}
-        </h3>
-
-        <div className="home-grid">
-          {tiles.map((tile) => (
-            <Link key={tile.to} to={tile.to} className="home-tile hover-raise">
-              <span className="tile-icon">{tile.icon}</span>
-              <span className="tile-label">{tile.label}</span>
-            </Link>
-          ))}
-        </div>
-
-        {/* TaskList onder de categorieën */}
-        <TaskList limit={6} />
-      </section>
-    </>
+    </main>
   );
 }
