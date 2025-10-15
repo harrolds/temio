@@ -540,8 +540,8 @@ h3.section-title {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  padding-inline: 0.8rem;
-border:1px solid red;
+  padding-inline: 0.2rem;
+  border:1px solid red;
 }
 
 @media (max-width: 340px) {
