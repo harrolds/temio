@@ -10,7 +10,10 @@ import {
 } from "@/components/icons/FilledIcons";
 
 /**
- * Footer IA – Home · Categorieën · Nieuw · Overzicht · Instellingen
+ * Footer.jsx – Sprint 2.4 / Batch 1
+ * Alleen visuele wijziging:
+ * • Shadow verwijderd
+ * • 1 px border-top (#d8e1e4) toegevoegd
  */
 export default function Footer() {
   const navigate = useNavigate();
@@ -28,7 +31,7 @@ export default function Footer() {
   const go = (p) => p && p !== location.pathname && navigate(p);
 
   return (
-    <footer>
+    <footer className="footer">
       {items.map((it) => (
         <button
           key={it.path}
