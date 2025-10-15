@@ -541,7 +541,6 @@ h3.section-title {
   max-width: 100%;
   box-sizing: border-box;
   padding-inline: 0.2rem;
-  border:1px solid red;
 }
 
 @media (max-width: 340px) {
@@ -561,7 +560,7 @@ h3.section-title {
   background: var(--tile-bg);
   color: var(--tile-fg);
   text-decoration: none;
-  box-shadow: var(--shadow-md);
+  /* box-shadow: var(--shadow-md); */
   transition: transform 0.15s ease, box-shadow 0.15s ease;
   display: flex;
   flex-direction: column;
