@@ -534,7 +534,7 @@ h3.section-title {
 .home-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.9rem;
+  gap: 1.1rem;
   justify-items: center;
   align-items: start;
   width: 100%;
