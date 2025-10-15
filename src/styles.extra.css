@@ -190,59 +190,6 @@ footer svg.icon-filled {
 }
 
 /* ================================================================
-   HOME GRID – DRIE KOLommen VULLEND SCHERM
-   ================================================================ */
-
-.home-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);     /* altijd 3 kolommen */
-  gap: 0.9rem;                               /* nette tussenruimte */
-  justify-items: center;                     /* elk item gecentreerd */
-  align-items: start;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  padding-inline: 0.8rem;                    /* witruimte links/rechts */
-}
-
-/* Zorg dat op zeer kleine toestellen (<340 px) het toch netjes breekt */
-@media (max-width: 340px) {
-  .home-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.home-grid .home-tile {
-  width: 100%;
-  aspect-ratio: 1 / 1;                       /* altijd vierkant */
-  box-sizing: border-box;
-  padding: 0.8rem;                           /* compacter dan 1rem */
-  border-radius: 20px;
-  background: var(--tile-bg);
-  color: var(--tile-fg);
-  text-decoration: none;
-  box-shadow: var(--shadow-md);
-  transition: transform 0.15s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-}
-
-.home-grid .home-tile:hover {
-  transform: translateY(-2px);
-}
-
-.home-grid .home-tile .tile-label {
-  color: var(--temio-color-header);
-  font-weight: 600;
-  font-family: var(--font-secondary);
-  font-size: 1rem;
-  margin-top: 0.1rem;
-}
-
-/* ================================================================
    BUTTONS
    ================================================================ */
 .btn-primary {
@@ -574,4 +521,76 @@ h3.section-title {
   font-weight: 600;
   color: var(--color-heading);
   line-height: 1.3;
+}
+
+/* ============================================================
+   Precision & Pulse – Home Grid Alignment Fix
+   Sprint 2.5 / Consistent Tile Height & Alignment
+   ------------------------------------------------------------
+   Doel: uniforme, vierkante tegels binnen home-grid
+   zonder invloed op globale flex-regels elders
+   ============================================================ */
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.1rem;
+  justify-items: center;
+  align-items: start;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-inline: 0.2rem;
+}
+
+@media (max-width: 340px) {
+  .home-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tegels zelf */
+.home-grid .home-tile {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;           /* vierkant, hoogte volgt breedte */
+  box-sizing: border-box;
+  padding: 1.0rem;
+  border-radius: 10px;
+  background: var(--tile-bg);
+  color: var(--tile-fg);
+  text-decoration: none;
+  /* box-shadow: var(--shadow-md); */
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.70rem;
+}
+
+/* Hover effect */
+.home-grid .home-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Icon en label intern centreren */
+.home-grid .home-tile .tile-icon svg,
+.home-grid .home-tile .tile-icon .icon-filled {
+  width: 44px;
+  height: 44px;
+}
+
+.home-grid .home-tile .tile-label {
+  display: block;
+  text-align: center;
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+/* Zorg dat flex-regels uit styles.css geen invloed buiten grid hebben */
+.home-grid * {
+  min-height: 0;
+  min-width: 0;
 }
