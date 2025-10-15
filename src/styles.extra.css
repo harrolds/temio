@@ -8,6 +8,7 @@
    TOKENS & ALIASLAGEN
    ================================================================ */
 :root {
+  --header-border-color: #3f5a6d;
   --temio-color-bg: #f9fafb;
   --temio-color-surface: #ffffff;
   --temio-color-header: #496e8a;
@@ -450,4 +451,45 @@ footer {
 }
 .home-grid > * {
   max-width: 100%;
+}
+
+
+/* ================================================================
+   HOME VISUAL REFINEMENTS (Batch 1)
+   ================================================================ */
+
+/* Header border */
+.pp-header {
+  border-bottom: 1px solid var(--header-border-color);
+}
+
+/* Footer shadow removal + border */
+.pp-footer {
+  border-top: 1px solid #d8e1e4;
+  box-shadow: none;
+}
+
+/* Section titles */
+.section-title,
+h2.section-title,
+h3.section-title {
+  font-size: 1.3em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Category tiles */
+.category-tile {
+  padding: 0.6rem;
+  margin: 5px;
+}
+
+.category-grid {
+  grid-gap: 5px;
+}
+
+/* Reminder list spacing */
+.reminder-list {
+  margin: 5px;
 }
