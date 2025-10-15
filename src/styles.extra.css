@@ -9,6 +9,7 @@
    ================================================================ */
 :root {
   --header-border-color: #3f5a6d;
+  --temio-border: #d8e1e4; 
   --temio-color-bg: #f9fafb;
   --temio-color-surface: #ffffff;
   --temio-color-header: #496e8a;
@@ -332,6 +333,9 @@ footer a:hover {
 footer .active {
   color: var(--color-accent);
   font-weight: 700;
+}
+.border-temio-border {
+  border-color: var(--temio-border);
 }
 
 /* ================================================================
