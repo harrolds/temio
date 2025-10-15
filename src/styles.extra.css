@@ -181,55 +181,59 @@ footer svg.icon-filled {
   margin: 0 0 0.75rem;
   color: var(--color-heading);
 }
-
-
-/* ================================================================
-   HOME / CATEGORY GRID (Revised – Sprint 2.4 Overflow Structural Fix)
-   ================================================================ */
-.home-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
-  justify-content: center;
-  width: 100%;
-  box-sizing: border-box;
+/* 2–3. Titels + grotere marges */
+.home-categories-heading,
+.tasklist__title {
+  font-size: 1.3rem;          /* +30% */
+  margin-top: 10px;           /* extra ruimte boven */
+  margin-bottom: 10px;        /* extra ruimte onder */
 }
 
-@media (min-width: 400px) {
+/* ================================================================
+   HOME GRID – DRIE KOLommen VULLEND SCHERM
+   ================================================================ */
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);     /* altijd 3 kolommen */
+  gap: 0.9rem;                               /* nette tussenruimte */
+  justify-items: center;                     /* elk item gecentreerd */
+  align-items: start;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-inline: 0.8rem;                    /* witruimte links/rechts */
+}
+
+/* Zorg dat op zeer kleine toestellen (<340 px) het toch netjes breekt */
+@media (max-width: 340px) {
   .home-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 .home-grid .home-tile {
   width: 100%;
-  max-width: 100%;
+  aspect-ratio: 1 / 1;                       /* altijd vierkant */
   box-sizing: border-box;
-}
-
-
-/* TILES */
-.home-grid .home-tile,
-.home-grid .home-tile:link,
-.home-grid .home-tile:visited {
+  padding: 0.8rem;                           /* compacter dan 1rem */
+  border-radius: 20px;
+  background: var(--tile-bg);
+  color: var(--tile-fg);
+  text-decoration: none;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.15s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  padding: 1rem;
-  background: var(--tile-bg);
-  color: var(--tile-fg);
-  border: 0;
-  border-radius: 20px;
-  text-decoration: none;
-  box-shadow: var(--shadow-md);
-  transition: transform 0.15s ease;
-  aspect-ratio: 1 / 1;
 }
+
 .home-grid .home-tile:hover {
   transform: translateY(-2px);
 }
+
 .home-grid .home-tile .tile-label {
   color: var(--temio-color-header);
   font-weight: 600;
@@ -496,4 +500,78 @@ h3.section-title {
 /* Reminder list spacing */
 .reminder-list {
   margin: 5px;
+}
+/* ================================================================
+   TASKLIST VERFIJNINGEN
+   ================================================================ */
+/* 6. Aantal bij "Aankomende herinneringen" verbergen */
+.tasklist__count {
+  display: none !important;
+}
+
+/* 7. Extra marge rond tasklist */
+.tasklist {
+  margin: 1.8rem 5px;         /* iets meer ruimte boven/onder + zijkanten */
+}
+
+/* 8. Blauw icoon met wit vinkje voor elk item (CSS-only) */
+.tasklist__link {
+  position: relative;
+  padding-left: 2rem;         /* ruimte voor icoon links */
+}
+
+.tasklist__link::before {
+  content: "";
+  position: absolute;
+  left: 0.6rem;
+  top: 1rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #496e8a;          /* blauw cirkeltje */
+  mask: url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>\
+  <path fill='white' d='M6.173 13.414L1.757 9l1.414-1.414 3.002 3.002 6.657-6.657L14.243 5l-8.07 8.414z'/>\
+  </svg>") no-repeat center;
+  -webkit-mask: url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>\
+  <path fill='white' d='M6.173 13.414L1.757 9l1.414-1.414 3.002 3.002 6.657-6.657L14.243 5l-8.07 8.414z'/>\
+  </svg>") no-repeat center;
+  mask-size: 10px 10px;
+  -webkit-mask-size: 10px 10px;
+}
+
+/* 9–10. Alleen datum, categorie en titel zichtbaar + juiste volgorde */
+.tasklist__meta {
+  display: none !important;   /* verberg overige info */
+}
+
+/* Layout met grid: links datum, rechts categorie, onderaan titel */
+.tasklist__link {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "date category"
+    "title title";
+  row-gap: 0.25rem;
+}
+
+.tasklist__date {
+  grid-area: date;
+  font-weight: 500;
+  color: var(--color-muted);
+}
+
+.tasklist__category {
+  grid-area: category;
+  justify-self: end;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.tasklist__name {
+  grid-area: title;
+  font-weight: 600;
+  color: var(--color-heading);
+  line-height: 1.3;
 }

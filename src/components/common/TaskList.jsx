@@ -71,26 +71,30 @@ export default function TaskList({ limit = 6 }) {
 
   return (
     <div className="tasklist fade-in">
+      {/* Header zonder aantalteller */}
       <div className="tasklist__header">
-        <h3 className="tasklist__title">{t("home.tasks.title", "Aankomende herinneringen")}</h3>
-        <span className="tasklist__count microtype-subtle">{items.length}</span>
+        <h3 className="tasklist__title">
+          {t("home.tasks.title", "Aankomende herinneringen")}
+        </h3>
       </div>
 
       {items.length === 0 ? (
-        <p className="tasklist__empty microtype-subtle">{t("home.tasks.empty", "Nog geen herinneringen toegevoegd.")}</p>
+        <p className="tasklist__empty microtype-subtle">
+          {t("home.tasks.empty", "Nog geen herinneringen toegevoegd.")}
+        </p>
       ) : (
         <ul className="tasklist__list" role="list">
           {items.slice(0, limit).map((it) => (
             <li key={it.id} className="tasklist__item hover-raise">
               <Link to={it.path} className="tasklist__link">
-                <div className="tasklist__line1">
-                  <span className="tasklist__name">{it.name || t("home.tasks.unnamed", "Naamloos")}</span>
-                  <span className="tasklist__date">{fmtDate(it.when)}</span>
-                </div>
-                {it.beschrijving ? (
-                  <div className="tasklist__line2 microtype-subtle clamp-1">{it.beschrijving}</div>
-                ) : null}
-                <div className="tasklist__meta microtype-caps">{t(`pages.${it.category}.title`, it.category)}</div>
+                {/* Nieuwe layout (CSS grid): datum links, categorie rechts, titel onderaan */}
+                <span className="tasklist__date">{fmtDate(it.when)}</span>
+                <span className="tasklist__category">
+                  {t(`pages.${it.category}.title`, it.category)}
+                </span>
+                <span className="tasklist__name">
+                  {it.name || t("home.tasks.unnamed", "Naamloos")}
+                </span>
               </Link>
             </li>
           ))}

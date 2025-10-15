@@ -2,223 +2,259 @@
    Temio / Reminder App
    Stylesheet – Base Layout & Structure
    Precision & Pulse v2.1.4 – HeroClock fix + Home Icon size/fill
+   OPSCHOONVERSIE (redundanties verwijderd)
    ================================================================ */
-
-:root {
-  --temio-color-bg:#f9fafb;
-  --temio-color-surface:#ffffff;
-  --temio-color-header:#496e8a;
-  --temio-color-primary:#496e8a;
-  --temio-color-primary-hover:#3f627c;
-  --temio-color-primary-active:#365770;
-  --temio-color-tile:#d8e1e4;
-  --temio-color-chip:#eef2f7;
-  --temio-color-border:#e5e7eb;
-  --temio-color-text-primary:#1a1a1a;
-  --temio-color-text-secondary:#6b7280;
-  --temio-color-icon:#496e8a;
-
-  --temio-font-primary:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  --temio-font-secondary:"Poppins",var(--temio-font-primary);
-
-  --temio-radius-sm:8px;
-  --temio-radius-md:16px;
-  --temio-radius-lg:24px;
-
-  --temio-shadow-light:0 2px 6px rgba(0,0,0,.08);
-  --temio-shadow-soft:0 4px 16px rgba(0,0,0,.06);
-  --temio-overlay-light:rgba(255,255,255,.15);
-
-  --color-bg:var(--temio-color-bg);
-  --color-surface:var(--temio-color-surface);
-  --color-header-bg:var(--temio-color-header);
-  --color-accent:var(--temio-color-primary);
-  --color-accent-hover:var(--temio-color-primary-hover);
-  --color-accent-light:var(--temio-color-chip);
-  --color-text:var(--temio-color-text-primary);
-  --color-heading:var(--temio-color-text-primary);
-  --color-muted:var(--temio-color-text-secondary);
-  --color-border:var(--temio-color-border);
-  --color-shadow:rgba(0,0,0,.08);
-
-  --font-primary:var(--temio-font-primary);
-  --font-secondary:var(--temio-font-secondary);
-  --radius-sm:var(--temio-radius-sm);
-  --radius-md:var(--temio-radius-md);
-  --radius-lg:var(--temio-radius-lg);
-}
 
 /* ================================================================
    RESET & BASICS
    ================================================================ */
 *,
 *::before,
-*::after { box-sizing:border-box; margin:0; padding:0; }
+*::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html,body,#root {
-  height:100%;
-  width:100%;
-  font-family:var(--font-primary);
-  background-color:var(--color-bg);
-  color:var(--color-text);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  font-family: var(--font-primary);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 main {
-  min-height:calc(100vh - 72px);
-  display:flex;
-  flex-direction:column;
-  padding:0;
-  background:var(--color-bg);
+  min-height: calc(100vh - 72px);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  background: var(--color-bg);
 }
 
-section { width:100%; margin:0 auto; }
+section { width: 100%; margin: 0 auto; }
 
 /* ================================================================
    TYPOGRAFIE
    ================================================================ */
-h1,h2,h3,h4,h5,h6 {
-  font-family:var(--font-secondary);
-  font-weight:600;
-  color:var(--color-heading);
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  color: var(--color-heading);
 }
-p {line-height:1.6;margin-bottom:1rem;}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
 
 /* ================================================================
-   BUTTONS & LINKS
+   BUTTONS & LINKS (basis)
    ================================================================ */
 button {
-  cursor:pointer; border:none; border-radius:var(--radius-sm);
-  font-weight:500; transition:background-color .2s ease,transform .15s ease;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.15s ease;
 }
-button:hover {transform:translateY(-1px);}
-.btn-primary {
-  background:var(--color-accent); color:#fff; padding:.6rem 1rem;
-  border-radius:var(--radius-sm); font-weight:600; transition:background-color .2s ease;
+
+button:hover { transform: translateY(-1px); }
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
-.btn-primary:hover {background:var(--color-accent-hover);}
-a { color:var(--color-accent); text-decoration:none; transition:color .2s ease; }
-a:hover { color:var(--color-accent-hover); }
+
+a:hover { color: var(--color-accent-hover); }
 
 /* ================================================================
    HERO CLOCK – TEMIO
    ================================================================ */
 .hero-clock-zone {
-  background:var(--color-header-bg);
-  color:#fff;
-  text-align:center;
-  padding:2rem 1rem 1.5rem;
-  margin-top:-.75rem;
+  background: var(--color-header-bg);
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem 1.5rem;
+  margin-top: -0.75rem;
 }
+
 .hero-clock--temio {
-  max-width:520px;
-  margin:0 auto;
-  padding:22px 18px 26px;
-  border-radius:20px;
-  background:color-mix(in srgb,var(--color-header-bg) 80%,#fff 15%);
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 22px 18px 26px;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--color-header-bg) 80%, #fff 15%);
 }
-.hero-clock-face { width:210px; height:210px; margin:6px auto 10px; }
-.hero-clock-svg { width:100%; height:100%; display:block; }
+
+.hero-clock-face {
+  width: 210px;
+  height: 210px;
+  margin: 6px auto 10px;
+}
+
+.hero-clock-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
 
 /* digitale tijd + subtitel */
-.hero-clock-digital{
-  font-family:var(--font-secondary);
-  font-weight:500;
-  letter-spacing:.02em;
-  font-variant-numeric:tabular-nums;
-  font-size:2.2rem;
-  margin-top:8px;
-  color:#fff;
+.hero-clock-digital {
+  font-family: var(--font-secondary);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  font-size: 2.2rem;
+  margin-top: 8px;
+  color: #fff;
 }
-.hero-clock-subtitle{
-  font-family:var(--font-primary);
-  font-size:1.15rem;
-  color:rgba(255,255,255,.9);
+
+.hero-clock-subtitle {
+  font-family: var(--font-primary);
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* ---- Belangrijk: GEEN fill overschrijven op de wijzerplaat ---- */
-/* Rand/markers/wijzers donkerder: alleen stroke kleuren zetten */
-.hero-clock-svg circle[stroke]{
-  stroke:color-mix(in srgb,var(--color-header-bg) 100%,#000 18%);
-}
-/* 5-minuten markers (line) */
-.hero-clock-svg line[stroke]{
-  stroke:color-mix(in srgb,var(--color-header-bg) 100%,#000 18%);
-}
-/* Wijzers + middencirkel */
-.hero-clock-svg .hands line{
-  stroke:color-mix(in srgb,var(--color-header-bg) 100%,#000 18%);
-}
-.hero-clock-svg .hands circle{
-  fill:color-mix(in srgb,var(--color-header-bg) 100%,#000 18%);
+.hero-clock-svg circle[stroke],
+.hero-clock-svg line[stroke],
+.hero-clock-svg .hands line {
+  stroke: color-mix(in srgb, var(--color-header-bg) 100%, #000 18%);
 }
 
-/* ================================================================
-   CATEGORIEËN / HOME ICONS
-   ================================================================ */
-.home-grid{
-  display:grid; grid-template-columns:repeat(2,1fr);
-  gap:1rem; justify-content:center; margin-bottom:1.5rem;
-}
-@media(min-width:640px){ .home-grid{ grid-template-columns:repeat(3,1fr); } }
-
-.home-tile{
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  gap:.35rem; padding:1rem; background:var(--temio-color-tile);
-  border-radius:20px; text-decoration:none; border:0; color:var(--temio-color-icon);
-  box-shadow:var(--temio-shadow-light); transition:transform .15s ease; aspect-ratio:1/1;
-}
-.home-tile:hover{ transform:translateY(-2px); }
-
-/* Alleen de iconen in tegels: groot & filled */
-.home-tile .icon-filled,
-.home-tile svg{
-  width:44px !important; height:44px !important;
-  fill:currentColor !important; stroke:none !important;
-  color:var(--temio-color-header);
-}
-
-.tile-label{
-  margin-top:.15rem; font-weight:600; font-family:var(--font-secondary);
-  font-size:1rem; color:var(--temio-color-header);
+.hero-clock-svg .hands circle {
+  fill: color-mix(in srgb, var(--color-header-bg) 100%, #000 18%);
 }
 
 /* ================================================================
    AANKOMENDE HERINNERINGEN
    ================================================================ */
-.tasklist{ background:transparent; margin:1.5rem 0; padding:0; }
-.tasklist__header{ display:flex; align-items:baseline; justify-content:space-between; padding:0 0 .5rem 0; }
-.tasklist__title{ font-size:1rem; color:var(--color-heading); }
-.tasklist__count{ font-variant-numeric:tabular-nums; color:var(--color-muted); }
-.tasklist__list{ list-style:none; display:grid; grid-template-columns:1fr; gap:.75rem; }
-.tasklist__item{ background:var(--temio-color-tile); border-radius:.75rem; border:1px solid var(--color-border); box-shadow:var(--temio-shadow-light); }
-.tasklist__link{ display:block; padding:.9rem 1rem; color:var(--color-text); text-decoration:none; }
-.tasklist__name{ font-weight:600; color:var(--color-heading); }
-.tasklist__date{ font-variant-numeric:tabular-nums; color:var(--color-muted); }
-.tasklist__meta{ margin-top:.25rem; opacity:.7; font-weight:500; }
+.tasklist {
+  background: transparent;
+  margin: 1.5rem 0;
+  padding: 0;
+}
+
+.tasklist__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0 0 0.5rem 0;
+}
+
+.tasklist__title {
+  font-size: 1rem;
+  color: var(--color-heading);
+}
+
+.tasklist__count {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted);
+}
+
+.tasklist__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.tasklist__item {
+  background: var(--temio-color-tile);
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--temio-shadow-light);
+}
+
+.tasklist__link {
+  display: block;
+  padding: 0.9rem 1rem;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.tasklist__name {
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.tasklist__date {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted);
+}
+
+.tasklist__meta {
+  margin-top: 0.25rem;
+  opacity: 0.7;
+  font-weight: 500;
+}
 
 /* ================================================================
    FORMS
    ================================================================ */
-.reminder-form label{ display:block; margin-bottom:.75rem; }
-.date-time-row{ display:flex; gap:.75rem; }
-.date-time-row input{ width:100%; }
-.offsets{ margin-bottom:1rem; }
-.offsets .label{ font-weight:600; margin-bottom:.3rem; }
-.offset-buttons{ display:flex; flex-wrap:wrap; gap:.4rem; }
-.offset-buttons button{
-  padding:.3rem .6rem; border-radius:6px; border:1px solid var(--color-border);
-  background:var(--temio-color-chip); cursor:pointer;
+.reminder-form label {
+  display: block;
+  margin-bottom: 0.75rem;
 }
-.offset-buttons button.active{ background:var(--color-accent); color:#fff; }
-.offset-custom{ margin-top:.4rem; display:flex; gap:.3rem; }
-.repeat-picker{ display:flex; flex-direction:column; gap:.5rem; margin-bottom:1rem; }
-select{ width:100%; padding:.4rem; }
+
+.date-time-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.date-time-row input { width: 100%; }
+
+.offsets { margin-bottom: 1rem; }
+
+.offsets .label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.offset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.offset-buttons button {
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  background: var(--temio-color-chip);
+  cursor: pointer;
+}
+
+.offset-buttons button.active {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.offset-custom {
+  margin-top: 0.4rem;
+  display: flex;
+  gap: 0.3rem;
+}
+
+.repeat-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+select { width: 100%; padding: 0.4rem; }
 
 /* ================================================================
    MISC UTILITIES
    ================================================================ */
-.has-fixed-footer{ padding-bottom:5.5rem; }
-.fade-in{ animation:fadeInUp .4s both; }
-@keyframes fadeInUp{ from{opacity:0;transform:translateY(4px);} to{opacity:1;transform:translateY(0);} }
+.has-fixed-footer { padding-bottom: 5.5rem; }
+
+.fade-in {
+  animation: fadeInUp 0.4s both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
