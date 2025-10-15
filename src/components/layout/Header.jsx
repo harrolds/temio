@@ -4,8 +4,10 @@ import LanguageSelect from "@/components/common/LanguageSelect";
 
 export default function Header() {
   return (
-    <header className="pp-header">
-      <Link to="/" className="pp-title">Temio</Link>
+    <header className="pp-header pp-header--bordered">
+      <Link to="/" className="pp-title">
+        Temio
+      </Link>
       <LanguageSelect />
     </header>
   );
