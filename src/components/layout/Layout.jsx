@@ -1,23 +1,21 @@
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import useScrollDirection from "@/hooks/useScrollDirection";
+import { Outlet } from "react-router-dom";
+import "../../styles.css";
+import "../../styles.extra.css";
 
 /**
- * Layout Component – Precision & Pulse (Sprint 2.3)
- * -------------------------------------------------
- * - Omhult alle pagina's met vaste Header en Footer
- * - Voegt automatische spacing toe zodat content nooit overlapt
- * - ScrollDirection hook behouden voor toekomstige header-animaties
+ * Layout – uniforme pagina-omhulling
+ * Fix voor header/footer overlap bij slide-pages
  */
-export default function Layout({ children }) {
-  // Scroll direction hook wordt alleen gebruikt voor optionele header-effecten
-  const scrollDir = useScrollDirection();
-
+export default function Layout() {
   return (
-    <div className="app-layout">
-      <Header scrollDir={scrollDir} />
-      <main className="has-fixed-footer">{children}</main>
+    <div className="app-shell">
+      <Header />
+      <main className="app-content" id="rr-app">
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );
