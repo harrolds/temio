@@ -1,260 +1,252 @@
-/* ================================================================
-   Temio / Reminder App
-   Stylesheet – Base Layout & Structure
-   Precision & Pulse v2.1.4 – HeroClock fix + Home Icon size/fill
-   OPSCHOONVERSIE (redundanties verwijderd)
-   ================================================================ */
+/* ===========================================================
+   TEMIO – STYLES.CSS (Sprint 2.4 Batch A.4 CLEANUP)
+   Baseline-ID: TEMIO-241025-BL-A4CLEANUP
+   Beschrijving:
+     - Kernopmaak en basisstructuur van Temio
+     - Geen slide-framework (staat in styles.extra.css)
+     - Opschoning volgens CHE + FCAP++
+   =========================================================== */
 
-/* ================================================================
-   RESET & BASICS
-   ================================================================ */
-*,
-*::before,
-*::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ---------- 1. BASE RESET ---------------------------------- */
 
-html, body, #root {
-  height: 100%;
-  width: 100%;
-  font-family: var(--font-primary);
-  background-color: var(--color-bg);
-  color: var(--color-text);
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--color-bg, #f6f8fa);
+  color: var(--color-text, #1a1a1a);
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-main {
-  min-height: calc(100vh - 72px);
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  background: var(--color-bg);
-}
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote::before, blockquote::after,
+q::before, q::after { content: ''; }
+table { border-collapse: collapse; border-spacing: 0; }
 
-section { width: 100%; margin: 0 auto; }
-
-/* ================================================================
-   TYPOGRAFIE
-   ================================================================ */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-secondary);
-  font-weight: 600;
-  color: var(--color-heading);
-}
-
-p {
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-/* ================================================================
-   BUTTONS & LINKS (basis)
-   ================================================================ */
-button {
-  cursor: pointer;
-  border: none;
-  border-radius: var(--radius-sm);
-  font-weight: 500;
-  transition: background-color 0.2s ease, transform 0.15s ease;
-}
-
-button:hover { transform: translateY(-1px); }
+/* ---------- 2. LINKS & INTERACTIONS ------------------------- */
 
 a {
-  color: var(--color-accent);
+  color: var(--color-accent, #496e8a);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease-in-out;
+}
+a:hover {
+  color: var(--color-accent-light, #5f8fb0);
 }
 
-a:hover { color: var(--color-accent-hover); }
+/* ---------- 3. LAYOUT CONTAINERS ---------------------------- */
 
-/* ================================================================
-   HERO CLOCK – TEMIO
-   ================================================================ */
-.hero-clock-zone {
-  background: var(--color-header-bg);
-  color: #fff;
-  text-align: center;
-  padding: 2rem 1rem 1.5rem;
-  margin-top: -0.75rem;
+main {
+  display: block;
+  min-height: calc(100vh - var(--footer-height, 72px));
+  box-sizing: border-box;
 }
 
-.hero-clock--temio {
-  max-width: 520px;
-  margin: 0 auto;
-  padding: 22px 18px 26px;
-  border-radius: 20px;
-  background: color-mix(in srgb, var(--color-header-bg) 80%, #fff 15%);
-}
-
-.hero-clock-face {
-  width: 210px;
-  height: 210px;
-  margin: 6px auto 10px;
-}
-
-.hero-clock-svg {
+.container {
   width: 100%;
-  height: 100%;
-  display: block;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
-/* digitale tijd + subtitel */
-.hero-clock-digital {
-  font-family: var(--font-secondary);
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  font-variant-numeric: tabular-nums;
-  font-size: 2.2rem;
-  margin-top: 8px;
-  color: #fff;
-}
+/* ---------- 4. GRID SYSTEM --------------------------------- */
 
-.hero-clock-subtitle {
-  font-family: var(--font-primary);
-  font-size: 1.15rem;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-/* ---- Belangrijk: GEEN fill overschrijven op de wijzerplaat ---- */
-.hero-clock-svg circle[stroke],
-.hero-clock-svg line[stroke],
-.hero-clock-svg .hands line {
-  stroke: color-mix(in srgb, var(--color-header-bg) 100%, #000 18%);
-}
-
-.hero-clock-svg .hands circle {
-  fill: color-mix(in srgb, var(--color-header-bg) 100%, #000 18%);
-}
-
-/* ================================================================
-   AANKOMENDE HERINNERINGEN
-   ================================================================ */
-.tasklist {
-  background: transparent;
-  margin: 1.5rem 0;
-  padding: 0;
-}
-
-.tasklist__header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  padding: 0 0 0.5rem 0;
-}
-
-.tasklist__title {
-  font-size: 1rem;
-  color: var(--color-heading);
-}
-
-.tasklist__count {
-  font-variant-numeric: tabular-nums;
-  color: var(--color-muted);
-}
-
-.tasklist__list {
-  list-style: none;
+.grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
-.tasklist__item {
-  background: var(--temio-color-tile);
-  border-radius: 0.75rem;
-  border: 1px solid var(--color-border);
- /* box-shadow: var(--temio-shadow-light); */
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
-.tasklist__link {
-  display: block;
-  padding: 0.9rem 1rem;
-  color: var(--color-text);
-  text-decoration: none;
-}
+/* ---------- 5. BUTTONS ------------------------------------- */
 
-.tasklist__name {
-  font-weight: 600;
-  color: var(--color-heading);
-}
-
-.tasklist__date {
-  font-variant-numeric: tabular-nums;
-  color: var(--color-muted);
-}
-
-.tasklist__meta {
-  margin-top: 0.25rem;
-  opacity: 0.7;
-  font-weight: 500;
-}
-
-/* ================================================================
-   FORMS
-   ================================================================ */
-.reminder-form label {
-  display: block;
-  margin-bottom: 0.75rem;
-}
-
-.date-time-row {
-  display: flex;
-  gap: 0.75rem;
-}
-
-.date-time-row input { width: 100%; }
-
-.offsets { margin-bottom: 1rem; }
-
-.offsets .label {
-  font-weight: 600;
-  margin-bottom: 0.3rem;
-}
-
-.offset-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.offset-buttons button {
-  padding: 0.3rem 0.6rem;
-  border-radius: 6px;
-  border: 1px solid var(--color-border);
-  background: var(--temio-color-chip);
-  cursor: pointer;
-}
-
-.offset-buttons button.active {
-  background: var(--color-accent);
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius-md, 8px);
+  background: var(--color-accent, #496e8a);
   color: #fff;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+.btn:hover {
+  background: var(--color-accent-light, #5f8fb0);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-.offset-custom {
-  margin-top: 0.4rem;
-  display: flex;
-  gap: 0.3rem;
+/* ---------- 6. FORMS --------------------------------------- */
+
+label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
 }
 
-.repeat-picker {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border, rgba(0, 0, 0, 0.1));
+  border-radius: var(--radius-sm, 6px);
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+textarea { resize: vertical; min-height: 80px; }
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-accent, #496e8a);
+  box-shadow: 0 0 0 2px rgba(73, 110, 138, 0.2);
+}
+
+/* ---------- 7. ALERTS & BADGES ------------------------------ */
+
+.alert {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md, 8px);
   margin-bottom: 1rem;
 }
-
-select { width: 100%; padding: 0.4rem; }
-
-/* ================================================================
-   MISC UTILITIES
-   ================================================================ */
-.has-fixed-footer { padding-bottom: 5.5rem; }
-
-.fade-in {
-  animation: fadeInUp 0.4s both;
+.alert-info {
+  background: #e5f0fa;
+  color: #1e3a56;
+}
+.alert-success {
+  background: #e9f7ec;
+  color: #204025;
+}
+.alert-error {
+  background: #fceaea;
+  color: #701c1c;
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: var(--radius-sm, 6px);
+  background: var(--color-accent, #496e8a);
+  color: #fff;
 }
+
+/* ---------- 8. CARDS --------------------------------------- */
+
+.card {
+  background: var(--color-surface, #fff);
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.05));
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+.card h3 { margin-bottom: 0.5rem; }
+.card p { margin-bottom: 0; }
+
+/* ---------- 9. UTILITIES ----------------------------------- */
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+
+.p-1 { padding: 0.5rem; }
+.p-2 { padding: 1rem; }
+.p-3 { padding: 1.5rem; }
+
+.rounded-sm { border-radius: var(--radius-sm, 6px); }
+.rounded-md { border-radius: var(--radius-md, 8px); }
+.rounded-lg { border-radius: var(--radius-lg, 12px); }
+
+/* ---------- 10. ANIMATIONS --------------------------------- */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.fade-in { animation: fadeIn 0.3s ease-in; }
+
+@keyframes slideUp {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.slide-up { animation: slideUp 0.4s ease-out; }
+
+/* ---------- 11. MISC --------------------------------------- */
+
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border, rgba(0, 0, 0, 0.1));
+  margin: 1rem 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hidden { display: none !important; }
+
+/* ===========================================================
+   END OF FILE
+   =========================================================== */
