@@ -495,8 +495,8 @@ h3.section-title {
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-areas:
-    "date category"
-    "title title";
+    "title title"
+    "date category";
   row-gap: 0.25rem;
 }
 
