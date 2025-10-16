@@ -464,13 +464,13 @@ h3.section-title {
 /* 8. Blauw icoon met wit vinkje voor elk item (CSS-only) */
 .tasklist__link {
   position: relative;
-  padding-left: 2.2rem; /* extra ruimte links */
+  padding-left: 3.2rem; /* extra ruimte links */
 }
 
 .tasklist__link::before {
   content: "✓";
   position: absolute;
-  left: 0;
+  left: 0.6rem;
   top: 50%;
   transform: translateY(-50%);
   width: 28px;
