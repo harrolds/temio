@@ -4,8 +4,9 @@ import { useTranslation } from "react-i18next";
 /**
  * ReminderOffsets – preset & custom vooraf-herinneringen
  * → Volledige i18n-ondersteuning
+ * ✅ Veiliger gemaakt tegen undefined offsets (Sprint 2.4 fix)
  */
-export default function ReminderOffsets({ offsets, onChange }) {
+export default function ReminderOffsets({ offsets = [], onChange = () => {} }) {
   const { t } = useTranslation();
 
   const presets = [
@@ -19,13 +20,17 @@ export default function ReminderOffsets({ offsets, onChange }) {
   const [custom, setCustom] = useState("");
 
   const toggle = (val) => {
-    if (offsets.includes(val)) onChange(offsets.filter((v) => v !== val));
-    else onChange([...offsets, val]);
+    const safe = Array.isArray(offsets) ? offsets : [];
+    if (safe.includes(val)) onChange(safe.filter((v) => v !== val));
+    else onChange([...safe, val]);
   };
 
   const addCustom = () => {
     const n = parseInt(custom);
-    if (!isNaN(n) && n > 0) onChange([...offsets, n]);
+    if (!isNaN(n) && n > 0) {
+      const safe = Array.isArray(offsets) ? offsets : [];
+      onChange([...safe, n]);
+    }
     setCustom("");
   };
 
@@ -38,7 +43,11 @@ export default function ReminderOffsets({ offsets, onChange }) {
             type="button"
             key={p.value}
             onClick={() => toggle(p.value)}
-            className={offsets.includes(p.value) ? "active" : ""}
+            className={
+              Array.isArray(offsets) && offsets.includes(p.value)
+                ? "active"
+                : ""
+            }
           >
             {p.label}
           </button>
