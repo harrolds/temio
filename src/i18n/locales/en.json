@@ -11,7 +11,7 @@
     "gezondheid": { "title": "Health" },
     "contracten": { "title": "Contracts" },
     "overheid": { "title": "Government" },
-    "diversen": { "title": "Miscellaneous" }
+    "diversen": { "title": "Other" }
   },
 
   "nav": {
