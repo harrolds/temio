@@ -591,3 +591,42 @@ h3.section-title {
   min-height: 0;
   min-width: 0;
 }
+/* ===========================================================
+   SLIDE FRAMEWORK – gedeeld component
+   =========================================================== */
+.slide-wrapper {
+  display: flex;
+  width: 200%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.slide-wrapper.list-active {
+  transform: translateX(0);
+}
+
+.slide-wrapper.form-active {
+  transform: translateX(-50%);
+}
+
+.slide-page,
+.slide-form {
+  width: 50%;
+  flex-shrink: 0;
+  height: 100vh;
+}
+
+/* linkerzijde (lijst) */
+.slide-page {
+  background: #f6f8fa;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+/* rechterzijde (formulier) */
+.slide-form {
+  background: #ffffff;
+  overflow-y: auto;
+  box-shadow: -2px 0 6px rgba(0, 0, 0, 0.08);
+  padding: 2rem 1.5rem;
+}
+
