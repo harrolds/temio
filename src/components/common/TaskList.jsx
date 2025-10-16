@@ -85,7 +85,7 @@ export default function TaskList({ limit = 6 }) {
       ) : (
         <ul className="tasklist__list" role="list">
           {items.slice(0, limit).map((it) => (
-            <li key={it.id} className="tasklist__item hover-raise has-check">
+            <li key={it.id} className="tasklist__item hover-raise">
               <Link to={it.path} className="tasklist__link">
                 {/* Nieuwe layout (CSS grid): datum links, categorie rechts, titel onderaan */}
                 <span className="tasklist__date">{fmtDate(it.when)}</span>
