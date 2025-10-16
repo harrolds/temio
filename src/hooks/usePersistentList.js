@@ -48,5 +48,13 @@ export default function usePersistentList(key, initialValue = []) {
 
   // ------------------------------------------------------------------------
 
-  return [items, addItem, updateItem, removeItem];
+  return {
+  items,
+  addItem,
+  updateAt,
+  removeAt,
+  clear,
+  updateItem,
+  removeItem,
+};
 }
