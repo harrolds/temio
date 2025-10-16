@@ -666,5 +666,58 @@ footer,
   position: relative;
   z-index: 10;
 }
+/* ===========================================================
+   LAYOUT INTEGRATION FIX – Sprint 2.4 Batch A.2
+   =========================================================== */
+
+/* Root wrapper: laat content tussen header & footer flexibel vullen */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Content vult resterende ruimte, laat body scrollen indien nodig */
+.app-content {
+  flex: 1;
+  overflow: visible;
+  padding-top: var(--header-height, 64px);
+  padding-bottom: var(--footer-height, 72px);
+  box-sizing: border-box;
+}
+
+/* Slide wrapper volgt nu de beschikbare hoogte tussen header en footer */
+.slide-wrapper {
+  display: flex;
+  width: 200%;
+  transition: transform 0.4s ease-in-out;
+  position: relative;
+  min-height: calc(100vh - var(--header-height, 64px) - var(--footer-height, 72px));
+  overflow: hidden;
+}
+
+/* Slides vullen volledige beschikbare hoogte */
+.slide-page,
+.slide-form {
+  width: 50%;
+  flex-shrink: 0;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-gutter: stable both-edges;
+}
+
+/* Scrollbars subtiel */
+.slide-page::-webkit-scrollbar,
+.slide-form::-webkit-scrollbar { width: 6px; }
+.slide-page::-webkit-scrollbar-thumb,
+.slide-form::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+
+/* Footer blijft zichtbaar, header altijd erboven */
+header, #rr-header { position: relative; z-index: 20; }
+footer, #rr-footer { position: relative; z-index: 10; margin-top: auto; }
+
 
 
