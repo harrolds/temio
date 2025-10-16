@@ -13,11 +13,11 @@ import ReminderOffsets from "@/components/common/ReminderOffsets";
 import RepeatPicker from "@/components/common/RepeatPicker";
 
 /**
- * Diversen pagina – volledig i18n-compatibel
+ * Auto pagina – volledig i18n-compatibel
  */
-export default function Diversen() {
+export default function Auto() {
   const { t } = useTranslation();
-  const formName = "diversen";
+  const formName = "auto";
 
   const [draft, setDraft] = useState({
     naam: "",
@@ -84,7 +84,7 @@ export default function Diversen() {
   };
 
   return (
-    <SectionCard title={t("pages.diversen.title")}>
+    <SectionCard title={t("pages.auto.title")}>
       <form onSubmit={handleSubmit} className="reminder-form">
         <label>
           {t("fields.naam")}
