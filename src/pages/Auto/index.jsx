@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import React, { useState, useEffect } from "react";
 import SectionCard from "@/components/common/SectionCard";
 import { useTranslation } from "react-i18next";
 import { v4 as uuidv4 } from "uuid";
@@ -12,20 +11,15 @@ import usePersistentList from "@/hooks/usePersistentList";
 import DateTimeRow from "@/components/common/DateTimeRow";
 import ReminderOffsets from "@/components/common/ReminderOffsets";
 import RepeatPicker from "@/components/common/RepeatPicker";
-import "./auto.css";
 
-function BodyPortal({ children }) {
-  return createPortal(children, document.body);
-}
-
+/**
+ * Auto pagina – volledig i18n-compatibel
+ */
 export default function Auto() {
   const { t } = useTranslation();
-  const storageKey = "rr_reminders_auto";
-  const { items, addItem, removeItem, updateItem } = usePersistentList(storageKey, []);
+  const formName = "auto";
 
-  // Form state
   const [draft, setDraft] = useState({
-    id: "",
     naam: "",
     datum: "",
     tijd: "09:00",
@@ -35,24 +29,39 @@ export default function Auto() {
     repeatEnd: "",
     prioriteit: "normaal",
   });
-  const [showForm, setShowForm] = useState(false);
+
+  const { items, addItem, removeItem, updateItem } =
+    usePersistentList(`rr_reminders_${formName}`);
   const [editId, setEditId] = useState(null);
-  const firstFieldRef = useRef(null);
 
   useEffect(() => {
     requestPermission();
   }, []);
 
-  useEffect(() => {
-    if (showForm && firstFieldRef.current) {
-      // focus het eerste veld bij openen
-      firstFieldRef.current.focus();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!draft.naam || !draft.datum) {
+      toastReminder(t(`${formName}.validation.missingFields`));
+      return;
     }
-  }, [showForm]);
+    const selectedDate = new Date(`${draft.datum}T${draft.tijd}`);
+    if (selectedDate < new Date()) {
+      toastReminder(t(`${formName}.validation.datePast`));
+      return;
+    }
 
-  const resetDraft = () =>
+    const newItem = { ...draft, id: editId || uuidv4() };
+    if (editId) {
+      updateItem(editId, newItem);
+      setEditId(null);
+      toastReminder(t(`${formName}.toast.updated`));
+    } else {
+      addItem(newItem);
+      scheduleReminder(newItem);
+      toastReminder(t(`${formName}.toast.created`));
+    }
+
     setDraft({
-      id: "",
       naam: "",
       datum: "",
       tijd: "09:00",
@@ -62,190 +71,99 @@ export default function Auto() {
       repeatEnd: "",
       prioriteit: "normaal",
     });
-
-  const handleOpenCreate = () => {
-    resetDraft();
-    setEditId(null);
-    setShowForm(true);
   };
 
   const handleEdit = (item) => {
-    setDraft({ ...item });
+    setDraft(item);
     setEditId(item.id);
-    setShowForm(true);
   };
 
   const handleDelete = (id) => {
-    const idx = items.findIndex((x) => x.id === id);
-    if (idx > -1) {
-      removeItem(idx);
-      toastReminder(t("auto.toast.deleted") || "Herinnering verwijderd.");
-    }
+    removeItem(id);
+    toastReminder(t(`${formName}.toast.deleted`));
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!draft.naam || !draft.datum) {
-      toastReminder(t("auto.validation.missingFields") || "Vul alle verplichte velden in.");
-      return;
-    }
-    const dt = new Date(`${draft.datum}T${draft.tijd}`);
-    if (isNaN(dt.getTime()) || dt < new Date()) {
-      toastReminder(t("auto.validation.datePast") || "Datum/tijd mag niet in het verleden liggen.");
-      return;
-    }
-
-    if (editId) {
-      const idx = items.findIndex((x) => x.id === editId);
-      if (idx > -1) {
-        updateItem(idx, { ...draft, id: editId });
-        toastReminder(t("auto.toast.updated") || "Herinnering bijgewerkt.");
-      }
-    } else {
-      const newItem = { ...draft, id: uuidv4() };
-      addItem(newItem);
-      scheduleReminder(newItem);
-      toastReminder(t("auto.toast.created") || "Herinnering toegevoegd.");
-    }
-
-    setShowForm(false);
-    setEditId(null);
-    resetDraft();
-  };
-
-  // Overlay sluiten bij Escape
-  useEffect(() => {
-    if (!showForm) return;
-    const onKey = (ev) => ev.key === "Escape" && setShowForm(false);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [showForm]);
 
   return (
-    <div className="page-auto">
-      <SectionCard title={t("pages.auto.title", "Auto")}>
-        {/* Lijst */}
-        <div className="reminder-grid">
-          {items.length === 0 ? (
-            <p className="text-muted">
-              {t("auto.noReminders") || "Nog geen herinneringen toegevoegd."}
-            </p>
-          ) : (
-            items.map((item) => (
-              <div key={item.id} className="reminder-card">
-                <div className="reminder-header">
-                  <strong className="reminder-name">{item.naam}</strong>
-                  <p className="reminder-date">
-                    {item.datum} • {item.tijd}
-                  </p>
-                </div>
-                {item.beschrijving && (
-                  <p className="text-muted small">{item.beschrijving}</p>
-                )}
-                <p className="small meta">
-                  {item.offsets?.includes(1440) ? t("auto.meta.dayBefore", { defaultValue: "1 dag vooraf" }) : ""}
-                  {item.repeat !== "none" ? ` • ${t("repeat." + item.repeat) || item.repeat}` : ""}
-                  {item.prioriteit === "hoog" ? " • ⚠️" : ""}
-                </p>
-                <div className="card-actions">
-                  <button type="button" className="btn-edit" onClick={() => handleEdit(item)}>
-                    {t("auto.buttons.bewerken") || "Bewerken"}
-                  </button>
-                  <button type="button" className="btn-delete" onClick={() => handleDelete(item.id)}>
-                    {t("auto.buttons.verwijderen") || "Verwijderen"}
-                  </button>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-      </SectionCard>
+    <SectionCard title={t("pages.auto.title")}>
+      <form onSubmit={handleSubmit} className="reminder-form">
+        <label>
+          {t("fields.naam")}
+          <input
+            type="text"
+            value={draft.naam}
+            onChange={(e) => setDraft({ ...draft, naam: e.target.value })}
+            required
+          />
+        </label>
 
-      {/* FAB als portal buiten <main>/<section> zodat z-index/overflow geen rol speelt */}
-      <BodyPortal>
-        <button
-          className="fab"
-          aria-label={t("auto.buttons.nieuw", "Nieuwe herinnering")}
-          onClick={handleOpenCreate}
-          type="button"
-        >
-          +
+        <DateTimeRow
+          date={draft.datum}
+          time={draft.tijd}
+          onChange={(d, tVal) => setDraft({ ...draft, datum: d, tijd: tVal })}
+        />
+
+        <ReminderOffsets
+          offsets={draft.offsets}
+          onChange={(v) => setDraft({ ...draft, offsets: v })}
+        />
+
+        <RepeatPicker
+          repeat={draft.repeat}
+          repeatEnd={draft.repeatEnd}
+          onChange={(r, end) => setDraft({ ...draft, repeat: r, repeatEnd: end })}
+        />
+
+        <label>
+          {t("fields.beschrijving")}
+          <textarea
+            value={draft.beschrijving}
+            onChange={(e) => setDraft({ ...draft, beschrijving: e.target.value })}
+          />
+        </label>
+
+        <label>
+          {t("fields.prioriteit")}
+          <select
+            value={draft.prioriteit}
+            onChange={(e) =>
+              setDraft({ ...draft, prioriteit: e.target.value })
+            }
+          >
+            <option value="laag">{t("priority.low")}</option>
+            <option value="normaal">{t("priority.normal")}</option>
+            <option value="hoog">{t("priority.high")}</option>
+          </select>
+        </label>
+
+        <button type="submit" className="btn-primary">
+          {editId ? t("buttons.bijwerken") : t("buttons.opslaan")}
         </button>
-      </BodyPortal>
+      </form>
 
-      {/* Overlay + formulier via portal, altijd boven alles */}
-      {showForm && (
-        <BodyPortal>
-          <div className="form-overlay" role="dialog" aria-modal="true" onClick={() => setShowForm(false)}>
-            <form className="form-card" onClick={(e) => e.stopPropagation()} onSubmit={handleSubmit}>
-              <h2>
-                {editId
-                  ? t("auto.buttons.bijwerken") || "Herinnering bijwerken"
-                  : t("auto.buttons.nieuw") || "Nieuwe herinnering"}
-              </h2>
-
-              <label>
-                {t("auto.fields.naam") || "Naam"}
-                <input
-                  ref={firstFieldRef}
-                  type="text"
-                  value={draft.naam}
-                  onChange={(e) => setDraft({ ...draft, naam: e.target.value })}
-                  placeholder={t("auto.placeholders.naam") || "Bijv. APK keuring"}
-                  required
-                />
-              </label>
-
-              <DateTimeRow
-                date={draft.datum}
-                time={draft.tijd}
-                onChange={(d, t) => setDraft({ ...draft, datum: d, tijd: t })}
-              />
-
-              <ReminderOffsets
-                offsets={draft.offsets}
-                onChange={(v) => setDraft({ ...draft, offsets: v })}
-              />
-
-              <RepeatPicker
-                repeat={draft.repeat}
-                repeatEnd={draft.repeatEnd}
-                onChange={(r, end) => setDraft({ ...draft, repeat: r, repeatEnd: end })}
-              />
-
-              <label>
-                {t("auto.fields.beschrijving") || "Notitie"}
-                <textarea
-                  value={draft.beschrijving}
-                  onChange={(e) => setDraft({ ...draft, beschrijving: e.target.value })}
-                  placeholder={t("auto.placeholders.beschrijving") || "Optionele notitie"}
-                />
-              </label>
-
-              <label>
-                {t("auto.fields.prioriteit") || "Prioriteit"}
-                <select
-                  value={draft.prioriteit}
-                  onChange={(e) => setDraft({ ...draft, prioriteit: e.target.value })}
-                >
-                  <option value="laag">{t("auto.priority.low") || "Laag"}</option>
-                  <option value="normaal">{t("auto.priority.normal") || "Normaal"}</option>
-                  <option value="hoog">{t("auto.priority.high") || "Hoog"}</option>
-                </select>
-              </label>
-
-              <div className="form-buttons">
-                <button type="button" className="btn-secondary" onClick={() => setShowForm(false)}>
-                  {t("auto.buttons.annuleren") || "Annuleren"}
-                </button>
-                <button type="submit" className="btn-primary">
-                  {t("auto.buttons.opslaan") || "Opslaan"}
-                </button>
-              </div>
-            </form>
+      <div className="card-list mt-3">
+        {items.length === 0 && (
+          <p className="text-muted">{t(`${formName}.noReminders`)}</p>
+        )}
+        {items.map((item) => (
+          <div key={item.id} className="card-item">
+            <strong>{item.naam}</strong>
+            <p>
+              {item.datum} {item.tijd}
+            </p>
+            {item.beschrijving && (
+              <p className="text-muted">{item.beschrijving}</p>
+            )}
+            <div className="mt-2">
+              <button type="button" onClick={() => handleEdit(item)}>
+                {t("buttons.bewerken")}
+              </button>
+              <button type="button" onClick={() => handleDelete(item.id)}>
+                {t("buttons.verwijderen")}
+              </button>
+            </div>
           </div>
-        </BodyPortal>
-      )}
-    </div>
+        ))}
+      </div>
+    </SectionCard>
   );
 }
