@@ -630,3 +630,41 @@ h3.section-title {
   padding: 2rem 1.5rem;
 }
 
+/* ===========================================================
+   SLIDE FRAMEWORK – footer & scroll fix (Sprint 2.4)
+   =========================================================== */
+
+/* Zorg dat de slide-wrapper niet over de vaste footer valt */
+#rr-app,
+.slide-wrapper {
+  min-height: calc(100vh - var(--footer-height, 56px));
+  position: relative;
+}
+
+/* Behoud 100 vh-animatie, maar laat ruimte voor footer */
+.slide-page,
+.slide-form {
+  height: calc(100vh - var(--footer-height, 56px));
+  overflow-y: auto;
+  scrollbar-gutter: stable both-edges; /* voorkomt verspringing bij scroll */
+}
+
+/* Subtielere scrollbalk (optioneel, moderne browsers) */
+.slide-page::-webkit-scrollbar,
+.slide-form::-webkit-scrollbar {
+  width: 6px;
+}
+.slide-page::-webkit-scrollbar-thumb,
+.slide-form::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+
+/* Zorg dat de footer altijd boven de slides ligt */
+footer,
+#rr-footer {
+  position: relative;
+  z-index: 10;
+}
+
+
