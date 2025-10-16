@@ -163,7 +163,7 @@ a:hover { color: var(--color-accent-hover); }
   background: var(--temio-color-tile);
   border-radius: 0.75rem;
   border: 1px solid var(--color-border);
-  box-shadow: var(--temio-shadow-light);
+ /* box-shadow: var(--temio-shadow-light); */
 }
 
 .tasklist__link {

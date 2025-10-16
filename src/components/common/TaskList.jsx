@@ -87,13 +87,13 @@ export default function TaskList({ limit = 6 }) {
           {items.slice(0, limit).map((it) => (
             <li key={it.id} className="tasklist__item hover-raise">
               <Link to={it.path} className="tasklist__link">
-                {/* Nieuwe layout (CSS grid): datum links, categorie rechts, titel onderaan */}
+                {/* Nieuwe layout (CSS grid): datum links, categorie rechts, titel bovenaan */}
+                <span className="tasklist__name">
+                {it.name || t("home.tasks.unnamed", "Naamloos")}
+                </span>
                 <span className="tasklist__date">{fmtDate(it.when)}</span>
                 <span className="tasklist__category">
                   {t(`pages.${it.category}.title`, it.category)}
-                </span>
-                <span className="tasklist__name">
-                  {it.name || t("home.tasks.unnamed", "Naamloos")}
                 </span>
               </Link>
             </li>

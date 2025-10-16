@@ -464,28 +464,25 @@ h3.section-title {
 /* 8. Blauw icoon met wit vinkje voor elk item (CSS-only) */
 .tasklist__link {
   position: relative;
-  padding-left: 2rem;         /* ruimte voor icoon links */
+  padding-left: 3.2rem; /* extra ruimte links */
 }
 
 .tasklist__link::before {
-  content: "";
+  content: "✓";
   position: absolute;
   left: 0.6rem;
-  top: 1rem;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background-color: #496e8a;          /* blauw cirkeltje */
-  mask: url("data:image/svg+xml;utf8,\
-  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>\
-  <path fill='white' d='M6.173 13.414L1.757 9l1.414-1.414 3.002 3.002 6.657-6.657L14.243 5l-8.07 8.414z'/>\
-  </svg>") no-repeat center;
-  -webkit-mask: url("data:image/svg+xml;utf8,\
-  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>\
-  <path fill='white' d='M6.173 13.414L1.757 9l1.414-1.414 3.002 3.002 6.657-6.657L14.243 5l-8.07 8.414z'/>\
-  </svg>") no-repeat center;
-  mask-size: 10px 10px;
-  -webkit-mask-size: 10px 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  background-color: var(--temio-color-header);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 /* 9–10. Alleen datum, categorie en titel zichtbaar + juiste volgorde */
@@ -498,8 +495,8 @@ h3.section-title {
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-areas:
-    "date category"
-    "title title";
+    "title title"
+    "date category";
   row-gap: 0.25rem;
 }
 
